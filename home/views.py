@@ -5,7 +5,7 @@ from fileupload.models import Picture
 
 
 class Index(MyMetadataMixin, TemplateView):
-    title = _('IceBERG')
+    title = _('Stock')
     template_name = 'home/index.html'
 
     def get_context_data(self, **kwargs):

@@ -85,7 +85,6 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['templates'],
-        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -93,6 +92,13 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'project.context_processors.settings_to_template',  # my context processor
+            ],
+            'loaders': [
+                ('django.template.loaders.cached.Loader', [
+                    'django.template.loaders.filesystem.Loader',
+                    'django.template.loaders.app_directories.Loader',
+                    'admin_tools.template_loaders.Loader',
+                ]),
             ],
         },
     },
@@ -152,7 +158,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-SHOW_LANG_SWITCH = False
+SHOW_LANG_SWITCH = True
 
 # Email send
 # https://docs.djangoproject.com/en/2.0/topics/email/
@@ -206,11 +212,11 @@ IPSTACK_ACCESS_KEY = config('IPSTACK_ACCESS_KEY', default='')
 #  Meta settings https://django-meta.readthedocs.io/en/latest/settings.html
 META_SITE_PROTOCOL = 'http'
 META_SITE_DOMAIN = 'localhost'
-META_SITE_NAME = 'Солнечная энергетика'
+META_SITE_NAME = 'Склад'
 META_BASE_TITLE = META_SITE_NAME
 META_BASE_DESCRIPTION = META_SITE_NAME
 META_USE_TITLE_TAG = True
-META_INCLUDE_KEYWORDS = ['солнечные батареи', 'зеленый тариф']
+META_INCLUDE_KEYWORDS = ['склад', ]
 
 # DB Heroku, uncomment it when deploy to Heroku
 # import dj_database_url
