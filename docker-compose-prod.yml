@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  nginx:
+    container_name: nginx
+    # при падении будет стараться подняться
+    restart: always
+    # только свежий nginx
+    image: nginx:latest
+    # слушает порт 8080
+    expose:
+    - 8080
+    # мапаем порт 80 на его 8080. Тогда сайт будет доступен по адресу localhost. Убедись, что порт у тебя не занят.
+    ports:
+    - 80:8080
+    # монтируем только те директории, в которых лежит статика, т.к. nginx с динамикой не будет работать. Также директорию с логами и файл настройки, который мы подготовили.
+    environment:
+    - NGINX_HOST=localhost
+    - NGINX_PORT=8080
+    volumes:
+    - ./log:/etc/nginx/log
+    - ./docker/nginx:/etc/nginx/conf.d
+    depends_on:
+    - web
+  web:
+    container_name: web
+    restart: always
+    # указываем откуда собирать образ
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
+    # монтируем директорию проекта
+    volumes:
+    - .:/srv/www/solar_django
+    expose:
+    - 8000
+    ports:
+    - 8000:8000
+    - 8001:8001
+    # запускаем gunicorn
+    command: "gunicorn -c gunicorn.py project.wsgi"
+    depends_on:
+    - postgres
+    - redis
+    - memcached

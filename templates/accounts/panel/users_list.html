@@ -1,0 +1,15 @@
+{% extends 'accounts/panel/panel.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+{% load static %}
+
+{% block bootstrap_panel_content %}
+    <h3>{% trans 'Users' %}</h3>
+    <ul class="list-group list-group-flush">
+        {% for user in object_list %}
+            <li class="list-group-item">{{ user.first_name }} / {{ user.email }} / {{ user.phone }} / {{ user.location }}</li>
+        {% empty %}
+            <li class="list-group-item">{% trans 'No entries yet.' %}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

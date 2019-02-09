@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block bootstrap4_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div>
+                    <h3>{% trans 'You have no account?' %}</h3>
+                    <p>{% trans 'Please register and log in to the private section' %}</p>
+                    <p><a href="{% url 'signup' %}">{% trans 'Sign up' %}</a></p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" action="{% url 'login' %}" name="login_form">
+                            {% bootstrap_form form %}
+                            {% trans 'Log in' as login %}
+                            {% bootstrap_button login button_type="submit" button_class="btn-primary" %}
+                            {% csrf_token %}
+                        </form>
+                        <p><a href="{% url 'password_reset' %}">{% trans 'Lost password?' %}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

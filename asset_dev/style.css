@@ -1,0 +1,319 @@
+.navbar-brand img {
+  width: 100px;
+}
+.logo img {
+  width: 300px;
+}
+.title {
+  text-transform: uppercase;
+}
+.circle_block {
+  margin-top: 40px;
+}
+.circle_block.count::after {
+  position: absolute;
+  font-weight: bold;
+  font-size: 150px;
+  top: 0;
+  z-index: -1;
+  line-height: .9;
+}
+.circle_block.first::after {
+  content: '1';
+  left: 18%;
+}
+.circle_block.second::after {
+  content: '2';
+  left: 60%;
+  color: #474a51;
+}
+.circle_block.third::after {
+  content: '3';
+  left: 18%;
+  color: #e00300;
+}
+.circle_block.fourth::after {
+  content: '4';
+  left: 60%;
+}
+.circle_block.fifth::after {
+  content: '5';
+  left: 18%;
+}
+.circle {
+  width: 150px;
+  height: 150px;
+  border: 2px solid;
+  border-radius: 50%;
+  background: white;
+}
+.circle img {
+  width: 70%;
+  height: 70%;
+}
+.circle:hover {
+  border-width: 14px;
+  border-color: #e9ecef;
+  transition: all 0.2s ease-in;
+}
+.circle:hover img {
+  transform: scale(0.8);
+  transition: all 0.2s ease-in;
+}
+.circle:not(:hover) {
+  transition: all 0.1s ease-out;
+}
+.img_lief {
+  width: 150px;
+  background: white;
+  padding: 10px;
+  border-radius: 50% 0;
+}
+.electric {
+  position: relative;
+}
+.electric::before {
+  content: '';
+  background: url("/static/images/home/index/electric_towel_2.svg") no-repeat;
+  position: absolute;
+  top: -160px;
+  right: 5%;
+  width: 200px;
+  height: 160px;
+  opacity: .6;
+}
+.city {
+  margin-bottom: -3rem;
+}
+.city img {
+  height: 35vh;
+}
+ul.pictures {
+  padding: 0;
+}
+ul.pictures li {
+  list-style: none;
+  display: inline-flex;
+  height: 150px;
+  overflow: hidden;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+  margin: -4px;
+}
+ul.pictures li:hover img {
+  transform: scale(0.8);
+  transition: all 0.2s ease-in;
+}
+ul.pictures li:not(:hover) img {
+  transform: scale(1);
+  transition: all 0.1s ease-out;
+}
+.closest_text_block_show,
+.closest_text_block_hide {
+  position: relative;
+}
+.closest_text_block_show::after,
+.closest_text_block_hide:after {
+  content: '';
+  height: 0;
+  width: 100%;
+  background-color: #e9ecef;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+}
+.closest_text_block_show::after {
+  bottom: 0;
+  animation: bg_up 0.2s ease-in alternate;
+  height: 100%;
+}
+.closest_text_block_hide:after {
+  top: 0;
+  animation: bg_down 0.2s ease-out alternate;
+}
+@keyframes bg_up {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+@keyframes bg_down {
+  from {
+    height: 100%;
+  }
+  to {
+    height: 0;
+  }
+}
+.row .col-lg-4.border_bottom_dashed {
+  opacity: 0;
+  transition: all 1s ease-in;
+}
+.solar_panel_bg,
+.solar_panel_text {
+  min-height: 500px;
+  opacity: 0;
+}
+.solar_panel_bg {
+  background: url("images/home/index/panel3.jpg") no-repeat right center;
+  background-size: 100%;
+}
+.solar_panel_text {
+  flex-flow: column;
+}
+.solar_panel_text h2 {
+  padding: 10px;
+}
+/* switch language */
+.switch_language_label {
+  text-transform: uppercase;
+  background: #c9d0ea;
+  border-radius: 50%;
+  color: #000;
+  padding: 2px 5px 5px 5px;
+  margin: 5px 0 0 0;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+}
+.switch_language_label:hover {
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+  font-size: 10px;
+  transform: scale(1.2);
+}
+.switch_language_label:not(:hover) {
+  transition: all 0.2s ease-in;
+}
+/* messages notification */
+div.alert {
+  position: fixed;
+  top: 10%;
+  right: 10px;
+  z-index: 9;
+}
+/* forms help text*/
+.form-group {
+  position: relative;
+}
+.form-group small.form-text {
+  position: absolute;
+  display: none;
+  background: #fff;
+  z-index: 9;
+  top: 30%;
+  right: 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #e2e2e2;
+}
+.form-group span.help-tooltip {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  line-height: 17px;
+  padding: 0 0 0 6px;
+  color: black;
+  background: #c9d0ea;
+}
+.form-group span.help-tooltip:hover {
+  cursor: pointer;
+}
+* {
+  transition: all 0.5s ease-in-out;
+}
+body {
+  font-weight: 300;
+  color: #333;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
+}
+.show {
+  display: block !important;
+}
+.vertical_line {
+  position: relative;
+}
+.vertical_line::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  z-index: -1;
+  left: 50%;
+  background: black repeat-y;
+  animation: draw-line 3s linear alternate;
+}
+.vertical_line.bold::before {
+  transform: scaleX(7);
+  transition: all 0.2s ease-in-out;
+  background: #e9ecef;
+}
+@keyframes draw-line {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+.border_right_dashed {
+  border-right: 1px dashed;
+}
+.border_top_dashed {
+  border-top: 1px dashed;
+}
+.border_bottom_dashed {
+  border-bottom: 1px dashed;
+}
+.zigzag {
+  text-align: center;
+}
+.zigzag::after {
+  content: '';
+  background: url("/static/images/zigzag.svg") repeat-x;
+  width: 30%;
+  height: 10px;
+  display: block;
+  margin: 5px auto auto;
+}
+.preview img {
+  max-height: 50px;
+}
+.gradient_header {
+  background: linear-gradient(to right, #000, #333, #666, #788af0, #6b8edb);
+  background: -webkit-linear-gradient(to right, #000, #333, #666, #788af0, #6b8edb);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+footer {
+  background: #0b0c0d;
+  padding: 20px 0;
+  color: white;
+}
+footer .logo img {
+  width: 150px;
+  filter: invert(100%);
+}
+@media screen and (max-width: 768px) {
+  .city img {
+    height: 15vh;
+  }
+}
+/*# sourceMappingURL=style.css.map */

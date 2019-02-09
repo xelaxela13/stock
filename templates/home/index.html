@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load static %}
+{% load blueimp_gallery %}
+{% load i18n %}
+
+{% block body_class %}{% endblock %}
+{% block bootstrap4_content %}
+    <div class="col-lg-12">
+        <div class="logo text-center">
+            <img src="{{ SITE_LOGO_FIRST }}">
+        </div>
+        <div class="title text-center">
+            <h1>{% trans 'Sunshine energy is it simple' %}</h1>
+            <h2>{% trans 'Easier than ever' %}</h2>
+        </div>
+    </div>
+    <div class="container pb-5 vertical_line">
+        <div class="row">
+            <div class="col-lg-4 border_bottom_dashed p-3">
+                <h3 class="gradient_header">{% trans 'Complete energy independence today' %}</h3>
+                <div class="description">
+                    {% blocktrans trimmed %}
+                        Imagine that you are completely independent of the power supplier, moreover, you do not pay
+                        them, but they pay you!
+                    {% endblocktrans %}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="circle_block count first">
+                    <div class="circle mx-auto d-flex justify-content-center align-items-center">
+                        <img src="{% static 'images/home/index/4.png' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-4">
+                <div class="circle_block count second">
+                    <div class="circle mx-auto d-flex justify-content-center align-items-center">
+                        <img src="{% static 'images/home/index/2.png' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 border_bottom_dashed p-3">
+                <h3 class="gradient_header">{% trans 'Full state support' %}</h3>
+                <div class="description">
+                    {% blocktrans trimmed %}
+                        A simple procedure for issuing documents, connecting a 'green' tariff in the shortest time
+                    {% endblocktrans %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 border_bottom_dashed p-3">
+                <h3 class="gradient_header">{% trans 'Development of project documentation' %}</h3>
+                <div class="description">
+                    {% blocktrans trimmed %}
+                        You do not need to "run" through the authorities, we take care of all the troubles.
+                    {% endblocktrans %}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="circle_block count third">
+                    <div class="circle mx-auto d-flex justify-content-center align-items-center">
+                        <img src="{% static 'images/home/index/8.png' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+            </div>
+            <div class="col-lg-4">
+                <div class="circle_block count fourth">
+                    <div class="circle mx-auto d-flex justify-content-center align-items-center">
+                        <img src="{% static 'images/home/index/1.png' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 border_bottom_dashed p-3">
+                <h3 class="gradient_header">{% trans 'Payback period of the project for 3.3 years' %}*</h3>
+                <div class="description">
+                    {% blocktrans trimmed %}
+                        The payback period decreases every year, investing in solar energy is profitable.
+                    {% endblocktrans %}
+                    <p class="font-italic">
+                        * {% trans 'The calculation was made for a 30 kW station as of early 2018.' %}</p>
+                    <p><a href="{% url 'panel' %}">{% trans 'Download solar plant payback calculation' %}</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 border_bottom_dashed p-3">
+                <h3 class="gradient_header">{% trans 'Full control over system performance' %}</h3>
+                <div class="description">
+                    {% blocktrans trimmed %}
+                        Monitoring systems and automation allow monitoring of all processes in the system.
+                        Control your profits in real time.
+                    {% endblocktrans %}
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="circle_block count fifth">
+                    <div class="circle mx-auto d-flex justify-content-center align-items-center">
+                        <img src="{% static 'images/home/index/5.png' %}">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4"></div>
+        </div>
+    </div>
+    <div class="col-lg-12 p-0">
+        <div class="jumbotron electric mx-auto">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 border_right_dashed">
+                        <h3>{% trans 'For the private clients' %}</h3>
+                        <p>
+                            На сегодняшний день инвестирование в солнечную электростанцию по своей привлекательности
+                            обошло инвестирование в недвижимость, достаточно быстрая окупаемость и стабильный доход не
+                            зависящий от внешних факторов на рынки, сделало солнечную энергетику отраслью будущего.
+                            Уже несколько лет этот вид инвестирования стал доступен для физических лиц, и частных
+                            домовладений.
+                        </p>
+                        <p>
+                            <a href="//zakon4.rada.gov.ua/laws/show/514-19/paran6#n6" target="_blank">Закон Украины</a>
+                        </p>
+                        <p>
+                            <a href="//zakon4.rada.gov.ua/laws/show/z0619-16" target="_blank">Постановление НКРЭКУ</a>
+                        </p>
+                        <h5 class="zigzag border_top_dashed py-3">Что нужно для подключения «зеленого тарифа»?</h5>
+                        <p class="text-center">
+                            <img src="{% static 'images/home/index/9.png' %}" class="img_lief">
+                        </p>
+                        <ul>
+                            <li>Выбрать солнечную электростанцию мощностью до 30кВт</li>
+                            <li>Смонтировать ее на объекте (на крыше дома или на участке)</li>
+                            <li>Подать заявление в РЭС (форма заявление есть у них)</li>
+                            <li>Дождаться инспектора и монтажников для установки специального счетчика который будет
+                                считать электроэнергию выработанную вашими солнечными панелями
+                            </li>
+                            <li>Подключить солнечную электростанцию к новому счетчику</li>
+                            <li>Подписать договор на продажу электроэнергии с Облэнерго</li>
+                            <li>Получать прибыль на свой расчетный счет</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <h3>{% trans 'For legal entities' %}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="d-flex justify-content-center align-items-center solar_panel_text">
+                    <h2 class="gradient_header">{% trans 'Only certifications equipments and brands with world name' %}</h2>
+                    <p>Не нужно экономить на качестве оборудования, ведь солнечную станцию ставят на десятилетия</p>
+                </div>
+            </div>
+            <div class="col-lg-6 solar_panel_bg">
+            </div>
+        </div>
+    </div>
+
+
+    {#    {% if pictures %}#}
+    {#        <div class="col-lg-12 text-center">#}
+    {#            <ul id="links" class="pictures">#}
+    {#                {% for picture in pictures %}#}
+    {#                    <li>#}
+    {#                        <a href="{{ picture.file.url }}">#}
+    {#                            <img src="{{ picture.thumbnail.url }}">#}
+    {#                        </a>#}
+    {#                    </li>#}
+    {#                {% endfor %}#}
+    {#            </ul>#}
+    {#        </div>#}
+    {#    {% endif %}#}
+    {#    <div class="mx-auto city"><img src="{% static 'images/home/index/city.svg' %}"></div>#}
+{% endblock %}
+{% block bootstrap4_extra_script %}
+    {% blueimp_gallery %}
+{% endblock %}
+

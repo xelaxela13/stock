@@ -1,0 +1,53 @@
+version: '3'
+
+# хранилища
+volumes:
+  pgdata:
+    driver: local
+services:
+  redis:
+    image: redis:latest
+    container_name: redis
+    restart: always
+  postgres:
+    container_name: db
+    image: postgres:9.3.22
+    ports:
+    - 5432:5432
+    environment:
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+    - pgdata:/var/lib/postgresql/data
+  celery:
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
+    container_name: celery
+    command: celery -A project worker -l info --pidfile=/run/celery.pid
+    restart: always
+    volumes:
+    - .:/srv/www/solar_django
+    depends_on:
+    - postgres
+    - redis
+  celerybeat:
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
+    container_name: celerybeat
+    command: celery -A project beat -l info --schedule=/run/celerybeat-schedule --pidfile=/run/celerybeat.pid
+    restart: always
+    volumes:
+    - .:/srv/www/solar_django
+    depends_on:
+    - postgres
+    - redis
+  memcached:
+    image: memcached:latest
+    container_name: memcached
+    restart: always
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "2"

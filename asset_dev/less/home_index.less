@@ -1,0 +1,195 @@
+.logo img {
+  width: 300px;
+}
+
+.title {
+  text-transform: uppercase;
+}
+
+.circle_block {
+  margin-top: 40px;
+}
+
+.circle_block.count::after {
+  position: absolute;
+  font-weight: bold;
+  font-size: 150px;
+  top: 0;
+  z-index: -1;
+  line-height: .9;
+}
+
+.circle_block.first::after {
+  content: '1';
+  left: 18%;
+}
+
+.circle_block.second::after {
+  content: '2';
+  left: 60%;
+  color: @gray;
+}
+
+.circle_block.third::after {
+  content: '3';
+  left: 18%;
+  color: @red;
+}
+
+.circle_block.fourth::after {
+  content: '4';
+  left: 60%;
+}
+
+.circle_block.fifth::after {
+  content: '5';
+  left: 18%;
+}
+
+.circle {
+  width: 150px;
+  height: 150px;
+  border: 2px solid;
+  border-radius: 50%;
+  background: white;
+}
+
+.circle img {
+  width: 70%;
+  height: 70%;
+}
+
+.circle:hover {
+  border-width: 14px;
+  border-color: @graylight;
+  transition: all .2s ease-in;
+}
+
+.circle:hover img {
+  transform: scale(.8);
+  transition: all .2s ease-in;
+}
+
+.circle:not(:hover) {
+  transition: all .1s ease-out;
+}
+
+.img_lief {
+  width: 150px;
+  background: white;
+  padding: 10px;
+  border-radius: 50% 0;
+}
+
+.electric {
+  position: relative;
+}
+
+.electric::before {
+  content: '';
+  background: url("/static/images/home/index/electric_towel_2.svg") no-repeat;
+  position: absolute;
+  top: -160px;
+  right: 5%;
+  width: 200px;
+  height: 160px;
+  opacity: .6;
+}
+
+.city {
+  margin-bottom: -3rem;
+}
+
+.city img {
+  height: 35vh;
+}
+
+ul.pictures {
+  padding: 0;
+}
+
+ul.pictures li {
+  list-style: none;
+  display: inline-flex;
+  height: 150px;
+  overflow: hidden;
+  width: 150px;
+  justify-content: center;
+  align-items: center;
+  margin: -4px;
+}
+
+ul.pictures li:hover img {
+  transform: scale(.8);
+  transition: all .2s ease-in;
+}
+
+ul.pictures li:not(:hover) img {
+  transform: scale(1);
+  transition: all .1s ease-out;
+}
+
+.closest_text_block_show, .closest_text_block_hide {
+  position: relative;
+}
+
+.closest_text_block_show::after, .closest_text_block_hide:after {
+  content: '';
+  height: 0;
+  width: 100%;
+  background-color: @graylight;
+  position: absolute;
+  left: 0;
+  z-index: -1;
+}
+
+.closest_text_block_show::after {
+  bottom: 0;
+  animation: bg_up .2s ease-in alternate;
+  height: 100%;
+}
+
+.closest_text_block_hide:after {
+  top: 0;
+  animation: bg_down .2s ease-out alternate;
+}
+
+@keyframes bg_up {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+@keyframes bg_down {
+  from {
+    height: 100%;
+  }
+  to {
+    height: 0;
+  }
+}
+
+.row .col-lg-4.border_bottom_dashed {
+  opacity: 0;
+  transition: all 1s ease-in;
+}
+
+.solar_panel_bg, .solar_panel_text {
+  min-height: 500px;
+  opacity: 0;
+}
+
+.solar_panel_bg {
+  background: url("images/home/index/panel3.jpg") no-repeat right center;
+  background-size: 100%;
+}
+
+.solar_panel_text{
+  flex-flow: column;
+}
+.solar_panel_text h2 {
+  padding: 10px;
+}

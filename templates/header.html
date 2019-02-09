@@ -1,0 +1,36 @@
+{% load i18n %}
+
+<ul class="nav justify-content-end">
+    {% get_current_language as LANGUAGE_CODE %}
+    {% with '/'|add:LANGUAGE_CODE|add:'/' as code %}
+        {% if request.path != code and request.path != '/' %}
+            <a class="navbar-brand" href="{% url 'home' %}">
+                {% if SITE_LOGO_SECOND %}
+                    <img src="{{ SITE_LOGO_SECOND }}">
+                {% else %}
+                    {% trans 'Home' %}
+                {% endif %}
+            </a>
+        {% endif %}
+    {% endwith %}
+    {% if user.is_authenticated %}
+        <li class="nav-item inline">
+            <a class="nav-link" href="{% url 'panel' %}">{% trans 'My account' %}</a>
+        </li>
+        <li class="nav-item inline">
+            <a class="nav-link" href="{% url 'logout' %}">{% trans 'Log out' %}</a>
+        </li>
+    {% else %}
+        <li class="nav-item inline">
+            <a class="nav-link" href="{% url 'login' %}">{% trans 'Log in' %}</a>
+        </li>
+        <li class="nav-item inline">
+            <a class="nav-link" href="{% url 'signup' %}">{% trans 'Sign up' %}</a>
+        </li>
+    {% endif %}
+    {% if USE_I18N and SHOW_LANG_SWITCH %}
+        <li class="nav-item inline">
+            {% include '_switch_language.html' %}
+        </li>
+    {% endif %}
+</ul>

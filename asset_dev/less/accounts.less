@@ -1,0 +1,33 @@
+/* forms help text*/
+.form-group {
+    position: relative;
+}
+
+.form-group small.form-text {
+    position: absolute;
+    display: none;
+    background: #fff;
+    z-index: 9;
+    top: 30%;
+    right: 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #e2e2e2;
+}
+
+.form-group span.help-tooltip {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    line-height: 17px;
+    padding: 0 0 0 6px;
+    color: black;
+    background: @maincolor;
+}
+
+.form-group span.help-tooltip:hover {
+    cursor: pointer;
+}

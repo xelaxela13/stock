@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  web:
+    container_name: web
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/web/Dockerfile
+    volumes:
+    - .:/srv/www/solar_django
+    expose:
+    - 8000
+    ports:
+    - 8000:8000
+    - 8001:8001
+    command: python manage.py runserver 0:8000
+    depends_on:
+    - postgres
+    - redis
+    - memcached

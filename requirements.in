@@ -1,0 +1,16 @@
+Django==2.1
+django-bootstrap4
+requests
+django-rosetta
+django-meta
+python-decouple
+psycopg2
+gunicorn
+django-heroku
+whitenoise
+pillow
+celery
+celery[redis]
+django-celery-results
+django-celery-beat
+python-memcached

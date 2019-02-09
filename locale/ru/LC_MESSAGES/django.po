@@ -1,0 +1,298 @@
+#
+msgid ""
+msgstr ""
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-06-17 15:41+0300\n"
+"PO-Revision-Date: 2018-06-17 15:42+0202\n"
+"Last-Translator: b'  <xelaxela13@gmail.com>'\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.8.1\n"
+
+#: accounts/admin.py:10
+msgid "Personal info"
+msgstr "Персональные данные"
+
+#: accounts/admin.py:11
+msgid "Permissions"
+msgstr "Разрешения"
+
+#: accounts/admin.py:13
+msgid "Important dates"
+msgstr "Важные даты"
+
+#: accounts/models.py:10
+msgid "City"
+msgstr "Город"
+
+#: accounts/models.py:11
+msgid "Phone number"
+msgstr "Номер телефона"
+
+#: accounts/models.py:12
+msgid "Required field. Please enter your phone number"
+msgstr "Обязательное поле. Введите свой телефон"
+
+#: accounts/models.py:13
+msgid "Required field. Please enter your email"
+msgstr "Обязательное поле. Введите свой email"
+
+#: accounts/models.py:16
+msgid "user"
+msgstr "пользователь"
+
+#: accounts/models.py:17
+msgid "users"
+msgstr "пользователи"
+
+#: accounts/views.py:39 templates/accounts/registration/login.html:18
+#: templates/header.html:25
+msgid "Log in"
+msgstr "Войти"
+
+#: accounts/views.py:46
+msgid "Registration was successful, please log in"
+msgstr "Регистрация прошла успешно, войдите под своим именем"
+
+#: accounts/views.py:47 templates/accounts/registration/login.html:10
+#: templates/accounts/registration/signup.html:22 templates/header.html:28
+msgid "Sign up"
+msgstr "Зарегистрироваться"
+
+#: accounts/views.py:56 accounts/views.py:57
+#: templates/accounts/panel/panel.html:10
+msgid "Control panel"
+msgstr "Панель управления"
+
+#: accounts/views.py:61 templates/accounts/panel/panel.html:8
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: accounts/views.py:66
+#, fuzzy
+#| msgid "My account"
+msgid "Update account"
+msgstr "Обновить личные данные"
+
+#: accounts/views.py:71
+msgid "Updated success!"
+msgstr "Обновленно успешно!"
+
+#: accounts/views.py:83 templates/accounts/panel/panel.html:16
+msgid "A list of users"
+msgstr "Список пользователей"
+
+#: fileupload/templates/fileupload/picture_form.html:28
+msgid "Add files..."
+msgstr "Добавить файлы"
+
+#: fileupload/templates/fileupload/picture_form.html:33
+msgid "Start upload"
+msgstr "Начать загрузку"
+
+#: fileupload/templates/fileupload/picture_form.html:37
+msgid "Cancel upload"
+msgstr "Отменить загрузку"
+
+#: fileupload/templates/fileupload/picture_form.html:41
+msgid "Delete"
+msgstr "Удалить"
+
+#: fileupload/views.py:15 templates/accounts/panel/panel.html:25
+msgid "Upload images"
+msgstr "Загрузка изображений"
+
+#: home/views.py:8
+msgid "IceBERG"
+msgstr ""
+
+#: project/settings.py:136
+msgid "Russian"
+msgstr "Русский"
+
+#: project/settings.py:137
+msgid "English"
+msgstr "Английский"
+
+#: templates/accounts/choice_location_manual.html:10
+msgid "Choose your city"
+msgstr "Выберите город"
+
+#: templates/accounts/choice_location_manual.html:21
+#: templates/accounts/choice_location_manual.html:22
+msgid "Kiev"
+msgstr "Киев"
+
+#: templates/accounts/choice_location_manual.html:26
+#: templates/accounts/choice_location_manual.html:27
+msgid "Dnipro"
+msgstr "Днепр"
+
+#: templates/accounts/panel/panel.html:13
+msgid "Update user data"
+msgstr "Редактировать  пользователя"
+
+#: templates/accounts/panel/panel.html:19
+msgid "Rosetta"
+msgstr "Росетта"
+
+#: templates/accounts/panel/panel.html:22
+msgid "Admin panel"
+msgstr "Панель администрирования"
+
+#: templates/accounts/panel/update.html:9
+msgid "Update"
+msgstr "Обновить"
+
+#: templates/accounts/panel/users_list.html:7
+msgid "Users"
+msgstr "Пользователи"
+
+#: templates/accounts/panel/users_list.html:12
+msgid "No entries yet."
+msgstr "Нет записей"
+
+#: templates/accounts/registration/login.html:8
+msgid "You have no account?"
+msgstr "У вас нет учетной записи?"
+
+#: templates/accounts/registration/login.html:9
+msgid "Please register and log in to the private section"
+msgstr "Пожалуйста, зарегистрируйтесь, и сможете войти в закрытый раздел"
+
+#: templates/accounts/registration/login.html:22
+msgid "Lost password?"
+msgstr "Забыли пароль?"
+
+#: templates/accounts/registration/signup.html:9
+msgid "You ask us - why do I register on the site?"
+msgstr "Вы спросите нас - для чего мне регистрироваться на сайте?"
+
+#: templates/accounts/registration/signup.html:10
+msgid ""
+"After registration, you will be available prices and calculations for the "
+"payback of the solar station. Registration takes only a few seconds and does"
+" not require additional action or confirmation of the email."
+msgstr ""
+"После регистрации вам будут доступны цены и расчеты по окупаемости солнечной"
+" станции. Регистрация займет всего несколько секунд и не потребует "
+"дополнительных действий или подтверждения имайла."
+
+#: templates/header.html:11
+msgid "Home"
+msgstr "Главная"
+
+#: templates/header.html:18
+msgid "My account"
+msgstr "Личный кабинет"
+
+#: templates/header.html:21
+msgid "Log out"
+msgstr "Выйти"
+
+#: templates/home/index.html:14
+msgid "Sunshine energy is it simple"
+msgstr "Солнечная энергия - это просто"
+
+#: templates/home/index.html:15
+msgid "Easier than ever"
+msgstr "Проще чем когда либо"
+
+#: templates/home/index.html:21
+msgid "Complete energy independence today"
+msgstr "Полная энергонезависимость уже сегодня"
+
+#: templates/home/index.html:23
+msgid ""
+"Imagine that you are completely independent of the power supplier, moreover,"
+" you do not pay them, but they pay you!"
+msgstr ""
+"Представьте, что вы полностью независимы от энергосети, мало того, не вы "
+"платите им, а они вам!"
+
+#: templates/home/index.html:49
+msgid "Full state support"
+msgstr "Полная поддержка государства"
+
+#: templates/home/index.html:51
+msgid ""
+"A simple procedure for issuing documents, connecting a 'green' tariff in the"
+" shortest time"
+msgstr ""
+"Простая процедура оформления документов, подключение \"зеленого\" тарифа в "
+"кратчайшие сроки"
+
+#: templates/home/index.html:59
+msgid "Development of project documentation"
+msgstr "Разработка проектной документации"
+
+#: templates/home/index.html:61
+msgid ""
+"You do not need to \"run\" through the authorities, we take care of all the "
+"troubles."
+msgstr ""
+"Вам не потребуется \"бегать\" по инстанциям, все хлопоты мы берем на себя. "
+
+#: templates/home/index.html:86
+msgid "Payback period of the project for 3.3 years"
+msgstr "Окупаемость проекта в течении 3.3 лет"
+
+#: templates/home/index.html:88
+msgid ""
+"The payback period decreases every year, investing in solar energy is "
+"profitable."
+msgstr ""
+"Срок окупаемости уменьшается с каждым годом, инвестирование в солнечную "
+"энергетику это выгодно."
+
+#: templates/home/index.html:92
+msgid "The calculation was made for a 30 kW station as of early 2018."
+msgstr "Расчет был сделан на 30 кВт станцию по состоянию на начало 2018 г."
+
+#: templates/home/index.html:93
+msgid "Download solar plant payback calculation"
+msgstr "Скачать график окупаемости солнечной станции"
+
+#: templates/home/index.html:99
+msgid "Full control over system performance"
+msgstr "Полный контроль над производительностью системы"
+
+#: templates/home/index.html:101
+msgid ""
+"Monitoring systems and automation allow monitoring of all processes in the "
+"system. Control your profits in real time."
+msgstr ""
+"Системы контроля и автоматика позволяют следить за всеми процессами в "
+"системе. Контролируйте свою прибыль в реальном времени."
+
+#: templates/home/index.html:122
+msgid "For the private clients"
+msgstr "Для частных клиентов"
+
+#: templates/home/index.html:153
+msgid "For legal entities"
+msgstr "Для юридических лиц"
+
+#: templates/home/index.html:163
+msgid "Only certifications equipments and brands with world name"
+msgstr "Только сертифицированное оборудование и бренды с мировым именем"
+
+#~ msgid "Upload"
+#~ msgstr "Загрузить"
+
+#~ msgid "Settings"
+#~ msgstr "Настройки"
+
+#~ msgid "Confirm deletion"
+#~ msgstr "Подтвердить удаление"
+
+#~ msgid "Submit"
+#~ msgstr "Отправить"
+
+#~ msgid "All right!"
+#~ msgstr "Все в порядке!"
+
+#~ msgid "You don`t have permissions for viewing this page"
+#~ msgstr "У вас нет прав на просмотр этой страницы"

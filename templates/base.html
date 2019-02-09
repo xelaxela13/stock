@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load bootstrap4 %}
+{% load static %}
+{% load meta %}
+{% if 'use_i18n'|bootstrap_setting %}
+    {% load i18n %}
+    {% get_current_language as LANGUAGE_CODE %}
+{% endif %}
+<html lang="{{ LANGUAGE_CODE|default:'en_us' }}">
+
+<head {% meta_namespaces %}>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% include "meta/meta.html" %}
+    <!-- Bootstrap CSS -->
+    {% bootstrap_css %}
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+    {% if 'javascript_in_head'|bootstrap_setting %}
+        <!-- Bootstrap JavaScript if it is in head -->
+        {% bootstrap_jquery %}
+        {% bootstrap_javascript %}
+    {% endif %}
+
+    {% block bootstrap4_extra_head %}{% endblock %}
+</head>
+
+<body class="body_class {% block body_class %}{% endblock %}">
+{% include '_messages.html' %}
+<header class="mb-5">
+    {% block bootstrap4_before_content %}{% include 'header.html' %}{% endblock %}
+</header>
+<div class="container-fluid">
+    <div class="row">
+        {% block bootstrap4_content %}
+            CONTENT
+        {% endblock %}
+    </div>
+</div>
+<footer class="mt-5">
+    {% block bootstrap4_after_content %}{% include 'footer.html' %}{% endblock %}
+</footer>
+{% if not 'javascript_in_head'|bootstrap_setting %}
+    <!-- Bootstrap JavaScript if it is in body -->
+    {% bootstrap_jquery %}
+    {% bootstrap_javascript %}
+{% endif %}
+<script src="{% static 'script.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/is_element_in_view.js' %}" type="text/javascript"></script>
+{% block bootstrap4_extra_script %}{% endblock %}
+</body>
+
+</html>

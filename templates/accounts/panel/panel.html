@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block bootstrap4_content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">{% trans 'Welcome' %} : {{ user.username }}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans 'Control panel' %}</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><a
+                                    href="{% url 'user_update' pk=user.pk %}">{% trans 'Update user data' %}</a></li>
+                            {% if request.user.is_staff %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'users_list' %}">{% trans 'A list of users' %}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{% url 'rosetta-old-home-redirect' %}">{% trans 'Rosetta' %}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="/admin">{% trans 'Admin panel' %}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{% url 'upload-new' %}">{% trans 'Upload images' %}</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                {% block bootstrap_panel_content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
