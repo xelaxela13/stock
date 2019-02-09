@@ -26,7 +26,7 @@ services:
     command: celery -A project worker -l info --pidfile=/run/celery.pid
     restart: always
     volumes:
-    - .:/srv/www/solar_django
+    - .:/srv/www/stock
     depends_on:
     - postgres
     - redis
@@ -38,7 +38,7 @@ services:
     command: celery -A project beat -l info --schedule=/run/celerybeat-schedule --pidfile=/run/celerybeat.pid
     restart: always
     volumes:
-    - .:/srv/www/solar_django
+    - .:/srv/www/stock
     depends_on:
     - postgres
     - redis

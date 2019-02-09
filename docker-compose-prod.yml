@@ -31,7 +31,7 @@ services:
       dockerfile: docker/web/Dockerfile
     # монтируем директорию проекта
     volumes:
-    - .:/srv/www/solar_django
+    - .:/srv/www/stock
     expose:
     - 8000
     ports:

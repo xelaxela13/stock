@@ -4,7 +4,7 @@
 set -e
 
 # Default options
-SERVER='production'
+SERVER='prod'
 CELERY=true
 BACKUPPATH=""
 PULL=true
@@ -13,6 +13,7 @@ DELETE=true
 ENV=true
 SYNCDB=true
 COLLECTSTATIC=true
+SUPERUSER=false
 
 # Parse arguments
 while [[ $# > 0 ]]
@@ -32,6 +33,7 @@ do
             echo "  -no-env                          Do not update Python virtual environment"
             echo "  -no-syncdb                       Do not syncronize schema of database"
             echo "  -no-collectstatic                Do not collect static files (img, css, js)"
+            echo "  -superuser                       Create super user"
             echo "  -h, --help                       Show this help message and exit"
             exit
         ;;
@@ -61,6 +63,9 @@ do
         ;;
             -no-collectstatic)
             COLLECTSTATIC=false
+        ;;
+            -superuser)
+            SUPERUSER=true
         ;;
         *)
             echo "Unexpected parameter! Exit."
@@ -105,9 +110,7 @@ fi
 
 # Update existed and install new Python packages
 if [ "${ENV}" = true ]; then
-    docker-compose -f docker-compose.yml -f docker-compose-"${SERVER}".yml build web &&
-    docker-compose -f docker-compose.yml build celery &&
-    docker-compose -f docker-compose.yml build celerybeat
+    docker-compose -f docker-compose.yml -f docker-compose-"${SERVER}".yml up -d --build
 fi
 
 # Syncronize schema of database
@@ -120,7 +123,6 @@ if [ "${COLLECTSTATIC}" = true ]; then
     docker exec -it web python manage.py collectstatic --noinput
 fi
 
-if [ "${ENV}" = true ]; then
-    # we need recreate containers
-    docker-compose -f docker-compose.yml up -d
+if [ "${SUPERUSER}" = true ]; then
+    docker exec -it web python manage.py createsuperuser
 fi

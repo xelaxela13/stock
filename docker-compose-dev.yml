@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: docker/web/Dockerfile
     volumes:
-    - .:/srv/www/solar_django
+    - .:/srv/www/stock
     expose:
     - 8000
     ports:
