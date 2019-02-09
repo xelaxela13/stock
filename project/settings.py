@@ -40,6 +40,11 @@ ADMINS = [('Alex', 'xelaxela13@gmail.com'), ]
 
 # Application definition
 INSTALLED_APPS = [
+    # admin-tools apps
+    'admin_tools',
+    'admin_tools.theming',
+    'admin_tools.menu',
+    'admin_tools.dashboard',
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -162,7 +167,7 @@ EMAIL_USE_TLS = True
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': config('MEMCACHED_HOST', default='127.0.0.1')+':'+config('MEMCACHED_PORT', default='11211'),
+        'LOCATION': config('MEMCACHED_HOST', default='127.0.0.1') + ':' + config('MEMCACHED_PORT', default='11211'),
         'TIMEOUT': 60 * 60,  # 1h,
     }
 }
