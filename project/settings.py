@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'accounts',
     'home',
     'fileupload',
+    'stock',
 ]
 
 MIDDLEWARE = [
