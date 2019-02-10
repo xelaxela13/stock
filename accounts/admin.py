@@ -4,6 +4,7 @@ from .models import User
 from django.utils.translation import gettext_lazy as _
 
 
+@admin.register(User)
 class AbstractUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password')}),
@@ -13,7 +14,3 @@ class AbstractUserAdmin(UserAdmin):
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     list_display = UserAdmin.list_display + ('phone', 'location')
-
-
-admin.site.register(User, AbstractUserAdmin)
-admin.autodiscover()

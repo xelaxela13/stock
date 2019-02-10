@@ -9,7 +9,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ['username']
     location = models.CharField(max_length=30, blank=True, verbose_name=_('City'))
     phone = models.CharField(max_length=15, blank=True, verbose_name=_('Phone number'),
-                             help_text=_('Required field. Please enter your phone number'), unique=True)
+                             help_text=_('Required field. Please enter your phone number'))
     email = models.EmailField(help_text=_('Required field. Please enter your email'), unique=True)
 
     class Meta:
@@ -21,10 +21,3 @@ class User(AbstractUser):
 
     def get_absolute_url(self):
         return reverse('user_update', kwargs={'pk': self.pk})
-
-    def save(self, *args, **kwargs):
-        try:
-            self.username = self.email.split('@')[0]
-        except IndexError:
-            self.username = self.email
-        super().save(*args, **kwargs)
