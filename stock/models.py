@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum, F
 from accounts.models import User
 
 
@@ -47,34 +48,28 @@ class Customer(models.Model):
     description = models.TextField(blank=True, verbose_name='Орисание')
     create_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
     class Meta:
         verbose_name = 'Контрагент'
         verbose_name_plural = 'Контрагенты'
 
 
-class OrderItem(models.Model):
-    DISCOUNT_TYPE = (
-        ('amount', 'Грн.'),
-        ('percent', '%'),
-    )
-    product = models.ManyToManyField(Product, verbose_name='Товар')
-    price = models.FloatField(verbose_name='Цена')
-    amount = models.PositiveIntegerField(verbose_name='Колличество')
-    discount = models.PositiveIntegerField(verbose_name='Скидка')
-    discount_type = models.CharField(max_length=10, choices=DISCOUNT_TYPE, default=DISCOUNT_TYPE[1][0])
-    create_at = models.DateTimeField(auto_now_add=True)
-
-
 class OrderIn(models.Model):
     number = models.CharField(blank=False, max_length=255, verbose_name='Номер накладной')
-    order_item = models.ManyToManyField(OrderItem, verbose_name='Товар')
     date = models.DateField(verbose_name='Дата накладной')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    is_payed = models.BooleanField(default=False, verbose_name='Накладная полностью оплачена?')
     create_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '№{} ({}) {}'.format(self.number, self.order_item.count(), self.date)
+        return '№{} ({}) {}'.format(self.number, self.order_items.count(), self.date)
+
+    def order_total(self):
+        return self.order_items.all().aggregate(
+            total=Sum(F('price') * F('amount'), output_field=models.FloatField()))['total']
 
     class Meta:
         verbose_name = 'Приходная накладная'
@@ -82,7 +77,25 @@ class OrderIn(models.Model):
 
 
 class OrderOut(OrderIn):
-
     class Meta:
         verbose_name = 'Расходная накладная'
         verbose_name_plural = 'Расходные накладные'
+
+
+class OrderItem(models.Model):
+    DISCOUNT_TYPE = (
+        ('amount', 'Грн.'),
+        ('percent', '%'),
+    )
+    product = models.ForeignKey(Product, verbose_name='Товар', on_delete=models.CASCADE)
+    price = models.FloatField(verbose_name='Цена')
+    amount = models.PositiveIntegerField(verbose_name='Колличество')
+    discount = models.PositiveIntegerField(verbose_name='Скидка', blank=True, default=0)
+    discount_type = models.CharField(max_length=10, choices=DISCOUNT_TYPE, default=DISCOUNT_TYPE[1][0],
+                                     verbose_name='Тип скидки?')
+    order = models.ForeignKey(OrderIn, verbose_name='Накладная', related_name="order_items", on_delete=models.CASCADE)
+    create_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Товарная позиция'
+        verbose_name_plural = 'Товары'
