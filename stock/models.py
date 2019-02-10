@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models import Sum, F
+from django.db.models import Sum, F, Q, Case, When
 from accounts.models import User
 
 
@@ -71,6 +71,9 @@ class OrderIn(models.Model):
         return self.order_items.all().aggregate(
             total=Sum(F('price') * F('amount'), output_field=models.FloatField()))['total']
 
+    def order_item_count(self):
+        return self.order_items.all().count()
+
     class Meta:
         verbose_name = 'Приходная накладная'
         verbose_name_plural = 'Приходные накладные'
@@ -95,6 +98,14 @@ class OrderItem(models.Model):
                                      verbose_name='Тип скидки?')
     order = models.ForeignKey(OrderIn, verbose_name='Накладная', related_name="order_items", on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
+
+    @classmethod
+    def discount_price(cls):
+        return cls.price - cls.discount
+
+    @classmethod
+    def sum(cls):
+        return cls.price * cls.amount
 
     class Meta:
         verbose_name = 'Товарная позиция'

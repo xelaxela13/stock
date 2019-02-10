@@ -22,7 +22,7 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(OrderIn)
 class OrderInAdmin(admin.ModelAdmin):
     list_filter = ('date',)
-    list_display = ('date', 'number', 'order_total')
+    list_display = ('date', 'number', 'order_item_count', 'order_total')
     inlines = [
         OrderItemInline,
     ]
