@@ -1,5 +1,5 @@
 from django.contrib import admin
-from stock.models import Product, ProductGroup, OrderIn, OrderOut
+from stock.models import Product, ProductGroup, OrderIn, OrderOut, Customer, CustomerGroup
 
 
 @admin.register(Product)
@@ -19,4 +19,14 @@ class OrderInAdmin(admin.ModelAdmin):
 
 @admin.register(OrderOut)
 class OrderOutAdmin(admin.ModelAdmin):
-    list_filter = ('date', )
+    list_filter = ('date',)
+
+
+@admin.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    fields = ()
+
+
+@admin.register(CustomerGroup)
+class CustomerGroupAdmin(admin.ModelAdmin):
+    fields = ()
