@@ -23,7 +23,7 @@ class Product(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{} {} {}'.format(self.name, self.sku, self.group)
+        return '{} {}'.format(self.sku, self.name)
 
     class Meta:
         verbose_name = 'Товар'
@@ -71,8 +71,12 @@ class OrderIn(models.Model):
         return self.order_items.all().aggregate(
             total=Sum(F('price') * F('amount'), output_field=models.FloatField()))['total']
 
+    order_total.short_description = 'Сумма накладной'
+
     def order_item_count(self):
         return self.order_items.all().count()
+
+    order_item_count.short_description = 'Товарных позиций в накладной'
 
     class Meta:
         verbose_name = 'Приходная накладная'
