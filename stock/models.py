@@ -103,13 +103,26 @@ class OrderItem(models.Model):
     order = models.ForeignKey(OrderIn, verbose_name='Накладная', related_name="order_items", on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
 
-    @classmethod
-    def discount_price(cls):
-        return cls.price - cls.discount
+    def discount_price(self):
+        if self.price and self.discount > 0:
+            if self.discount_type == self.DISCOUNT_TYPE[1][0]:
+                return self.price * (1 - (self.discount / 100))
+            return self.price - self.discount
+        return self.price if self.price else 0
 
-    @classmethod
-    def sum(cls):
-        return cls.price * cls.amount
+    discount_price.short_description = 'Цена со скидкой'
+
+    def sum_amount(self):
+        if self.price:
+            return self.price * self.amount
+
+    sum_amount.short_description = 'Сумма'
+
+    def sum_discount_price(self):
+        if self.price:
+            return self.discount_price() * self.amount
+
+    sum_discount_price.short_description = 'Сумма со скидкой'
 
     class Meta:
         verbose_name = 'Товарная позиция'
