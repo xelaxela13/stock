@@ -31,24 +31,29 @@ class ProductAdmin(admin.ModelAdmin):
 class OrderInAdmin(admin.ModelAdmin):
     list_filter = ('date',)
     list_display = ('date', 'number', 'order_item_count', 'order_total')
-    readonly_fields = ('order_total', 'user', 'sum_total_order')
+    readonly_fields = ('order_total', 'user', 'order_total_discount', 'calculated_order_discount')
     search_fields = ('order_items__product__name', 'number')
     inlines = [
         OrderItemInline,
     ]
     fieldsets = (
         (None, {
-            'fields': (('number', 'date', 'sum_total_order', 'order_total'), ('customer', 'user')),
+            'fields': (('number', 'date'), ('customer', 'user')),
         }),
-        # ('', {
-        #     'fields': (OrderItemInline,),
-        # })
+        ('', {
+            'fields': (('order_total', 'calculated_order_discount', 'order_total_discount'),),
+        })
     )
 
-    def sum_total_order(self, obj=None):
+    def order_total_discount(self, obj=None):
         return sum(i.sum_discount_price() for i in obj.order_items.all())
 
-    sum_total_order.short_description = 'Всего:'
+    order_total_discount.short_description = 'Итого с учетом скидки:'
+
+    def calculated_order_discount(self, obj=None):
+        return obj.order_total()
+
+    calculated_order_discount.short_description = 'Скидка по накладной:'
 
     def get_prepopulated_fields(self, request, obj=None):
         if obj:

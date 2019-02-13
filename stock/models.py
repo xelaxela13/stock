@@ -71,7 +71,7 @@ class OrderIn(models.Model):
         return self.order_items.all().aggregate(
             total=Sum(F('price') * F('amount'), output_field=models.FloatField()))['total']
 
-    order_total.short_description = 'Сумма накладной'
+    order_total.short_description = 'Сумма накладной без скидки:'
 
     def order_item_count(self):
         return self.order_items.all().count()
