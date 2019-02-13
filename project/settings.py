@@ -249,7 +249,7 @@ CELERY_TIMEZONE = TIME_ZONE
 
 
 def log_level():
-    return 'DEBUG' if DEBUG else 'INFO'
+    return 'INFO' if DEBUG else 'INFO'
 
 
 LOGGING = {
