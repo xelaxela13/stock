@@ -10,9 +10,11 @@ celery[redis]==4.1.1
 certifi==2018.4.16        # via requests
 chardet==3.0.4            # via requests
 dj-database-url==0.5.0    # via django-heroku
+django-admin-tools==0.8.1
 django-bootstrap4==0.0.6
 django-celery-beat==1.1.1
 django-celery-results==1.0.1
+django-debug-toolbar==1.11
 django-heroku==0.3.1
 django-meta==1.4.1
 django-rosetta==0.8.1
@@ -30,6 +32,7 @@ pytz==2018.4              # via celery, django
 redis==2.10.6             # via celery
 requests==2.18.4
 six==1.11.0               # via django-rosetta, microsofttranslator, python-memcached
+sqlparse==0.2.4           # via django-debug-toolbar
 urllib3==1.22             # via requests
 vine==1.1.4               # via amqp
 whitenoise==3.3.1
