@@ -51,7 +51,7 @@ class OrderInAdmin(admin.ModelAdmin):
     order_total_discount.short_description = 'Итого с учетом скидки:'
 
     def calculated_order_discount(self, obj=None):
-        return obj.order_total()
+        return obj.order_total() - sum(i.sum_discount_price() for i in obj.order_items.all())
 
     calculated_order_discount.short_description = 'Скидка по накладной:'
 
