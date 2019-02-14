@@ -56,11 +56,24 @@ class Customer(models.Model):
         verbose_name_plural = 'Контрагенты'
 
 
-class OrderIn(models.Model):
+class OrderType(models.Model):
+    name = models.CharField(blank=False, max_length=255, verbose_name='Тип накладной')
+    create_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Тип накладной'
+        verbose_name_plural = 'Типы накладных'
+
+
+class Order(models.Model):
     number = models.CharField(blank=False, max_length=255, verbose_name='Номер накладной')
     date = models.DateField(verbose_name='Дата накладной')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    type = models.ForeignKey(OrderType, on_delete=models.CASCADE)
     is_payed = models.BooleanField(default=False, verbose_name='Накладная полностью оплачена?')
     create_at = models.DateTimeField(auto_now_add=True)
 
@@ -69,7 +82,7 @@ class OrderIn(models.Model):
 
     def order_total(self):
         return self.order_items.all().aggregate(
-            total=Sum(F('price') * F('amount'), output_field=models.FloatField()))['total']
+            total=Sum(F('price') * F('amount'), output_field=models.FloatField()))['total'] or 0
 
     order_total.short_description = 'Сумма накладной без скидки:'
 
@@ -83,12 +96,6 @@ class OrderIn(models.Model):
         verbose_name_plural = 'Приходные накладные'
 
 
-class OrderOut(OrderIn):
-    class Meta:
-        verbose_name = 'Расходная накладная'
-        verbose_name_plural = 'Расходные накладные'
-
-
 class OrderItem(models.Model):
     DISCOUNT_TYPE = (
         ('amount', 'Грн.'),
@@ -100,7 +107,7 @@ class OrderItem(models.Model):
     discount = models.PositiveIntegerField(verbose_name='Скидка', blank=True, default=0)
     discount_type = models.CharField(max_length=10, choices=DISCOUNT_TYPE, default=DISCOUNT_TYPE[1][0],
                                      verbose_name='Тип скидки?')
-    order = models.ForeignKey(OrderIn, verbose_name='Накладная', related_name="order_items", on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, verbose_name='Накладная', related_name="order_items", on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
 
     def discount_price(self):
