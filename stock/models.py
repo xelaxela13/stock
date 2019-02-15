@@ -56,24 +56,17 @@ class Customer(models.Model):
         verbose_name_plural = 'Контрагенты'
 
 
-class OrderType(models.Model):
-    name = models.CharField(blank=False, max_length=255, verbose_name='Тип накладной')
-    create_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Тип накладной'
-        verbose_name_plural = 'Типы накладных'
-
-
 class Order(models.Model):
+    ORDER_TYPE = (
+        (0, 'Приходная накладная'),
+        (1, 'Расходная накладная')
+    )
     number = models.CharField(blank=False, max_length=255, verbose_name='Номер накладной')
     date = models.DateField(verbose_name='Дата накладной')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    type = models.ForeignKey(OrderType, on_delete=models.CASCADE)
+    type = models.PositiveSmallIntegerField(blank=False, choices=ORDER_TYPE, default=ORDER_TYPE[0][0],
+                                            verbose_name='Тип накладной')
     is_payed = models.BooleanField(default=False, verbose_name='Накладная полностью оплачена?')
     create_at = models.DateTimeField(auto_now_add=True)
 
@@ -94,6 +87,12 @@ class Order(models.Model):
     class Meta:
         verbose_name = 'Приходная накладная'
         verbose_name_plural = 'Приходные накладные'
+
+    class Media:
+        css = {
+            'all': ['/static_content/asset/style.css'],
+        }
+        js = ['/static/asset/js/stock/stock.js', ]
 
 
 class OrderItem(models.Model):
