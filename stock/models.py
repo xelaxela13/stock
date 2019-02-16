@@ -86,8 +86,8 @@ class Order(models.Model):
     order_item_count.short_description = 'Товарных позиций в накладной'
 
     class Meta:
-        verbose_name = 'Приходная накладная'
-        verbose_name_plural = 'Приходные накладные'
+        verbose_name = 'Накладная'
+        verbose_name_plural = 'Накладные'
 
 
 class OrderItem(models.Model):

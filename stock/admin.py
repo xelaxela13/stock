@@ -57,7 +57,7 @@ class ProductAdmin(admin.ModelAdmin):
 @admin.register(Order)
 class OrderInAdmin(OrderMixin):
     list_filter = ('date', 'type')
-    list_display = ('number', 'date', 'order_item_count', 'order_total', 'order_total_discount', 'type')
+    list_display = ('number', 'date', 'order_item_count', 'order_total', 'order_total_discount', 'colored_type')
     readonly_fields = ('order_total', 'order_total_discount', 'calculated_order_discount')
     search_fields = ('order_items__product__name', 'number')
     inlines = [
@@ -71,17 +71,29 @@ class OrderInAdmin(OrderMixin):
             'fields': (('order_total', 'calculated_order_discount', 'order_total_discount'),),
         })
     )
+
     # form = OrderModelForm
 
     # def get_form(self, request, obj=None, change=False, **kwargs):
-        # AdminForm = super().get_form(request, obj, change, **kwargs)
-        #
-        # class AdminFormWithRequest(AdminForm):
-        #     def __new__(cls, *args, **kwargs):
-        #         kwargs['request'] = request
-        #         return AdminForm(*args, **kwargs)
-        #
-        # return AdminFormWithRequest
+    # AdminForm = super().get_form(request, obj, change, **kwargs)
+    #
+    # class AdminFormWithRequest(AdminForm):
+    #     def __new__(cls, *args, **kwargs):
+    #         kwargs['request'] = request
+    #         return AdminForm(*args, **kwargs)
+    #
+    # return AdminFormWithRequest
+
+    def colored_type(self, obj=None):
+        if obj:
+            color = 'blue' if obj.type == 0 else 'green'
+            return format_html(
+                '<span style="color: {};">{}</span>',
+                color,
+                Order.ORDER_TYPE[obj.type][1]
+            )
+
+    colored_type.short_description = 'Тип накладной'
 
     def save_model(self, request, obj, form, change):
         if obj and obj.type == Order.IN:
