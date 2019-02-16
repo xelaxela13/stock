@@ -1,6 +1,7 @@
 from django.db import models
-from django.db.models import Sum, F, Q, Case, When
+from django.db.models import Sum, F
 from accounts.models import User
+from stock import model_choices as mch
 
 
 class ProductGroup(models.Model):
@@ -57,16 +58,11 @@ class Customer(models.Model):
 
 
 class Order(models.Model):
-    IN, OUT = range(2)
-    ORDER_TYPE = (
-        (IN, 'Приходная накладная'),
-        (OUT, 'Расходная накладная')
-    )
     number = models.CharField(blank=False, max_length=255, verbose_name='Номер накладной')
     date = models.DateField(verbose_name='Дата накладной')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    type = models.PositiveSmallIntegerField(blank=False, choices=ORDER_TYPE, default=ORDER_TYPE[0][0],
+    type = models.PositiveSmallIntegerField(blank=False, choices=mch.ORDER_TYPE, default=mch.ORDER_TYPE[0][0],
                                             verbose_name='Тип накладной')
     is_payed = models.BooleanField(default=False, verbose_name='Накладная полностью оплачена?')
     create_at = models.DateTimeField(auto_now_add=True)
@@ -90,23 +86,26 @@ class Order(models.Model):
         verbose_name_plural = 'Накладные'
 
 
+class OrderProxy(Order):
+    class Meta:
+        proxy = True
+        verbose_name = 'Расходная накладная'
+        verbose_name_plural = 'Расходные накладные'
+
+
 class OrderItem(models.Model):
-    DISCOUNT_TYPE = (
-        ('amount', 'Грн.'),
-        ('percent', '%'),
-    )
     product = models.ForeignKey(Product, verbose_name='Товар', on_delete=models.CASCADE)
     price = models.FloatField(verbose_name='Цена')
     amount = models.PositiveIntegerField(verbose_name='Колличество')
     discount = models.PositiveIntegerField(verbose_name='Скидка', blank=True, default=0)
-    discount_type = models.CharField(max_length=10, choices=DISCOUNT_TYPE, default=DISCOUNT_TYPE[1][0],
+    discount_type = models.CharField(max_length=10, choices=mch.DISCOUNT_TYPE, default=mch.DISCOUNT_TYPE[1][0],
                                      verbose_name='Тип скидки?')
     order = models.ForeignKey(Order, verbose_name='Накладная', related_name="order_items", on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
 
     def discount_price(self):
         if self.price and self.discount > 0:
-            if self.discount_type == self.DISCOUNT_TYPE[1][0]:
+            if self.discount_type == mch.DISCOUNT_TYPE[1][0]:
                 return self.price * (1 - (self.discount / 100))
             return self.price - self.discount
         return self.price if self.price else 0
