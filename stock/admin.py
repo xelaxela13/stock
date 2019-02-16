@@ -82,6 +82,9 @@ class OrderInAdmin(OrderMixin):
             obj.user = request.user
         super().save_model(request, obj, form, change)
 
+    class Media:
+        js = ('/static//admin/js/stock/stock.js',)
+
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):

@@ -88,12 +88,6 @@ class Order(models.Model):
         verbose_name = 'Приходная накладная'
         verbose_name_plural = 'Приходные накладные'
 
-    class Media:
-        css = {
-            'all': ['/static_content/asset/style.css'],
-        }
-        js = ['/static/asset/js/stock/stock.js', ]
-
 
 class OrderItem(models.Model):
     DISCOUNT_TYPE = (
