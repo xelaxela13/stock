@@ -57,9 +57,10 @@ class Customer(models.Model):
 
 
 class Order(models.Model):
+    IN, OUT = range(2)
     ORDER_TYPE = (
-        (0, 'Приходная накладная'),
-        (1, 'Расходная накладная')
+        (IN, 'Приходная накладная'),
+        (OUT, 'Расходная накладная')
     )
     number = models.CharField(blank=False, max_length=255, verbose_name='Номер накладной')
     date = models.DateField(verbose_name='Дата накладной')

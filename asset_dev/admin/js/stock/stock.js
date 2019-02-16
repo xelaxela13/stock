@@ -1,11 +1,18 @@
-(function($) {
-    $(document).on('formset:added', function(event, $row, formsetName) {
-        if (formsetName == 'author_set') {
-            // Do something
-        }
-    });
+(function ($) {
+    $(function () {
+        let order_type_select = $('#id_type'),
+            field_user = $('.fieldBox.field-user');
 
-    $(document).on('formset:removed', function(event, $row, formsetName) {
-        // Row removed
-    });
+        function is_order_type(obj) {
+            if (obj.val() === '0') {
+                field_user.hide();
+            } else {
+                field_user.show();
+            }
+        }
+        is_order_type(order_type_select);
+        order_type_select.change(function () {
+            is_order_type($(this));
+        });
+    })
 })(django.jQuery);

@@ -1,10 +1,9 @@
 from django.forms import ModelForm
-from stock.models import OrderItem
 
 
-class OrderItemModelForm(ModelForm):
+class OrderModelForm(ModelForm):
 
-    class Meta:
-        model = OrderItem
-        exclude = ()
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)
+        super().__init__(*args, **kwargs)
 
