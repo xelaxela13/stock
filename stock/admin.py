@@ -2,12 +2,13 @@ from django.contrib import admin
 from django.utils.html import format_html
 from stock.models import Product, ProductGroup, Order, Customer, CustomerGroup, OrderItem, OrderProxy
 from stock import model_choices as mch
-from stock.forms.admin_forms import OrderModelForm
+from stock.forms.admin_forms import OrderItemInlineForm
 from stock.utils import float_format
 
 
 class OrderItemInline(admin.TabularInline):
     model = OrderItem
+    form = OrderItemInlineForm
     extra = 0
     fieldsets = (
         (None, {
