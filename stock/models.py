@@ -30,6 +30,30 @@ class Product(models.Model):
         verbose_name = 'Товар'
         verbose_name_plural = 'Товары'
 
+    def total_order_in(self):
+        return OrderItem.objects.filter(product=self,
+                                        order__type=mch.ORDER_IN).aggregate(total=Sum(F('amount')))['total'] or 0
+
+    total_order_in.short_description = 'Всего приходованно'
+
+    def total_order_out(self):
+        return OrderItem.objects.filter(product=self,
+                                        order__type=mch.ORDER_OUT).aggregate(total=Sum(F('amount')))['total'] or 0
+
+    total_order_out.short_description = 'Всего расходованно'
+
+    def total_order_in_out(self):
+        return ProductStock.objects.filter(product=self).first().amount or 0
+
+    total_order_in_out.short_description = 'Остаток'
+
+
+class ProductStock(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    amount = models.PositiveIntegerField(blank=True, default=0)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+
 
 class CustomerGroup(models.Model):
     name = models.CharField(max_length=255, blank=False, verbose_name='Группа контрагентов')

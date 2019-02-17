@@ -86,12 +86,12 @@ class OrderMixin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('sku', 'name',)
+    list_display = ('sku', 'name', 'total_order_in', 'total_order_out', 'total_order_in_out')
     list_filter = ('group',)
 
 
 @admin.register(ProductGroup)
-class ProductAdmin(admin.ModelAdmin):
+class ProductGroupAdmin(admin.ModelAdmin):
     fields = ()
 
 
@@ -103,6 +103,8 @@ class OrderInAdmin(OrderMixin):
 
     def colored_type(self, obj=None, color='green'):
         return super().colored_type(obj, color)
+
+    colored_type.short_description = 'Тип накладной'
 
     def save_model(self, request, obj, form, change):
         if obj:
