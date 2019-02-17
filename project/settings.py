@@ -341,4 +341,9 @@ if DEBUG:
     DEBUG_TOOLBAR_CONFIG = {
         "SHOW_TOOLBAR_CALLBACK": lambda request: True,
     }
+    from pprint import pprint
+    from pdb import set_trace
+
+    __builtins__["pp"] = pprint
+    __builtins__["st"] = set_trace
 

@@ -1,7 +1,7 @@
-IN, OUT = range(2)
+ORDER_IN, ORDER_OUT = range(2)
 ORDER_TYPE = (
-    (IN, 'Приходная накладная'),
-    (OUT, 'Расходная накладная')
+    (ORDER_IN, 'Приходная накладная'),
+    (ORDER_OUT, 'Расходная накладная')
 )
 
 DISCOUNT_TYPE = (

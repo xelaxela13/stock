@@ -82,8 +82,8 @@ class Order(models.Model):
     order_item_count.short_description = 'Товарных позиций в накладной'
 
     class Meta:
-        verbose_name = 'Накладная'
-        verbose_name_plural = 'Накладные'
+        verbose_name = 'Приходная накладная'
+        verbose_name_plural = 'Приходные накладные'
 
 
 class OrderProxy(Order):
@@ -102,6 +102,9 @@ class OrderItem(models.Model):
                                      verbose_name='Тип скидки?')
     order = models.ForeignKey(Order, verbose_name='Накладная', related_name="order_items", on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{} {} {}'.format(self.product, self.amount, self.price)
 
     def discount_price(self):
         if self.price and self.discount > 0:
