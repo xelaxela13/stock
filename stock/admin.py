@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from stock.models import Product, ProductGroup, Order, Customer, CustomerGroup, OrderItem, OrderProxy
+from stock.models import Product, ProductGroup, Order, Customer, CustomerGroup, OrderItem, OrderProxy, ProductStock
 from stock import model_choices as mch
 from stock.forms.admin_forms import OrderItemInlineForm
 from stock.utils import float_format
@@ -12,21 +12,31 @@ class OrderItemInline(admin.TabularInline):
     extra = 0
     fieldsets = (
         (None, {
-            'fields': ('product', 'amount', 'price', 'discount', 'discount_type')
+            'fields': ('product', 'amount', 'available_for_sale', 'price', 'discount', 'discount_type')
         }),
         ('', {
             'fields': ('sum_amount', 'discount_price', 'sum_discount_price')
         }),
     )
-    readonly_fields = ('discount_price', 'sum_amount', 'sum_discount_price')
+    readonly_fields = ('discount_price', 'sum_amount', 'sum_discount_price', 'available_for_sale')
 
     def get_field_queryset(self, db, db_field, request):
         if db_field.name == 'product' and self.parent_model.__name__ == 'OrderProxy':
             return db_field.remote_field.model.objects.filter(orderitem__order__type=mch.ORDER_IN).distinct()
         return super().get_field_queryset(db, db_field, request)
 
+    def available_for_sale(self, obj=None):
+        if obj:
+            try:
+                print(ProductStock.objects.get(product=obj))
+                return ProductStock.objects.get(product=obj).amount
+            except ProductStock.DoesNotExist:
+                return 0
 
-class OrderMixin(admin.ModelAdmin):
+    available_for_sale.short_description = 'Доступно'
+
+
+class OrderBase(admin.ModelAdmin):
     list_filter = ('date', 'type')
     list_display = ('number', 'date', 'order_item_count', 'order_total', 'order_total_discount', 'colored_type')
     readonly_fields = ('order_total', 'order_total_discount', 'calculated_order_discount')
@@ -97,7 +107,7 @@ class ProductGroupAdmin(admin.ModelAdmin):
 
 
 @admin.register(Order)
-class OrderInAdmin(OrderMixin):
+class OrderInAdmin(OrderBase):
 
     def get_queryset(self, request):
         return super().get_queryset(request).filter(type=mch.ORDER_IN)
@@ -120,7 +130,7 @@ class OrderInAdmin(OrderMixin):
 
 
 @admin.register(OrderProxy)
-class OrderOutAdmin(OrderMixin):
+class OrderOutAdmin(OrderBase):
 
     def get_queryset(self, request):
         return super().get_queryset(request).filter(type=mch.ORDER_OUT)
