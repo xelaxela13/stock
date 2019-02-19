@@ -1,6 +1,5 @@
 version: '3'
 
-# хранилища
 volumes:
   pgdata:
     driver: local

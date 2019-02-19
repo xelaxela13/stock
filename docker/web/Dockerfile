@@ -5,4 +5,4 @@ WORKDIR /srv/www/stock
 RUN pip install --upgrade pip
 RUN pip install pip-tools && pip-compile --output-file requirements.txt requirements.in
 RUN pip install -r requirements.txt
-RUN python set_env_vars.py
+RUN python3 set_env_vars.py

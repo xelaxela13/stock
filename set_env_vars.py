@@ -32,15 +32,12 @@ def run():
         print('File {} already exist, cannot rewrite it. '.format(file))
         return
     try:
-        import pdb
         with open(file, 'w') as f:
 
             for title, conf in config.items():
-                # pdb.set_trace()
                 f.writelines('['+str(title).upper()+']\n')
                 for key, value in conf.items():
                     f.writelines('\t'+str(key).upper()+'='+str(value)+'\n')
-            # f.write(json.dumps(config))
             print('Config file was created success')
             return
     except Exception as err:
