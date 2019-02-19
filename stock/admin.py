@@ -28,10 +28,9 @@ class OrderItemInline(admin.TabularInline):
     def available_for_sale(self, obj=None):
         if obj:
             try:
-                print(ProductStock.objects.get(product=obj))
-                return ProductStock.objects.get(product=obj).amount
+                return ProductStock.objects.get(product=obj.product).amount
             except ProductStock.DoesNotExist:
-                return 0
+                return '0'
 
     available_for_sale.short_description = 'Доступно'
 
@@ -86,13 +85,13 @@ class OrderBase(admin.ModelAdmin):
                 sum(i.sum_discount_price() for i in obj.order_items.all())
             ) or 0
 
-    order_total_discount.short_description = 'Итого с учетом скидки:'
+    order_total_discount.short_description = 'Итого с учетом скидки'
 
     def calculated_order_discount(self, obj=None):
         if obj:
             return obj.order_total() - sum(i.sum_discount_price() for i in obj.order_items.all())
 
-    calculated_order_discount.short_description = 'Скидка по накладной:'
+    calculated_order_discount.short_description = 'Скидка по накладной'
 
 
 @admin.register(Product)
@@ -137,6 +136,8 @@ class OrderOutAdmin(OrderBase):
 
     def colored_type(self, obj=None, color='blue'):
         return super().colored_type(obj, color)
+
+    colored_type.short_description = 'Тип накладной'
 
     def save_model(self, request, obj, form, change):
         if obj:

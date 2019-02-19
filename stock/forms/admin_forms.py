@@ -15,10 +15,12 @@ class OrderItemInlineForm(ModelForm):
 
         if self.fields['order'].parent_instance.type == mch.ORDER_OUT:
             try:
-                product_stock = ProductStock.objects.get(product=cleaned_data['product']).amount
+                product_stock = ProductStock.objects.get(product=cleaned_data.get('product')).amount
                 if self.instance.amount and cleaned_data['amount'] < self.instance.amount:
                     return cleaned_data
-                if product_stock < cleaned_data['amount']:
+                if (self.instance.amount and self.instance.amount < cleaned_data['amount'] and (
+                        cleaned_data['amount'] - self.instance.amount) > product_stock) or \
+                        (not self.instance.amount and product_stock < cleaned_data['amount']):
                     raise ValidationError('На складе не достаточно товара, доступно: %(value)s',
                                           params={'value': product_stock})
             except ProductStock.DoesNotExist:

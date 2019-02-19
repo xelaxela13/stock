@@ -23,10 +23,10 @@
             let add_row = $('.add-row a');
             add_row.click(function () {
                 setTimeout(function () {
-                    let product = $('select[name*="order_items-"]'),
-                        field_available_for_sale = $('.field-available_for_sale p');
+                    let product = $('select[name*="order_items-"]');
                     product.change(function () {
-                        let product_id = $(this).val();
+                        let product_id = $(this).val(),
+                            field_available_for_sale = $(this).parents('.dynamic-order_items').find('.field-available_for_sale p');
                         $.get('/stock/get-available-product/',
                             {'product_id': product_id},
                             function (data) {

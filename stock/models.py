@@ -43,7 +43,8 @@ class Product(models.Model):
     total_order_out.short_description = 'Всего расходованно'
 
     def total_order_in_out(self):
-        return ProductStock.objects.filter(product=self).first().amount or 0
+        product_stock = ProductStock.objects.filter(product=self).first()
+        return product_stock.amount if product_stock else 0
 
     total_order_in_out.short_description = 'Остаток'
 
@@ -150,6 +151,10 @@ class OrderItem(models.Model):
             return self.discount_price() * self.amount
 
     sum_discount_price.short_description = 'Сумма со скидкой'
+
+    def delete(self, using=None, keep_parents=False):
+        ProductStock.objects.filter(product=self.product).update(amount=F('amount')+self.amount)
+        return super().delete(using, keep_parents)
 
     class Meta:
         verbose_name = 'Товарная позиция'
