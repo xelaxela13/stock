@@ -82,14 +82,14 @@ class OrderBase(admin.ModelAdmin):
         if obj:
             return format_html(
                 '<span style="color: red;">{}</span>',
-                sum(i.sum_discount_price() for i in obj.order_items.all())
+                float_format(sum(i.sum_discount_price() for i in obj.order_items.all()))
             ) or 0
 
     order_total_discount.short_description = 'Итого с учетом скидки'
 
     def calculated_order_discount(self, obj=None):
         if obj:
-            return obj.order_total() - sum(i.sum_discount_price() for i in obj.order_items.all())
+            return float_format(obj.order_total() - sum(i.sum_discount_price() for i in obj.order_items.all()))
 
     calculated_order_discount.short_description = 'Скидка по накладной'
 
@@ -98,6 +98,7 @@ class OrderBase(admin.ModelAdmin):
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('sku', 'name', 'total_order_in', 'total_order_out', 'total_order_in_out')
     list_filter = ('group',)
+    filter_horizontal = ('group',)
 
 
 @admin.register(ProductGroup)
@@ -152,7 +153,7 @@ class OrderOutAdmin(OrderBase):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    fields = ()
+    filter_horizontal = ('customer_groups', )
 
 
 @admin.register(CustomerGroup)
