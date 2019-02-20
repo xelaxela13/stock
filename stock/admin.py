@@ -1,9 +1,11 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from import_export.admin import ImportExportModelAdmin
 from stock.models import Product, ProductGroup, Order, Customer, CustomerGroup, OrderItem, OrderProxy, ProductStock
 from stock import model_choices as mch
 from stock.forms.admin_forms import OrderItemInlineForm
 from stock.utils import float_format
+from stock.resources import ProductResources
 
 
 class OrderItemInline(admin.TabularInline):
@@ -95,10 +97,12 @@ class OrderBase(admin.ModelAdmin):
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
-    list_display = ('sku', 'name', 'total_order_in', 'total_order_out', 'total_order_in_out')
+class ProductAdmin(ImportExportModelAdmin):
+    list_display = ('sku', 'name', 'total_order_in', 'total_order_out', 'total_in_stock')
     list_filter = ('group',)
     filter_horizontal = ('group',)
+    readonly_fields = ('total_in_stock',)
+    resource_class = ProductResources
 
 
 @admin.register(ProductGroup)
@@ -153,7 +157,7 @@ class OrderOutAdmin(OrderBase):
 
 @admin.register(Customer)
 class CustomerAdmin(admin.ModelAdmin):
-    filter_horizontal = ('customer_groups', )
+    filter_horizontal = ('customer_groups',)
 
 
 @admin.register(CustomerGroup)

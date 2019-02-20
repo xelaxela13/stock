@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'meta',
     'django_celery_results',
     'django_celery_beat',
+    'import_export',
     # local apps
     'project',
     'accounts',

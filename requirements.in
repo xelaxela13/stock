@@ -16,3 +16,4 @@ django-celery-beat
 python-memcached
 django-admin-tools
 django-debug-toolbar
+django-import-export

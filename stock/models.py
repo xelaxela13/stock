@@ -42,11 +42,11 @@ class Product(models.Model):
 
     total_order_out.short_description = 'Всего расходованно'
 
-    def total_order_in_out(self):
+    def total_in_stock(self):
         product_stock = ProductStock.objects.filter(product=self).first()
         return product_stock.amount if product_stock else 0
 
-    total_order_in_out.short_description = 'Остаток'
+    total_in_stock.short_description = 'Остаток'
 
 
 class ProductStock(models.Model):
