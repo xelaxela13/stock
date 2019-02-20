@@ -4,7 +4,7 @@
 {% load static %}
 {% load i18n %}
 
-{% block bootstrap4_extra_head %}
+{% block extra_head %}
     <!-- blueimp Gallery styles -->
     <link rel="stylesheet" href="{% static 'css/fileupload/blueimp-gallery.min.css' %}">
     <!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
@@ -72,7 +72,7 @@
     </div>
     {% upload_js %}
 {% endblock %}
-{% block bootstrap4_extra_script %}
+{% block extra_script %}
     <!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
     <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
     <!-- The Templates plugin is included to render the upload/download listings -->

@@ -2,7 +2,7 @@
 {% load bootstrap4 %}
 {% load i18n %}
 
-{% block bootstrap4_content %}
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="col-lg-4">
@@ -13,7 +13,7 @@
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"><a
                                     href="{% url 'user_update' pk=user.pk %}">{% trans 'Update user data' %}</a></li>
-                            {% if request.user.is_staff %}
+                            {% if request.user.is_superuser %}
                                 <li class="list-group-item">
                                     <a href="{% url 'users_list' %}">{% trans 'A list of users' %}</a>
                                 </li>
@@ -25,6 +25,11 @@
                                 </li>
                                 <li class="list-group-item">
                                     <a href="{% url 'upload-new' %}">{% trans 'Upload images' %}</a>
+                                </li>
+                            {% endif %}
+                            {% if request.user.is_staff %}
+                                <li class="list-group-item">
+                                    <a href="/admin">{% trans 'Admin panel' %}</a>
                                 </li>
                             {% endif %}
                         </ul>

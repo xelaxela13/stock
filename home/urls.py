@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import Index
+from .views import RedirectToLogin
 
 urlpatterns = [
-    path('', Index.as_view(), name='home'),
+    path('', RedirectToLogin.as_view(), name='home'),
 ]
