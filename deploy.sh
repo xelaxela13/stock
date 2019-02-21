@@ -75,7 +75,7 @@ do
 shift
 done
 
-if [ "${SERVER}" = 'production' ]; then
+if [ "${SERVER}" = 'prod' ]; then
     BRANCH=master
 else
     BRANCH=dev
