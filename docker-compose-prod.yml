@@ -33,9 +33,9 @@ services:
     volumes:
     - .:/srv/www/stock
     expose:
-    - 8000
+    - 8088
     ports:
-    - 8000:8000
+    - 8088:8088
     - 8001:8001
     # запускаем gunicorn
     command: "gunicorn -c gunicorn.py project.wsgi"
