@@ -14,7 +14,10 @@ from os import path, environ
 from decouple import config
 from django.urls import reverse_lazy
 from django.utils import timezone
+from django.utils.translation import gettext_lazy as _
 from project.utils import get_db_settings
+from whitenoise.storage import CompressedManifestStaticFilesStorage
+
 
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
@@ -142,8 +145,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'ru'
 
-from django.utils.translation import gettext_lazy as _
-
 LANGUAGES = [
     ('ru', _('Russian')),
     ('en', _('English')),
@@ -160,7 +161,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-SHOW_LANG_SWITCH = True
+SHOW_LANG_SWITCH = False
 
 # Email send
 # https://docs.djangoproject.com/en/2.0/topics/email/
@@ -191,7 +192,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
-from whitenoise.storage import CompressedManifestStaticFilesStorage
 
 CompressedManifestStaticFilesStorage.manifest_strict = False
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
