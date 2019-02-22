@@ -66,10 +66,13 @@ jQuery(document).ready(function () {
                 return false;
             }
         });
-        if (Utils.isElementInView(solar_panel_bg, true) || Utils.isElementInView(solar_panel_text, true)){
-            solar_panel_bg.css('opacity', '1');
-            solar_panel_text.css('opacity', '1');
+        if (solar_panel_bg.length > 0){
+            if (Utils.isElementInView(solar_panel_bg, true) || Utils.isElementInView(solar_panel_text, true)) {
+                solar_panel_bg.css('opacity', '1');
+                solar_panel_text.css('opacity', '1');
+            }
         }
+
     });
 
 });
