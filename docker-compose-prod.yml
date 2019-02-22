@@ -11,10 +11,8 @@ services:
     # монтируем директорию проекта
     volumes:
     - .:/srv/www/stock
-    expose:
-    - 8080
     ports:
-    - 8080:8001
+    - 8001:8002
     # запускаем gunicorn
     command: "gunicorn -c gunicorn.py project.wsgi"
     depends_on:
