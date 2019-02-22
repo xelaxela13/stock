@@ -7,12 +7,9 @@ from .models import Picture
 from .response import JSONResponse, response_mimetype
 from .serialize import serialize
 from project.settings import MEDIA_ROOT
-from project.seometa import MyMetadataMixin
-from django.utils.translation import gettext_lazy as _
 
 
-class PictureCreateView(MyMetadataMixin, CreateView):
-    title = _('Upload images')
+class PictureCreateView(CreateView):
     model = Picture
     fields = ['file', 'user']
 

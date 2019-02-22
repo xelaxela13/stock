@@ -4,9 +4,8 @@ from .forms import SignUpForm
 from django.views.generic.edit import CreateView, UpdateView
 from .models import User
 from django.urls import reverse_lazy
-from django.contrib.messages.views import SuccessMessageMixin, messages
+from django.contrib.messages.views import SuccessMessageMixin
 from django.utils.translation import gettext_lazy as _
-from project.seometa import MyMetadataMixin
 from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.views import LoginView
@@ -38,36 +37,27 @@ def choice_location_api(request):
     return JsonResponse(data={'city': city.result})
 
 
-class AccountsLogin(SuccessMessageMixin, MyMetadataMixin, LoginView):
+class AccountsLogin(SuccessMessageMixin, LoginView):
     template_name = 'accounts/registration/login.html'
-    title = _('Log in')
 
 
-class AccountsSignup(SuccessMessageMixin, MyMetadataMixin, CreateView):
+class AccountsSignup(SuccessMessageMixin, CreateView):
     template_name = 'accounts/registration/signup.html'
     form_class = SignUpForm
     success_url = reverse_lazy('login')
     success_message = _('Registration was successful, please log in')
-    title = _('Sign up')
 
     def get_form(self, form_class=None):
-        form = super(AccountsSignup, self).get_form(form_class)
+        form = super().get_form(form_class)
         form.fields['phone'].required = True
         return form
 
 
-class AccountsPanel(SuccessMessageMixin, MyMetadataMixin, TemplateView):
-    title = _('Control panel')
-    description = _('Control panel')
+class AccountsPanel(SuccessMessageMixin, TemplateView):
     template_name = 'accounts/panel/panel.html'
 
-    def get(self, request, *args, **kwargs):
-        messages.success(request, '{} {}'.format(_('Welcome'), request.user.first_name))
-        return super(AccountsPanel, self).get(request, *args, **kwargs)
 
-
-class AccountsUpdate(SuccessMessageMixin, MyMetadataMixin, UpdateView):
-    title = _('Update account')
+class AccountsUpdate(SuccessMessageMixin, UpdateView):
     model = User
     template_name = 'accounts/panel/update.html'
     fields = ['first_name', 'last_name', 'email', 'phone', 'location']
@@ -83,7 +73,6 @@ class AccountsUpdate(SuccessMessageMixin, MyMetadataMixin, UpdateView):
 
 
 @method_decorator(staff_member_required, name='dispatch')
-class AccountsUsersList(SuccessMessageMixin, MyMetadataMixin, ListView):
-    title = _('A list of users')
+class AccountsUsersList(SuccessMessageMixin, ListView):
     model = User
     template_name = 'accounts/panel/users_list.html'

@@ -17,7 +17,7 @@ class DefaultLanguageMiddleware:
         return response
 
     def process_view(self, request, view_func, view_args, view_kwargs):
-        if getattr(settings, 'DEFAULT_LANGUAGE', None) and settings.DEFAULT_LANGUAGE != translation.get_language:
+        if getattr(settings, 'DEFAULT_LANGUAGE', None) and settings.DEFAULT_LANGUAGE != translation.get_language():
             language = settings.DEFAULT_LANGUAGE
             translation.activate(language)
             request.LANGUAGE_CODE = translation.get_language()

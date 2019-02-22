@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     # external apps
     'bootstrap4',
     'rosetta',
-    'meta',
     'django_celery_results',
     'django_celery_beat',
     'import_export',
@@ -200,8 +199,8 @@ CompressedManifestStaticFilesStorage.manifest_strict = False
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
-SITE_LOGO_FIRST = path.join(STATIC_URL, 'images/iceberg_logo_2.svg')
-SITE_LOGO_SECOND = path.join(STATIC_URL, 'images/iceberg_logo.svg')
+SITE_LOGO_FIRST = path.join(STATIC_URL, 'images/logo.png')
+SITE_LOGO_SECOND = path.join(STATIC_URL, 'images/logo.png')
 
 # Media files
 # https://docs.djangoproject.com/en/2.0/howto/static-files/#serving-files-uploaded-by-a-user-during-development
@@ -213,15 +212,6 @@ DELETE_MEDIA_FILES = True  # delete files after deleting model entity
 #  https://ipstack.com/
 #  free geo api
 IPSTACK_ACCESS_KEY = config('IPSTACK_ACCESS_KEY', default='')
-
-#  Meta settings https://django-meta.readthedocs.io/en/latest/settings.html
-META_SITE_PROTOCOL = 'http'
-META_SITE_DOMAIN = 'localhost'
-META_SITE_NAME = 'Склад'
-META_BASE_TITLE = META_SITE_NAME
-META_BASE_DESCRIPTION = META_SITE_NAME
-META_USE_TITLE_TAG = True
-META_INCLUDE_KEYWORDS = ['склад', ]
 
 # DB Heroku, uncomment it when deploy to Heroku
 # import dj_database_url
