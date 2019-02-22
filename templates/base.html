@@ -1,18 +1,16 @@
 <!DOCTYPE html>
 {% load bootstrap4 %}
 {% load static %}
-{% load meta %}
 {% if 'use_i18n'|bootstrap_setting %}
     {% load i18n %}
     {% get_current_language as LANGUAGE_CODE %}
 {% endif %}
 <html lang="{{ LANGUAGE_CODE|default:'en_us' }}">
 
-<head {% meta_namespaces %}>
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    {% include "meta/meta.html" %}
 
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}">
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicons/favicon-32x32.png' %}">
