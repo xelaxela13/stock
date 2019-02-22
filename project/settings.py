@@ -82,6 +82,7 @@ MIDDLEWARE = [
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'project.middleware.DefaultLanguageMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -162,6 +163,8 @@ USE_L10N = True
 USE_TZ = True
 
 SHOW_LANG_SWITCH = False
+
+DEFAULT_LANGUAGE = LANGUAGE_CODE
 
 # Email send
 # https://docs.djangoproject.com/en/2.0/topics/email/
