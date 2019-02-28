@@ -1,7 +1,10 @@
 from django.db import models
 from django.db.models import Sum, F
+from django.core.cache import cache
+from itertools import cycle
 from accounts.models import User
 from stock import model_choices as mch
+from stock.utils import generate_cache_key
 
 
 class ProductGroup(models.Model):
@@ -31,20 +34,34 @@ class Product(models.Model):
         verbose_name_plural = 'Товары'
 
     def total_order_in(self):
-        return OrderItem.objects.filter(product=self,
-                                        order__type=mch.ORDER_IN).aggregate(total=Sum(F('amount')))['total'] or 0
+        key = generate_cache_key('product', f'in_{self.pk}')
+        value = cache.get(key)
+        if value is None:
+            value = OrderItem.objects.filter(product=self,
+                                             order__type=mch.ORDER_IN).aggregate(total=Sum(F('amount')))['total'] or 0
+            cache.set(key, value)
+        return value
 
     total_order_in.short_description = 'Всего приходованно'
 
     def total_order_out(self):
-        return OrderItem.objects.filter(product=self,
-                                        order__type=mch.ORDER_OUT).aggregate(total=Sum(F('amount')))['total'] or 0
+        key = generate_cache_key('product', f'out_{self.pk}')
+        value = cache.get(key)
+        if value is None:
+            value = OrderItem.objects.filter(product=self,
+                                             order__type=mch.ORDER_OUT).aggregate(total=Sum(F('amount')))['total'] or 0
+            cache.set(key, value)
+        return value
 
     total_order_out.short_description = 'Всего расходованно'
 
     def total_in_stock(self):
-        product_stock = ProductStock.objects.filter(product=self).first()
-        return product_stock.amount if product_stock else 0
+        key = generate_cache_key('product', f'in_stock_{self.pk}')
+        value = cache.get(key)
+        if value is None:
+            value = ProductStock.objects.filter(product=self).first()
+            cache.set(key, value.amount if value else 0)
+        return value
 
     total_in_stock.short_description = 'Остаток'
 
@@ -95,20 +112,38 @@ class Order(models.Model):
     def __str__(self):
         return '№{} ({}) {}'.format(self.number, self.order_items.count(), self.date)
 
+    class Meta:
+        verbose_name = 'Приходная накладная'
+        verbose_name_plural = 'Приходные накладные'
+
     def order_total(self):
-        return self.order_items.all().aggregate(
-            total=Sum(F('price') * F('amount'), output_field=models.FloatField()))['total'] or 0
+        key = generate_cache_key('order_total', self.create_at.strftime('%d_%m_%Y_%H'))
+        value = cache.get(key)
+        if value is None:
+            value = self.order_items.all().aggregate(
+                total=Sum(F('price') * F('amount'), output_field=models.FloatField()))['total'] or 0
+            cache.set(key, value)
+        return value
 
     order_total.short_description = 'Сумма накладной без скидки:'
 
     def order_item_count(self):
-        return self.order_items.all().count()
+        key = generate_cache_key('order_item_count', self.create_at.strftime('%d_%m_%Y_%H'))
+        value = cache.get(key)
+        if value is None:
+            value = self.order_items.all().count()
+            cache.set(key, value)
+        return value
 
     order_item_count.short_description = 'Товарных позиций в накладной'
 
-    class Meta:
-        verbose_name = 'Приходная накладная'
-        verbose_name_plural = 'Приходные накладные'
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        prefix = ['order_item_count', 'order_total']
+        for key in (k for k in map(generate_cache_key, prefix, cycle([self.create_at.strftime('%d_%m_%Y_%H')]))):
+            print(key)
+            if cache.get(key):
+                cache.delete(key)
+        super().save(force_insert, force_update, using, update_fields)
 
 
 class OrderProxy(Order):
@@ -153,7 +188,7 @@ class OrderItem(models.Model):
     sum_discount_price.short_description = 'Сумма со скидкой'
 
     def delete(self, using=None, keep_parents=False):
-        ProductStock.objects.filter(product=self.product).update(amount=F('amount')+self.amount)
+        ProductStock.objects.filter(product=self.product).update(amount=F('amount') + self.amount)
         return super().delete(using, keep_parents)
 
     class Meta:

@@ -8,8 +8,9 @@ class ProductResources(resources.ModelResource):
 
     class Meta:
         model = Product
-        fields = ('sku', 'name', 'description', 'total_in_stock')
+        fields = ('sku', 'name', 'description')
         export_order = ('sku', 'name', 'description', 'total_in_stock')
+        import_id_fields = ''
 
     def dehydrate_total_in_stock(self, product):
         return Product.total_in_stock(product)

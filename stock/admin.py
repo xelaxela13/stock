@@ -101,6 +101,7 @@ class ProductAdmin(ImportExportModelAdmin):
     list_display = ('sku', 'name', 'total_order_in', 'total_order_out', 'total_in_stock')
     list_filter = ('group',)
     filter_horizontal = ('group',)
+    list_select_related = True
     readonly_fields = ('total_in_stock',)
     resource_class = ProductResources
 
