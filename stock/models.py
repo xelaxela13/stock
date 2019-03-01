@@ -140,7 +140,6 @@ class Order(models.Model):
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         prefix = ['order_item_count', 'order_total']
         for key in (k for k in map(generate_cache_key, prefix, cycle([self.create_at.strftime('%d_%m_%Y_%H')]))):
-            print(key)
             if cache.get(key):
                 cache.delete(key)
         super().save(force_insert, force_update, using, update_fields)
@@ -194,3 +193,10 @@ class OrderItem(models.Model):
     class Meta:
         verbose_name = 'Товарная позиция'
         verbose_name_plural = 'Товары'
+
+    def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
+        prefix = [f'in_stock_{self.product.pk}', f'in_{self.product.pk}', f'out_{self.product.pk}']
+        for key in (k for k in map(generate_cache_key, cycle(['product']), prefix)):
+            if cache.get(key):
+                cache.delete(key)
+        super().save(force_insert, force_update, using, update_fields)
