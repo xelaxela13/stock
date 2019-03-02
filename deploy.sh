@@ -13,6 +13,7 @@ DELETE=true
 ENV=true
 SYNCDB=true
 COLLECTSTATIC=true
+COMPILEMASSAGE=true
 SUPERUSER=false
 
 # Parse arguments
@@ -33,6 +34,7 @@ do
             echo "  -no-env                          Do not update Python virtual environment"
             echo "  -no-syncdb                       Do not syncronize schema of database"
             echo "  -no-collectstatic                Do not collect static files (img, css, js)"
+            echo "  -no-compilemessages               Do not compilemessages"
             echo "  -superuser                       Create super user"
             echo "  -h, --help                       Show this help message and exit"
             exit
@@ -63,6 +65,9 @@ do
         ;;
             -no-collectstatic)
             COLLECTSTATIC=false
+        ;;
+            -no-compilemessages)
+            COMPILEMASSAGE=false
         ;;
             -superuser)
             SUPERUSER=true
@@ -121,6 +126,10 @@ fi
 # Collect static files (img, css, js)
 if [ "${COLLECTSTATIC}" = true ]; then
     docker exec -it web python manage.py collectstatic --noinput
+fi
+
+if [ "${COMPILEMASSAGE}" = true ]; then
+    docker exec -it web python manage.py compilemessages
 fi
 
 if [ "${SUPERUSER}" = true ]; then
