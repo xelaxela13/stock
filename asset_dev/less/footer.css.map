@@ -1,0 +1,1 @@
+{"version":3,"sources":["footer.less","footer.css"],"names":[],"mappings":"AAAA;EACE,aAAA;EACA,6BAAA;UAAA,qBAAA;CCCD","file":"footer.css","sourcesContent":[null,"footer .logo img {\n  width: 150px;\n  filter: invert(100%);\n}\n/*# sourceMappingURL=footer.css.map */"]}

@@ -5,7 +5,7 @@
     {% load i18n %}
     {% get_current_language as LANGUAGE_CODE %}
 {% endif %}
-<html lang="{{ LANGUAGE_CODE|default:'en_us' }}">
+<html lang="{{ LANGUAGE_CODE|default:'ru' }}">
 
 <head>
     <!-- Required meta tags -->
@@ -17,6 +17,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicons/favicon-16x16.png' %}">
     <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}">
     <link rel="mask-icon" href="{% static 'images/favicons/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <link rel="shortcut icon" href="{% static '/images/favicons/favicon.ico' %}" type="image/x-icon">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
     <!-- Bootstrap CSS -->
@@ -36,10 +37,9 @@
 <header class="mb-5">
     {% block before_content %}{% include 'header.html' %}{% endblock %}
 </header>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </div>
 </div>
 <footer class="mt-5">

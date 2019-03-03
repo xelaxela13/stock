@@ -1,5 +1,5 @@
 .navbar-brand img {
-  width: 100px;
+  width: 50px;
 }
 .logo img {
   width: 300px;
@@ -16,7 +16,7 @@
   font-size: 150px;
   top: 0;
   z-index: -1;
-  line-height: .9;
+  line-height: 0.9;
 }
 .circle_block.first::after {
   content: '1';
@@ -80,7 +80,7 @@
   right: 5%;
   width: 200px;
   height: 160px;
-  opacity: .6;
+  opacity: 0.6;
 }
 .city {
   margin-bottom: -3rem;
@@ -301,11 +301,6 @@ h6 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-}
-footer {
-  background: #0b0c0d;
-  padding: 20px 0;
-  color: white;
 }
 footer .logo img {
   width: 150px;

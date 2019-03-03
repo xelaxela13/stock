@@ -55,7 +55,7 @@ class OrderBase(admin.ModelAdmin):
     )
 
     class Media:
-        js = ('/static//admin/js/stock/stock.js',)
+        js = ('/static/admin/js/stock/stock.js',)
 
     # form = OrderModelForm
 
