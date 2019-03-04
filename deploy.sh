@@ -89,6 +89,7 @@ fi
 # Find root directory of project and set it as current directory
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cd ${DIR}
+mkdir -p log
 
 # Stop celery worker if celery was installed
 if [ "${CELERY}" = true ]; then
