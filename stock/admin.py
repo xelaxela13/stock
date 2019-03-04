@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.urls import path
+from django import forms
 from import_export.admin import ImportExportModelAdmin
 from stock.models import Product, ProductGroup, Order, Customer, CustomerGroup, OrderItem, OrderProxy, ProductStock
 from stock import model_choices as mch
@@ -112,13 +113,15 @@ class OrderBase(admin.ModelAdmin):
         def wrap(view):
             def wrapper(*args, **kwargs):
                 return self.admin_site.admin_view(view)(*args, **kwargs)
+
             wrapper.model_admin = self
             return update_wrapper(wrapper, view)
 
         info = self.model._meta.app_label, self.model._meta.model_name
 
         urlpatterns = [
-            path('<path:object_id>/add_many_items/', wrap(self.add_many_items_view), name='%s_%s_add_many_items' % info),
+            path('<path:object_id>/add_many_items/', wrap(self.add_many_items_view),
+                 name='%s_%s_add_many_items' % info),
         ]
 
         return urlpatterns + urls
@@ -132,10 +135,9 @@ class OrderBase(admin.ModelAdmin):
             key='',
         )
         if request.POST:
-
             return redirect('..')
-        st()
         return TemplateResponse(request, template, context)
+
 
 @admin.register(Product)
 class ProductAdmin(ImportExportModelAdmin):
@@ -145,6 +147,12 @@ class ProductAdmin(ImportExportModelAdmin):
     list_select_related = True
     readonly_fields = ('total_in_stock',)
     resource_class = ProductResources
+
+    def get_import_form(self):
+        form = super().get_import_form()
+        form.base_fields['create_order'] = forms.BooleanField(required=False, help_text='Создать приходную накладную?')
+        form.base_fields['number'] = forms.CharField(max_length=255, required=False)
+        return form
 
 
 @admin.register(ProductGroup)

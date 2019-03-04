@@ -5,10 +5,11 @@ from django.core.exceptions import FieldDoesNotExist
 
 class ProductResources(resources.ModelResource):
     total_in_stock = fields.Field(column_name='total_in_stock')
+    amount = fields.Field(column_name='amount')
 
     class Meta:
         model = Product
-        fields = ('sku', 'name', 'description')
+        fields = ('sku', 'name', 'description', 'total_in_stock', 'amount')
         export_order = ('sku', 'name', 'description', 'total_in_stock')
         import_id_fields = ''
 
