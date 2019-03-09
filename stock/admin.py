@@ -5,6 +5,7 @@ from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.urls import path
 from django import forms
+from django.utils import timezone
 from import_export.admin import ImportExportModelAdmin
 from stock.models import Product, ProductGroup, Order, Customer, CustomerGroup, OrderItem, OrderProxy, ProductStock
 from stock import model_choices as mch
@@ -12,6 +13,7 @@ from stock.forms.admin_forms import OrderItemInlineForm
 from stock.utils import float_format
 from stock.resources import ProductResources
 from functools import update_wrapper
+from random import randint
 
 
 class OrderItemInline(admin.TabularInline):
@@ -152,8 +154,45 @@ class ProductAdmin(ImportExportModelAdmin):
         form = super().get_import_form()
         form.base_fields['create_order'] = forms.BooleanField(required=False, help_text='Создать приходную накладную?')
         form.base_fields['number'] = forms.CharField(max_length=255, required=False)
+        form.base_fields['customer'] = forms.Select(choices=Customer.objects.all())
         return form
 
+
+    def process_dataset(self, dataset, confirm_form, request, *args, **kwargs):
+        {'_data': [['МКН 300х300х200 ір54 з монтажною панеллю',
+                    'Компактна розподільча шафа  MK10 - 300х300х200 IP 54 з монтажною панеллю', '5'],
+                   ['МКН 400х300х200 ір54 з монтажною панеллю',
+                    'Компактна розподільча шафа  MK10 - 400х300х200 IP 54 з монтажною панеллю', '5']],
+         '_Dataset__headers': ['name', 'description', 'total_in_stock'], '_separators': [], '_formatters': [],
+         'title': None}
+        if dataset and confirm_form.is_valid() and self.create_order:
+            headers = dataset._Dataset__headers
+            data = dataset._data
+            if data and headers:
+                if 'total_in_stock' in headers:
+                    total_in_stock_index = headers.index('total_in_stock')
+                if 'name' in headers:
+                    name_index = headers.index('name')
+                order_data = {
+                    'number': self.order_number or randint(10000, 99999),
+                    'date': timezone.now(),
+                    'customer': self.customer,
+                    'user': self.user,
+                    'type': mch.ORDER_IN,
+                }
+                order = Order.objects.create(**order_data)
+                for item in data:
+                    OrderItem.objects.create()
+        super().process_dataset(dataset, confirm_form, request, *args, **kwargs)
+        st()
+
+    def import_action(self, request, *args, **kwargs):
+        if request.POST:
+            self.create_order = request.POST.get('create_order')
+            self.order_number = request.POST.get('number')
+            self.customer = request.POST.get('customer')
+            self.user = request.user
+        return super().import_action(request, *args, **kwargs)
 
 @admin.register(ProductGroup)
 class ProductGroupAdmin(admin.ModelAdmin):
