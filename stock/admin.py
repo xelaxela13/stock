@@ -1,9 +1,9 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.template.response import TemplateResponse
 from django.shortcuts import redirect
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
-from django.urls import path
+from django.urls import path, reverse_lazy
 from django import forms
 from django.utils import timezone
 from import_export.admin import ImportExportModelAdmin
@@ -22,7 +22,7 @@ class OrderItemInline(admin.TabularInline):
     extra = 0
     fieldsets = (
         (None, {
-            'fields': ('product', 'amount', 'available_for_sale', 'price', 'discount', 'discount_type')
+            'fields': ('product', 'amount', 'available_for_sale', 'unit', 'price', 'discount', 'discount_type')
         }),
         ('', {
             'fields': ('sum_amount', 'discount_price', 'sum_discount_price')
@@ -109,6 +109,11 @@ class OrderBase(admin.ModelAdmin):
 
     add_many_items.allow_tags = True
 
+    @staticmethod
+    def get_order_url(obj):
+        info = obj._meta.app_label, obj._meta.model_name
+        return reverse_lazy('admin:%s_%s_change' % info, args=[obj.id])
+
     def get_urls(self):
         urls = super().get_urls()
 
@@ -150,49 +155,79 @@ class ProductAdmin(ImportExportModelAdmin):
     readonly_fields = ('total_in_stock',)
     resource_class = ProductResources
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.price = []
+        self.total = []
+        self.create_order = None
+        self.customer = None
+        self.order_number = None
+        self.user = None
+
     def get_import_form(self):
         form = super().get_import_form()
         form.base_fields['create_order'] = forms.BooleanField(required=False, help_text='Создать приходную накладную?')
         form.base_fields['number'] = forms.CharField(max_length=255, required=False)
-        form.base_fields['customer'] = forms.Select(choices=Customer.objects.all())
         return form
 
-
     def process_dataset(self, dataset, confirm_form, request, *args, **kwargs):
-        {'_data': [['МКН 300х300х200 ір54 з монтажною панеллю',
-                    'Компактна розподільча шафа  MK10 - 300х300х200 IP 54 з монтажною панеллю', '5'],
-                   ['МКН 400х300х200 ір54 з монтажною панеллю',
-                    'Компактна розподільча шафа  MK10 - 400х300х200 IP 54 з монтажною панеллю', '5']],
-         '_Dataset__headers': ['name', 'description', 'total_in_stock'], '_separators': [], '_formatters': [],
-         'title': None}
+        # example of dataset
+        # {'_data': [['МКН 300х300х200 ір54 з монтажною панеллю',
+        #             'Компактна розподільча шафа  MK10 - 300х300х200 IP 54 з монтажною панеллю', '5'],
+        #            ['МКН 400х300х200 ір54 з монтажною панеллю',
+        #             'Компактна розподільча шафа  MK10 - 400х300х200 IP 54 з монтажною панеллю', '5']],
+        #  '_Dataset__headers': ['name', 'description', 'total_in_stock'], '_separators': [], '_formatters': [],
+        #  'title': None}
         if dataset and confirm_form.is_valid() and self.create_order:
+            total = []
+            price = []
             headers = dataset._Dataset__headers
             data = dataset._data
             if data and headers:
-                if 'total_in_stock' in headers:
-                    total_in_stock_index = headers.index('total_in_stock')
-                if 'name' in headers:
-                    name_index = headers.index('name')
-                order_data = {
-                    'number': self.order_number or randint(10000, 99999),
-                    'date': timezone.now(),
-                    'customer': self.customer,
-                    'user': self.user,
-                    'type': mch.ORDER_IN,
-                }
-                order = Order.objects.create(**order_data)
-                for item in data:
-                    OrderItem.objects.create()
-        super().process_dataset(dataset, confirm_form, request, *args, **kwargs)
-        st()
+                if 'total' in headers:
+                    total_in_stock_index = headers.index('total')
+                    [total.append(d[total_in_stock_index]) for d in data]
+                if 'price' in headers:
+                    price_index = headers.index('price')
+                    [price.append(d[price_index]) for d in data]
+                self.total = total
+                self.price = price
+        return super().process_dataset(dataset, confirm_form, request, *args, **kwargs)
+
+    def process_result(self, result, request):
+        if result and self.create_order:
+            order_data = {
+                'number': self.order_number or randint(10000, 99999),
+                'date': timezone.now(),
+                'customer_id': Customer.objects.get_or_create(name='Import')[0].id,
+                'user': self.user,
+                'type': mch.ORDER_IN,
+                'create_at': timezone.now()
+            }
+            order = Order.objects.create(**order_data)
+            if order:
+                for i, row in enumerate(result.rows):
+                    order_item_data = {
+                        'product_id': row.object_id,
+                        'price': float(self.price[i]) if self.price and self.price[i].isdigit() else 0,
+                        'amount': int(self.total[i]) if self.total and self.total[i].isdigit() else 0,
+                        'order_id': order.id,
+                        'create_at': timezone.now()
+                    }
+                    OrderItem.objects.create(**order_item_data)
+                st()
+                url = OrderBase.get_order_url(order)
+                mess = f'Накладная № <a href="{url}">{order.number}</a> успешно созданна.'
+                messages.add_message(request, messages.INFO, mark_safe(mess))
+        return super().process_result(result, request)
 
     def import_action(self, request, *args, **kwargs):
         if request.POST:
             self.create_order = request.POST.get('create_order')
             self.order_number = request.POST.get('number')
-            self.customer = request.POST.get('customer')
             self.user = request.user
         return super().import_action(request, *args, **kwargs)
+
 
 @admin.register(ProductGroup)
 class ProductGroupAdmin(admin.ModelAdmin):

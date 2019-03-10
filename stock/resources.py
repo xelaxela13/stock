@@ -4,16 +4,17 @@ from django.core.exceptions import FieldDoesNotExist
 
 
 class ProductResources(resources.ModelResource):
-    total_in_stock = fields.Field(column_name='total_in_stock')
-    amount = fields.Field(column_name='amount')
+    total = fields.Field(column_name='total')
+    price = fields.Field(column_name='price')
+    unit = fields.Field(column_name='unit')
 
     class Meta:
         model = Product
-        fields = ('sku', 'name', 'description', 'total_in_stock', 'amount')
-        export_order = ('sku', 'name', 'description', 'total_in_stock')
+        fields = ('sku', 'name', 'description', 'unit', 'total', 'price')
+        export_order = ('sku', 'name', 'description')
         import_id_fields = ''
 
-    def dehydrate_total_in_stock(self, product):
+    def dehydrate_total(self, product):
         return Product.total_in_stock(product)
 
     def get_export_headers(self):

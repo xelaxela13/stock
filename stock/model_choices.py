@@ -3,8 +3,9 @@ ORDER_TYPE = (
     (ORDER_IN, 'Приходная накладная'),
     (ORDER_OUT, 'Расходная накладная')
 )
-
+DISCOUNT_AMOUNT = 'amount'
+DISCOUNT_PERCENT = 'percent'
 DISCOUNT_TYPE = (
-    ('amount', 'Грн.'),
-    ('percent', '%'),
+    (DISCOUNT_AMOUNT, 'Грн.'),
+    (DISCOUNT_PERCENT, '%'),
 )

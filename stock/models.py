@@ -104,7 +104,7 @@ class Order(models.Model):
     date = models.DateField(verbose_name='Дата накладной')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING)
-    type = models.PositiveSmallIntegerField(blank=False, choices=mch.ORDER_TYPE, default=mch.ORDER_TYPE[0][0],
+    type = models.PositiveSmallIntegerField(blank=False, choices=mch.ORDER_TYPE, default=mch.ORDER_IN,
                                             verbose_name='Тип накладной')
     is_payed = models.BooleanField(default=False, verbose_name='Накладная полностью оплачена?')
     create_at = models.DateTimeField(auto_now_add=True)
@@ -139,9 +139,10 @@ class Order(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         prefix = ['order_item_count', 'order_total']
-        for key in (k for k in map(generate_cache_key, prefix, cycle([self.create_at.strftime('%d_%m_%Y_%H')]))):
-            if cache.get(key):
-                cache.delete(key)
+        if self.create_at:
+            for key in (k for k in map(generate_cache_key, prefix, cycle([self.create_at.strftime('%d_%m_%Y_%H')]))):
+                if cache.get(key):
+                    cache.delete(key)
         super().save(force_insert, force_update, using, update_fields)
 
 
@@ -155,9 +156,10 @@ class OrderProxy(Order):
 class OrderItem(models.Model):
     product = models.ForeignKey(Product, verbose_name='Товар', on_delete=models.CASCADE)
     price = models.FloatField(verbose_name='Цена')
+    unit = models.CharField(max_length=15, verbose_name='Единица измерения', default='шт.', blank=True)
     amount = models.PositiveIntegerField(verbose_name='Колличество')
     discount = models.PositiveIntegerField(verbose_name='Скидка', blank=True, default=0)
-    discount_type = models.CharField(max_length=10, choices=mch.DISCOUNT_TYPE, default=mch.DISCOUNT_TYPE[1][0],
+    discount_type = models.CharField(max_length=10, choices=mch.DISCOUNT_TYPE, default=mch.DISCOUNT_PERCENT,
                                      verbose_name='Тип скидки?')
     order = models.ForeignKey(Order, verbose_name='Накладная', related_name="order_items", on_delete=models.CASCADE)
     create_at = models.DateTimeField(auto_now_add=True)
@@ -167,7 +169,7 @@ class OrderItem(models.Model):
 
     def discount_price(self):
         if self.price and self.discount > 0:
-            if self.discount_type == mch.DISCOUNT_TYPE[1][0]:
+            if self.discount_type == mch.DISCOUNT_PERCENT:
                 return self.price * (1 - (self.discount / 100))
             return self.price - self.discount
         return self.price if self.price else 0
@@ -183,6 +185,7 @@ class OrderItem(models.Model):
     def sum_discount_price(self):
         if self.price:
             return self.discount_price() * self.amount
+        return 0
 
     sum_discount_price.short_description = 'Сумма со скидкой'
 
