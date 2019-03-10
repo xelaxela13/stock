@@ -6,7 +6,7 @@ register = template.Library()
 
 @register.simple_tag
 def blueimp_gallery(element_id='links'):
-    a = """ 
+    a = """
     <!-- blueimp Gallery styles -->
     <link rel="stylesheet" href="/static/css/fileupload/blueimp-gallery.min.css">
     <!-- blueimp Gallery script -->
@@ -22,7 +22,8 @@ def blueimp_gallery(element_id='links'):
         <ol class="indicator"></ol>
     </div>
     <script>"""
-    b = "if ($('#{element_id}').length) {{document.getElementById('{element_id}').onclick = function (event)".format(element_id=element_id)
+    b = "if ($('#{element_id}').length) {{document.getElementById('{element_id}').onclick = function (event)".format(
+        element_id=element_id)
     c = """
         {
             event = event || window.event;
@@ -35,5 +36,5 @@ def blueimp_gallery(element_id='links'):
         }
     </script>
     """
-    content = a+b+c
+    content = a + b + c
     return mark_safe(content)

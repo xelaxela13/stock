@@ -16,7 +16,7 @@ class Command(BaseCommand):
         config.optionxform = lambda x: x.upper()
         while True:
             try:
-                config['SETTINGS']= {
+                config['SETTINGS'] = {
                     'SECRET_KEY': self.random_string,
                     'ALLOWED_HOSTS': '127.0.0.1',
                     'DEBUG': False,
@@ -25,7 +25,7 @@ class Command(BaseCommand):
                     'GMAIL_USER': ''
 
                 }
-                config['DB']= {
+                config['DB'] = {
                     'name': 'solar_django',
                     'USER': 'postgres',
                     'PASSWORD': 'postgres',

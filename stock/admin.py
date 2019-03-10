@@ -104,7 +104,8 @@ class OrderBase(admin.ModelAdmin):
     calculated_order_discount.short_description = 'Скидка по накладной'
 
     def add_many_items(self, obj=None):
-        button = f'<a href="add_many_items/?_to_field=1&_popup=1" target="_blank" class="button">Добавить несколько товаров</a>'
+        button = f'<a href="add_many_items/?_to_field=1&_popup=1" target="_blank" class="button"> \
+                    Добавить несколько товаров</a>'
         return mark_safe(button)
 
     add_many_items.allow_tags = True
@@ -215,7 +216,6 @@ class ProductAdmin(ImportExportModelAdmin):
                         'create_at': timezone.now()
                     }
                     OrderItem.objects.create(**order_item_data)
-                st()
                 url = OrderBase.get_order_url(order)
                 mess = f'Накладная № <a href="{url}">{order.number}</a> успешно созданна.'
                 messages.add_message(request, messages.INFO, mark_safe(mess))
