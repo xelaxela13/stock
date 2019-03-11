@@ -72,6 +72,9 @@ class ProductStock(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
+    def __str__(self):
+        return f'{self.amount}'
+
 
 class CustomerGroup(models.Model):
     name = models.CharField(max_length=255, blank=False, verbose_name='Группа контрагентов')
@@ -117,7 +120,7 @@ class Order(models.Model):
         verbose_name_plural = 'Приходные накладные'
 
     def order_total(self):
-        key = generate_cache_key('order_total', self.create_at.strftime('%d_%m_%Y_%H'))
+        key = generate_cache_key('order_total', self.number)
         value = cache.get(key)
         if value is None:
             value = self.order_items.all().aggregate(
@@ -128,7 +131,7 @@ class Order(models.Model):
     order_total.short_description = 'Сумма накладной без скидки:'
 
     def order_item_count(self):
-        key = generate_cache_key('order_item_count', self.create_at.strftime('%d_%m_%Y_%H'))
+        key = generate_cache_key('order_item_count', self.number)
         value = cache.get(key)
         if value is None:
             value = self.order_items.all().count()
@@ -139,10 +142,9 @@ class Order(models.Model):
 
     def save(self, force_insert=False, force_update=False, using=None, update_fields=None):
         prefix = ['order_item_count', 'order_total']
-        if self.create_at:
-            for key in (k for k in map(generate_cache_key, prefix, cycle([self.create_at.strftime('%d_%m_%Y_%H')]))):
-                if cache.get(key):
-                    cache.delete(key)
+        for key in (k for k in map(generate_cache_key, prefix, cycle([self.number]))):
+            if cache.get(key):
+                cache.delete(key)
         super().save(force_insert, force_update, using, update_fields)
 
 

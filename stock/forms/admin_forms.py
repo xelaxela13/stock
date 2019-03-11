@@ -10,6 +10,11 @@ from stock.models import ProductStock
 #         super().__init__(*args, **kwargs)
 
 class OrderItemInlineForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['unit'].widget.attrs = {'size': '10'}
+
     def clean(self):
         cleaned_data = super().clean()
 
