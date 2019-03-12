@@ -44,10 +44,15 @@ ADMINS = [('Alex', 'xelaxela13@gmail.com'), ]
 # Application definition
 INSTALLED_APPS = [
     # admin-tools apps
-    'admin_tools',
-    'admin_tools.theming',
-    'admin_tools.menu',
-    'admin_tools.dashboard',
+    # 'admin_tools',
+    # 'admin_tools.theming',
+    # 'admin_tools.menu',
+    # 'admin_tools.dashboard',
+
+    # 'jet.dashboard',
+    'jet',
+
+
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
