@@ -1,5 +1,5 @@
-from django.contrib.auth.views import LoginView
+from django.views.generic.base import RedirectView
 
 
-class RedirectToLogin(LoginView):
-    template_name = 'accounts/registration/login.html'
+class RedirectToLogin(RedirectView):
+    url = 'admin'
