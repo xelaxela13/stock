@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-06-17 15:41+0300\n"
-"PO-Revision-Date: 2018-06-17 15:42+0202\n"
+"PO-Revision-Date: 2019-03-13 16:32+0202\n"
 "Last-Translator: b'  <xelaxela13@gmail.com>'\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,7 @@ msgstr "Загрузка изображений"
 
 #: home/views.py:8
 msgid "IceBERG"
-msgstr ""
+msgstr "Айсберг"
 
 #: project/settings.py:136
 msgid "Russian"
