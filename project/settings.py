@@ -43,11 +43,9 @@ ADMINS = [('Alex', 'xelaxela13@gmail.com'), ]
 
 # Application definition
 INSTALLED_APPS = [
-    # admin-tools apps
-    'admin_tools',
-    'admin_tools.theming',
-    'admin_tools.menu',
-    'admin_tools.dashboard',
+    # custom dashboard
+    'jet.dashboard',  # comment this - migrate and then uncomment and migrate again
+    'jet',
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -102,7 +100,6 @@ TEMPLATES = [
                 ('django.template.loaders.cached.Loader', [
                     'django.template.loaders.filesystem.Loader',
                     'django.template.loaders.app_directories.Loader',
-                    'admin_tools.template_loaders.Loader',
                 ]),
             ],
         },
@@ -327,8 +324,6 @@ LOGGING = {
         },
     }
 }
-
-ADMIN_TOOLS_APP_INDEX_DASHBOARD = 'stock.dashboard.MyAppIndexDashboard'
 
 if DEBUG:
     INTERNAL_IPS = ('127.0.0.1',)

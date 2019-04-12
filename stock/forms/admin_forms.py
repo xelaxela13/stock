@@ -13,7 +13,8 @@ class OrderItemInlineForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['unit'].widget.attrs = {'size': '10'}
+        for field in ['unit', 'price', 'discount']:
+            self.fields[field].widget.attrs = {'style': 'width: 80px;'}
 
     def clean(self):
         cleaned_data = super().clean()
