@@ -55,10 +55,11 @@ class OrderBase(admin.ModelAdmin):
     ]
     fieldsets = (
         (None, {
-            'fields': (('number', 'date', 'type'), ('customer', 'user')),
+            'fields': (('number', 'date', 'type'), ('customer', 'user'),
+                       ('order_total', 'calculated_order_discount', 'order_total_discount')),
         }),
-        ('', {
-            'fields': (('order_total', 'calculated_order_discount', 'order_total_discount'), ('add_many_items',)),
+        ('Дополнительно', {
+            'fields': (('add_many_items', ), ),
         })
     )
 
