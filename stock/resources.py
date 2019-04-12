@@ -14,9 +14,6 @@ class ProductResources(resources.ModelResource):
         export_order = ('sku', 'name', 'description')
         import_id_fields = ''
 
-    def dehydrate_total(self, product):
-        return Product.total_in_stock(product)
-
     def get_export_headers(self):
         headers = super().get_export_headers()
         verbose_headers = []
