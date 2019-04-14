@@ -194,7 +194,6 @@ STATICFILES_FINDERS = (
 
 CompressedManifestStaticFilesStorage.manifest_strict = False
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 SITE_LOGO_FIRST = path.join(STATIC_URL, 'images/logo.png')
 SITE_LOGO_SECOND = path.join(STATIC_URL, 'images/logo.png')
@@ -329,6 +328,7 @@ if DEBUG:
     INTERNAL_IPS = ('127.0.0.1',)
     INSTALLED_APPS.append('debug_toolbar')
     MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
     DEBUG_TOOLBAR_CONFIG = {
         "SHOW_TOOLBAR_CALLBACK": lambda request: True,
     }

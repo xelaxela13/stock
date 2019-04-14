@@ -9,3 +9,7 @@
     <script src="{% static 'admin/js/jquery.init.js' as url %}{{ url|jet_append_version }}"></script>
     <script src="{% static 'admin/js/custom.js' as url %}{{ url|jet_append_version }}"></script>
 {% endblock %}
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/custom.css' as url %}{{ url|jet_append_version }}"/>
+{% endblock %}

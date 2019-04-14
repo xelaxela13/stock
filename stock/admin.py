@@ -168,8 +168,12 @@ class ProductAdmin(ImportExportModelAdmin):
 
     def get_import_form(self):
         form = super().get_import_form()
-        form.base_fields['create_order'] = forms.BooleanField(required=False, help_text='Создать приходную накладную?')
+        form.base_fields['create_order'] = forms.BooleanField(required=False,
+                                                              help_text='Создать приходную накладную?',
+                                                              widget=forms.CheckboxInput(
+                                                                  attrs={'class': 'checkbox'}))
         form.base_fields['number'] = forms.CharField(max_length=255, required=False)
+
         return form
 
     def process_dataset(self, dataset, confirm_form, request, *args, **kwargs):
