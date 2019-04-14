@@ -16,3 +16,4 @@ python-memcached
 django-debug-toolbar
 django-import-export
 django-jet
+xhtml2pdf

@@ -12,6 +12,7 @@ from stock import model_choices as mch
 from stock.forms.admin_forms import OrderItemInlineForm
 from stock.utils import float_format
 from stock.resources import ProductResources
+from stock.template_to_pdf import PDFTemplateResponse
 from functools import update_wrapper
 from random import randint
 
@@ -48,18 +49,18 @@ class OrderItemInline(admin.TabularInline):
 class OrderBase(admin.ModelAdmin):
     list_filter = ('date', 'type')
     list_display = ('number', 'date', 'order_item_count', 'order_total', 'order_total_discount', 'colored_type')
-    readonly_fields = ('order_total', 'order_total_discount', 'calculated_order_discount', 'add_many_items')
+    readonly_fields = ('order_total', 'order_total_discount', 'calculated_order_discount', 'print_to_pdf')
     search_fields = ('order_items__product__name', 'number')
     inlines = [
         OrderItemInline
     ]
     fieldsets = (
-        (None, {
+        ('Общие', {
             'fields': (('number', 'date', 'type'), ('customer', 'user'),
                        ('order_total', 'calculated_order_discount', 'order_total_discount')),
         }),
         ('Дополнительно', {
-            'fields': (('add_many_items', ), ),
+            'fields': (('print_to_pdf', ), ),
         })
     )
 
@@ -104,12 +105,12 @@ class OrderBase(admin.ModelAdmin):
 
     calculated_order_discount.short_description = 'Скидка по накладной'
 
-    def add_many_items(self, obj=None):
-        button = f'<a href="add_many_items/?_to_field=1&_popup=1" target="_blank" class="button"> \
-                    Добавить несколько товаров</a>'
+    def print_to_pdf(self, obj=None):
+        button = f'<a href="print_to_pdf/?_to_field=1&_popup=1" target="_blank" class="button"> \
+                    Сохранить в PDF</a>'
         return mark_safe(button)
 
-    add_many_items.allow_tags = True
+    print_to_pdf.allow_tags = True
 
     @staticmethod
     def get_order_url(obj):
@@ -129,23 +130,29 @@ class OrderBase(admin.ModelAdmin):
         info = self.model._meta.app_label, self.model._meta.model_name
 
         urlpatterns = [
-            path('<path:object_id>/add_many_items/', wrap(self.add_many_items_view),
-                 name='%s_%s_add_many_items' % info),
+            path('<path:object_id>/print_to_pdf/', wrap(self.print_to_pdf_view),
+                 name='%s_%s_print_to_pdf' % info),
         ]
 
         return urlpatterns + urls
 
-    def add_many_items_view(self, request, object_id, **kwargs):
-        template = 'admin/stock/order/add_many_items_view/add_many_items.html'
+    def print_to_pdf_view(self, request, object_id, **kwargs):
+        try:
+            object_id = int(object_id.split('/')[0])
+        except (IndexError, TypeError):
+            return redirect('..')
+
+        template = 'admin/stock/order/print_to_pdf/print_to_pdf.html'
         context = dict(
             # Include common variables for rendering the admin template.
             self.admin_site.each_context(request),
             # Anything else you want in the context...
             key='',
         )
+        context['data'] = Product.objects.filter(orderitem__order_id=object_id)
         if request.POST:
             return redirect('..')
-        return TemplateResponse(request, template, context)
+        return PDFTemplateResponse(request, template, context)
 
 
 @admin.register(Product)

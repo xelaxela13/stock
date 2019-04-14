@@ -1,0 +1,12 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<div>
+    <h1>PDF</h1>
+    <div>
+        {% for item in data %}
+            <p>{{ item.name }}</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
