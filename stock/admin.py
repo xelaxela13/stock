@@ -1,5 +1,4 @@
 from django.contrib import admin, messages
-from django.template.response import TemplateResponse
 from django.shortcuts import redirect
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
@@ -12,7 +11,7 @@ from stock import model_choices as mch
 from stock.forms.admin_forms import OrderItemInlineForm
 from stock.utils import float_format
 from stock.resources import ProductResources
-from stock.template_to_pdf import PDFTemplateResponse
+from stock.template_to_pdf import render_to_pdf_response
 from functools import update_wrapper
 from random import randint
 
@@ -152,7 +151,7 @@ class OrderBase(admin.ModelAdmin):
         context['data'] = Product.objects.filter(orderitem__order_id=object_id)
         if request.POST:
             return redirect('..')
-        return PDFTemplateResponse(request, template, context)
+        return render_to_pdf_response(template, context)
 
 
 @admin.register(Product)
