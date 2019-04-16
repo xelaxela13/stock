@@ -1,12 +1,32 @@
-{% extends "admin/base_site.html" %}
-{% block content %}
-<div>
-    <h1>PDF</h1>
-    <div>
-        {% for item in data %}
-            <p style="color: red">{{ item.name }}</p>
-        {% endfor %}
-    </div>
-</div>
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+<head>
+    <!-- Required meta tags -->
+    <title>PDF my</title>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <style>
+        @font-face {
+          font-family: DejaMono;
+          src: url('fonts/DejaVuSansMono.ttf');
+        }
+        * { font-family: DejaMono, sans-serif; }
+    </style>
+</head>
 
-{% endblock %}
+<body>
+    <div>
+        <h1>PDF</h1>
+        <div>
+            {% for item in data %}
+                <p style="color: red">{{ item.name }}</p>
+            {% endfor %}
+        </div>
+        <div>
+            <img style="width: 100px;" src="{% static 'images/logo.png' %}"/>
+        </div>
+    </div>
+</body>
+
+</html>

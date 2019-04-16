@@ -7,7 +7,7 @@ from django.conf import settings
 try:
     from StringIO import BytesIO
 except:
-    from django.utils.six import BytesIO
+    from django.utils.six import BytesIO, StringIO
 
 import os
 import posixpath
@@ -127,9 +127,11 @@ class PdfResponse(TemplateResponse):
         retval = super().render()
         result = BytesIO()
         pisa.CreatePDF(
-            self.rendered_content.encode("UTF-8"),
+            self.rendered_content,
             dest=result,
-            link_callback=fetch_resources, encoding='UTF-8')
+            link_callback=fetch_resources,
+            show_error_as_pdf=True
+        )
         self.content = result.getvalue()
         return retval
 

@@ -11,7 +11,7 @@ from stock import model_choices as mch
 from stock.forms.admin_forms import OrderItemInlineForm
 from stock.utils import float_format
 from stock.resources import ProductResources
-from stock.template_to_pdf import render_to_pdf_response
+from stock.template_to_pdf import PdfResponse
 from functools import update_wrapper
 from random import randint
 
@@ -59,7 +59,7 @@ class OrderBase(admin.ModelAdmin):
                        ('order_total', 'calculated_order_discount', 'order_total_discount')),
         }),
         ('Дополнительно', {
-            'fields': (('print_to_pdf', ), ),
+            'fields': (('print_to_pdf',),),
         })
     )
 
@@ -110,6 +110,7 @@ class OrderBase(admin.ModelAdmin):
         return mark_safe(button)
 
     print_to_pdf.allow_tags = True
+    print_to_pdf.short_description = 'Сохранить в PDF'
 
     @staticmethod
     def get_order_url(obj):
@@ -149,9 +150,7 @@ class OrderBase(admin.ModelAdmin):
             key='',
         )
         context['data'] = Product.objects.filter(orderitem__order_id=object_id)
-        if request.POST:
-            return redirect('..')
-        return render_to_pdf_response(template, context)
+        return PdfResponse(request, template, context, content_type="application/pdf")
 
 
 @admin.register(Product)
