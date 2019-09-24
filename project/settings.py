@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django_celery_results',
     'django_celery_beat',
     'import_export',
+    'pipeline',
     # local apps
     'project',
     'accounts',
@@ -190,10 +191,27 @@ STATICFILES_DIRS = [
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
 )
 
-CompressedManifestStaticFilesStorage.manifest_strict = False
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# CompressedManifestStaticFilesStorage.manifest_strict = False
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+
+PIPELINE = {
+    'PIPELINE_ENABLED': True,
+    'COMPILERS': ('pipeline.compilers.es6.ES6Compiler',),
+    # 'BABEL_BINARY': '/usr/bin/babel',
+    'BABEL_ARGUMENTS': '--presets env --plugins transform-remove-strict-mode',
+    'JAVASCRIPT': {
+        'js': {
+            'source_filenames': (
+              'script.es6',
+            ),
+            'output_filename': 'compressed_script.js',
+        }
+    }
+}
 
 SITE_LOGO_FIRST = path.join(STATIC_URL, 'images/logo.png')
 SITE_LOGO_SECOND = path.join(STATIC_URL, 'images/logo.png')

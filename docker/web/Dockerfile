@@ -8,4 +8,7 @@ RUN pip install --upgrade pip
 RUN pip install pip-tools && pip-compile --output-file requirements.txt requirements.in
 RUN pip install -r requirements.txt
 RUN pip install flake8
-RUN apt-get update && apt-get install -y gettext libgettextpo-dev
+RUN apt-get update && apt-get install -y curl gettext libgettextpo-dev
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash
+RUN apt-get install nodejs
+RUN npm -g install yuglify sass babel-cli babel-core babel-preset-env babel-plugin-transform-remove-strict-mode

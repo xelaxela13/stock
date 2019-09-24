@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import RedirectToLogin
+from .views import Home
 
 urlpatterns = [
-    path('', RedirectToLogin.as_view(), name='home'),
+    path('', Home.as_view(), name='home'),
 ]

@@ -1,5 +1,5 @@
-from django.views.generic.base import RedirectView
+from django.views.generic.base import TemplateView
 
 
-class RedirectToLogin(RedirectView):
-    url = 'admin'
+class Home(TemplateView):
+    template_name = 'home/index.html'
