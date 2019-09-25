@@ -18,7 +18,6 @@ from django.utils.translation import gettext_lazy as _
 from project.utils import get_db_settings
 from whitenoise.storage import CompressedManifestStaticFilesStorage
 
-
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 
@@ -199,14 +198,16 @@ STATICFILES_FINDERS = (
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 PIPELINE = {
-    'PIPELINE_ENABLED': True,
+    'PIPELINE_ENABLED': False if DEBUG else True,
+    'COMPRESS_ENABLED': False if DEBUG else True,
     'COMPILERS': ('pipeline.compilers.es6.ES6Compiler',),
     # 'BABEL_BINARY': '/usr/bin/babel',
-    'BABEL_ARGUMENTS': '--presets env --plugins transform-remove-strict-mode',
+    # 'BABEL_ARGUMENTS': '--presets env --plugins transform-remove-strict-mode',
     'JAVASCRIPT': {
         'js': {
             'source_filenames': (
-              'script.es6',
+                'script.es6',
+                'js/is_element_in_view.js',
             ),
             'output_filename': 'compressed_script.js',
         }
@@ -257,7 +258,7 @@ CELERY_TIMEZONE = TIME_ZONE
 
 
 def log_level():
-    return 'INFO' if DEBUG else 'INFO'
+    return 'DEBUG' if DEBUG else 'INFO'
 
 
 LOGGING = {
