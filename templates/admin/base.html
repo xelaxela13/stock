@@ -1,5 +1,5 @@
 {% extends 'admin/base.html' %}
-{% load i18n static jet_tags %}
+{% load i18n static jet_tags pipeline %}
 
 {% block blockbots %}
     {{ block.super }}
@@ -11,5 +11,5 @@
 {% endblock %}
 {% block extrastyle %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'admin/css/custom.css' as url %}{{ url|jet_append_version }}"/>
+    {% stylesheet 'admin' %}
 {% endblock %}

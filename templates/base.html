@@ -23,7 +23,7 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Bootstrap CSS -->
     {% bootstrap_css %}
-    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
+    {% stylesheet 'styles' %}
     {% if 'javascript_in_head'|bootstrap_setting %}
         <!-- Bootstrap JavaScript if it is in head -->
         {% bootstrap_jquery %}

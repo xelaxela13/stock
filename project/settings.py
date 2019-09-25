@@ -16,7 +16,7 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from project.utils import get_db_settings
-from whitenoise.storage import CompressedManifestStaticFilesStorage
+# from whitenoise.storage import CompressedManifestStaticFilesStorage
 
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
@@ -78,7 +78,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',  # i18n
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'project.middleware.DefaultLanguageMiddleware',
 ]
 
@@ -198,11 +198,32 @@ STATICFILES_FINDERS = (
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 PIPELINE = {
-    'PIPELINE_ENABLED': False if DEBUG else True,
-    'COMPRESS_ENABLED': False if DEBUG else True,
-    'COMPILERS': ('pipeline.compilers.es6.ES6Compiler',),
+    'PIPELINE_ENABLED': not DEBUG,
+    'COMPRESS_ENABLED': not DEBUG,
+    'COMPILERS': ('pipeline.compilers.es6.ES6Compiler', 'pipeline.compilers.sass.SASSCompiler'),
+    'JS_COMPRESSOR': 'pipeline.compressors.yuglify.YuglifyCompressor',
     # 'BABEL_BINARY': '/usr/bin/babel',
     # 'BABEL_ARGUMENTS': '--presets env --plugins transform-remove-strict-mode',
+    'STYLESHEETS': {
+        'styles': {
+            'source_filenames': (
+              'styles.scss',
+            ),
+            'output_filename': 'styles.css',
+            'extra_context': {
+                'media': 'screen',
+            },
+        },
+        'admin': {
+            'source_filenames': (
+              'admin/css/custom.scss',
+            ),
+            'output_filename': 'admin/css/custom.css',
+            'extra_context': {
+                'media': 'screen',
+            },
+        },
+    },
     'JAVASCRIPT': {
         'js': {
             'source_filenames': (
