@@ -33,18 +33,22 @@
     {% block extra_head %}{% endblock %}
 </head>
 
-<body class="body_class {% block body_class %}{% endblock %}">
+<body class="{% block body_class %}{% endblock body_class %}">
 {% include '_messages.html' %}
-<header class="mb-5">
-    {% block before_content %}{% include 'header.html' %}{% endblock %}
+<header>
+    {% block header %}
+        {% include 'header.html' %}
+    {% endblock header %}
 </header>
-<div class="container">
-    <div class="row">
-        {% block content %}{% endblock %}
-    </div>
-</div>
-<footer class="mt-5">
-    {% block after_content %}{% endblock %}
+
+<main>
+    {% block content %}{% endblock content %}
+</main>
+
+<footer>
+    {% block footer %}
+        {% include 'footer.html' %}
+    {% endblock footer %}
 </footer>
 {% if not 'javascript_in_head'|bootstrap_setting %}
     <!-- Bootstrap JavaScript if it is in body -->
