@@ -16,14 +16,15 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from project.utils import get_db_settings
-# from whitenoise.storage import CompressedManifestStaticFilesStorage
+
+from whitenoise.storage import CompressedManifestStaticFilesStorage
 
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 
 
 def rel(*x):
-    #  For example: rel('log', 'file.log') will to returned /var/www/solar_django/log/file.log
+    #  For example: rel('log', 'file.log') will to returned /var/www/stock/log/file.log
     return path.join(BASE_DIR, *x)
 
 
@@ -78,7 +79,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',  # i18n
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'project.middleware.DefaultLanguageMiddleware',
 ]
 
@@ -87,7 +88,8 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [rel('templates')],
+        'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -95,12 +97,6 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'project.context_processors.settings_to_template',  # my context processor
-            ],
-            'loaders': [
-                ('django.template.loaders.cached.Loader', [
-                    'django.template.loaders.filesystem.Loader',
-                    'django.template.loaders.app_directories.Loader',
-                ]),
             ],
         },
     },
@@ -207,7 +203,7 @@ PIPELINE = {
     'STYLESHEETS': {
         'styles': {
             'source_filenames': (
-              'styles.scss',
+                'styles.scss',
             ),
             'output_filename': 'styles.css',
             'extra_context': {
@@ -216,7 +212,7 @@ PIPELINE = {
         },
         'admin': {
             'source_filenames': (
-              'admin/css/custom.scss',
+                'admin/css/custom.scss',
             ),
             'output_filename': 'admin/css/custom.css',
             'extra_context': {
@@ -228,7 +224,6 @@ PIPELINE = {
         'js': {
             'source_filenames': (
                 'script.es6',
-                'js/is_element_in_view.js',
             ),
             'output_filename': 'compressed_script.js',
         }

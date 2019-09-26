@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,700&display=swap&subset=cyrillic');
+
+$gray: #525252;
+$gray-light: #abab9f;
+$blue-deep: #006cfc;
+$light: 300;
+$normal: 400;
+$bold: 700;
+
+body {
+    font-family: 'Merriweather', serif;
+    font-size: 14px;
+    font-weight: $light;
+}
+
+h1, h2, h3, .h1, .h2, .h3 {
+    color: $gray;
+    font-weight: $light;
+}
+
+@mixin transparent-bg($color) {
+    background-color: rgba($color, 0.9) !important;
+}
+
+.bg {
+    &-white {
+        background-color: white;
+
+        &.transparent {
+            @include transparent-bg(white);
+        }
+    }
+
+    &-gray {
+        &-light {
+            background-color: $gray-light;
+
+            &.transparent {
+                @include transparent-bg($gray-light);
+            }
+        }
+    }
+
+    &-blue {
+        &-deep {
+            background-color: $blue-deep;
+        }
+    }
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    .home {
+        .bg-header {
+            background: url("/static/images/home/home-header-image.jpg") no-repeat bottom center;
+            min-height: 100vh;
+            background-size: cover;
+
+            .ktp {
+                width: 25vw;
+                top: 10%;
+                right: 10%;
+
+                img {
+                    width: inherit;
+                }
+            }
+        }
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+}
