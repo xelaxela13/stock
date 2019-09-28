@@ -16,6 +16,7 @@ body {
 h1, h2, h3, .h1, .h2, .h3 {
     color: $gray;
     font-weight: $light;
+    margin-bottom: 0;
 }
 
 @mixin transparent-bg($color) {
@@ -32,6 +33,7 @@ h1, h2, h3, .h1, .h2, .h3 {
     }
 
     &-gray {
+        background-color: $gray;
         &-light {
             background-color: $gray-light;
 
@@ -47,7 +49,19 @@ h1, h2, h3, .h1, .h2, .h3 {
         }
     }
 }
-
+.text{
+    &-gray{
+        color: $gray;
+    }
+    &-blue{
+        &-deep{
+            color: $blue-deep;
+        }
+    }
+}
+.digit{
+    font-size: 8rem;
+}
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
 }
@@ -65,7 +79,7 @@ h1, h2, h3, .h1, .h2, .h3 {
             background-size: cover;
 
             .ktp {
-                width: 25vw;
+                width: 30vw;
                 top: 10%;
                 right: 10%;
 
