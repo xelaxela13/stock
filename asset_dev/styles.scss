@@ -18,7 +18,14 @@ h1, h2, h3, .h1, .h2, .h3 {
     font-weight: $light;
     margin-bottom: 0;
 }
-
+p{
+    &:last-child{
+        margin-bottom: 0;
+    }
+}
+a{
+    color: $blue-deep;
+}
 @mixin transparent-bg($color) {
     background-color: rgba($color, 0.9) !important;
 }
@@ -58,9 +65,47 @@ h1, h2, h3, .h1, .h2, .h3 {
             color: $blue-deep;
         }
     }
+    &-white{
+        color: white !important;
+    }
 }
 .digit{
     font-size: 8rem;
+}
+.link{
+    position: relative;
+    color: black;
+    &:before, &:after{
+        content: '';
+        position: absolute;
+        left: 0;
+        transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    &:before{
+        width: 0;
+        height: 3px;
+        background-color: rgba(0,108,252,0.3);
+        transform-origin: bottom left;
+        bottom: 4px;
+    }
+    &:after{
+        bottom: -4px;
+        width: 90%;
+        height: 2px;
+        background-color: $blue-deep;
+    }
+    &:hover{
+        color: black;
+        text-decoration: none;
+        &:before{
+            width: 105%;
+            transition: width .5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        &:after{
+            width: 0;
+            transition: width .5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+    }
 }
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
@@ -87,6 +132,22 @@ h1, h2, h3, .h1, .h2, .h3 {
                     width: inherit;
                 }
             }
+        }
+        .fill-path-right{
+            right: 0;
+            top: 500px;
+            .description{
+                top: 120px;
+                right: 0;
+            }
+            img{
+                width: 300px;
+            }
+        }
+        .solar-bg{
+            background: url("/static/images/home/solar-bg.jpg") no-repeat top center;
+            height: 400px;
+            background-size: cover;
         }
     }
 }
