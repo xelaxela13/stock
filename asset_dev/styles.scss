@@ -6,7 +6,23 @@ $blue-deep: #006cfc;
 $light: 300;
 $normal: 400;
 $bold: 700;
-
+$digit: (
+        1:.1,
+        2:.2,
+        3:.3,
+        4:.4,
+        5:.5,
+        6:.6,
+        7:.7,
+        8:.8,
+        9:.9
+);
+$colors: (
+        white: white,
+        gray: $gray,
+        gray-light: $gray-light,
+        blue-deep: $blue-deep,
+);
 body {
     font-family: 'Merriweather', serif;
     font-size: 14px;
@@ -18,95 +34,87 @@ h1, h2, h3, .h1, .h2, .h3 {
     font-weight: $light;
     margin-bottom: 0;
 }
-p{
-    &:last-child{
+
+p {
+    &:last-child {
         margin-bottom: 0;
     }
 }
-a{
+
+a {
     color: $blue-deep;
-}
-@mixin transparent-bg($color) {
-    background-color: rgba($color, 0.9) !important;
 }
 
 .bg {
-    &-white {
-        background-color: white;
-
-        &.transparent {
-            @include transparent-bg(white);
-        }
-    }
-
-    &-gray {
-        background-color: $gray;
-        &-light {
-            background-color: $gray-light;
+    @each $name, $color in $colors {
+        &-#{$name} {
+            background-color: $color;
 
             &.transparent {
-                @include transparent-bg($gray-light);
+                @each $index, $value in $digit {
+                    &-#{$index} {
+                        background-color: rgba($color, $value) !important;
+                    }
+                }
             }
         }
     }
+}
 
-    &-blue {
-        &-deep {
-            background-color: $blue-deep;
+.text {
+    @each $name, $color in $colors {
+        &-#{$name} {
+            color: $color;
         }
     }
 }
-.text{
-    &-gray{
-        color: $gray;
-    }
-    &-blue{
-        &-deep{
-            color: $blue-deep;
-        }
-    }
-    &-white{
-        color: white !important;
-    }
-}
-.digit{
+
+.digit {
     font-size: 8rem;
 }
-.link{
+
+.link {
     position: relative;
     color: black;
-    &:before, &:after{
+
+    &:before, &:after {
         content: '';
         position: absolute;
         left: 0;
         transition: width 1s cubic-bezier(0.19, 1, 0.22, 1);
     }
-    &:before{
+
+    &:before {
         width: 0;
         height: 3px;
-        background-color: rgba(0,108,252,0.3);
+        background-color: rgba(0, 108, 252, 0.3);
         transform-origin: bottom left;
         bottom: 4px;
     }
-    &:after{
+
+    &:after {
         bottom: -4px;
         width: 90%;
         height: 2px;
         background-color: $blue-deep;
     }
-    &:hover{
+
+    &:hover {
         color: black;
         text-decoration: none;
-        &:before{
+
+        &:before {
             width: 105%;
             transition: width .5s cubic-bezier(0.19, 1, 0.22, 1);
         }
-        &:after{
+
+        &:after {
             width: 0;
             transition: width .5s cubic-bezier(0.19, 1, 0.22, 1);
         }
     }
 }
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
 }
@@ -133,20 +141,24 @@ a{
                 }
             }
         }
-        .fill-path-right{
+
+        .fill-path-right {
             right: 0;
-            top: 500px;
-            .description{
+            top: 450px;
+
+            .description {
                 top: 120px;
                 right: 0;
             }
-            img{
+
+            img {
                 width: 300px;
             }
         }
-        .solar-bg{
+
+        .solar-bg {
             background: url("/static/images/home/solar-bg.jpg") no-repeat top center;
-            height: 400px;
+            height: 300px;
             background-size: cover;
         }
     }
