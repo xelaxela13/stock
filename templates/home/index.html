@@ -7,7 +7,7 @@
 {% block body_class %}home{% endblock %}
 {% block header %}{% endblock header %}
 {% block content %}
-    <section class="bg-header position-relative">
+    <section class="header-bg position-relative">
         <div class="ktp position-absolute">
             <img src="{% static 'images/home/ktp.png' %}" alt="ktp">
         </div>
@@ -16,7 +16,7 @@
                 <div class="col-12 p-0">
                     <div class="d-flex w-75 border-top mt-3">
                         <div class="bg-white transparent-3 p-5 digit text-blue-deep">01</div>
-                        <div class="bg-white transparent-7 p-3 p-lg-5">
+                        <div class="bg-white transparent-8 p-3 p-lg-5">
                             <div class="h1 mb-3">
                                 ОСФ Сервис
                             </div>
@@ -65,7 +65,14 @@
                                 02
                             </div>
                             <p class="h2 mb-3">Солнечная энергетика уже реальность, а не фантастика</p>
-                            <p>Строим солнечные электростанции</p>
+                            <p>Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum
+                                является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий
+                                безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem
+                                Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных
+                                изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое
+                                время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в
+                                более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах
+                                которых используется Lorem Ipsum.</p>
                         </div>
 
                     </div>
@@ -73,6 +80,18 @@
             </div>
         </div>
         <div class="solar-bg"></div>
+    </section>
+    <section class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="digit text-blue-deep bg-white p-3">
+                        03
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="stab-bg"></div>
     </section>
 
 
@@ -89,7 +108,6 @@
     {#            </ul>#}
     {#        </div>#}
     {#    {% endif %}#}
-    {#    <div class="mx-auto city"><img src="{% static 'images/home/index/city.svg' %}"></div>#}
 {% endblock content %}
 {% block extra_script %}
     {#    {% blueimp_gallery %}#}

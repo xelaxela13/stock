@@ -126,7 +126,7 @@ a {
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
     .home {
-        .bg-header {
+        .header-bg {
             background: url("/static/images/home/home-header-image.jpg") no-repeat bottom center;
             min-height: 100vh;
             background-size: cover;
@@ -158,6 +158,11 @@ a {
 
         .solar-bg {
             background: url("/static/images/home/solar-bg.jpg") no-repeat top center;
+            height: 300px;
+            background-size: cover;
+        }
+        .stab-bg{
+            background: url("/static/images/home/stab-bg.jpg") no-repeat top center;
             height: 300px;
             background-size: cover;
         }
