@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather:300,400,700&display=swap&subset=cyrillic');
 
-$gray: #525252;
+$gray: #9397a5;
 $gray-light: #abab9f;
 $blue-deep: #006cfc;
+$blue-extra-light: #f6faff;
 $light: 300;
 $normal: 400;
 $bold: 700;
@@ -22,11 +23,13 @@ $colors: (
         gray: $gray,
         gray-light: $gray-light,
         blue-deep: $blue-deep,
+        blue-extra-light: $blue-extra-light
 );
 body {
     font-family: 'Merriweather', serif;
     font-size: 14px;
     font-weight: $light;
+    color: $gray;
 }
 
 h1, h2, h3, .h1, .h2, .h3 {
@@ -114,16 +117,85 @@ a {
         }
     }
 }
-.light{
+
+.light {
     left: 50px;
     bottom: 50px;
 }
-footer{
+
+footer {
     background: linear-gradient(#f3f3f3 10%, #f1f1f1);
-    .shadow{
-        box-shadow: 0px 24px 43px -10px rgba(0,0,0,0.1);
+
+    .shadow {
+        box-shadow: 0px 24px 43px -10px rgba(0, 0, 0, 0.1);
     }
 }
+
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name}{
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};
+}
+
+@each $index, $value in $digit {
+    @include keyframes("pulse-"+#{$index}) {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale($value);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+}
+
+.cycles {
+    top: -200px;
+    left: -100px;
+
+    span {
+        border-radius: 50%;
+        background-color: $blue-deep;
+        display: block;
+        @include animation('pulse-5 1s infinite');
+    }
+
+    .big {
+        width: 300px;
+        height: 300px;
+    }
+
+    .small {
+        width: 200px;
+        height: 200px;
+        top: 150px;
+        right: -100px;
+        opacity: .7;
+    }
+}
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
 }
@@ -170,7 +242,8 @@ footer{
             height: 300px;
             background-size: cover;
         }
-        .stab-bg{
+
+        .stab-bg {
             background: url("/static/images/home/stab-bg.jpg") no-repeat top center;
             height: 300px;
             background-size: cover;
