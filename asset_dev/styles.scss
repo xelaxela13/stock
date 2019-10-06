@@ -121,8 +121,14 @@ a {
 .light {
     left: 50px;
     bottom: 50px;
+    z-index: 9;
 }
 
+@each $index, $value in $digit {
+    .delay-#{$index}s{
+        animation-delay: #{$index}s;
+    }
+}
 footer {
     background: linear-gradient(#f3f3f3 10%, #f1f1f1);
 
@@ -158,7 +164,7 @@ footer {
 }
 
 @each $index, $value in $digit {
-    @include keyframes("pulse-"+#{$index}) {
+    @include keyframes("pulse-down-"+#{$index}) {
         0% {
             transform: scale(1);
         }
@@ -168,6 +174,29 @@ footer {
         100% {
             transform: scale(1);
         }
+    }
+    @include keyframes("pulse-up-"+#{$index}) {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale($value+1);
+        }
+        100% {
+            transform: scale(1);
+        }
+    }
+}
+
+@each $index, $value in $digit {
+    .pulse-up-#{$index} {
+        @include animation('pulse-up-#{$index} 3s infinite');
+    }
+}
+
+@each $index, $value in $digit {
+    .pulse-down-#{$index} {
+        @include animation('pulse-down-#{$index} 4s infinite');
     }
 }
 
@@ -179,7 +208,6 @@ footer {
         border-radius: 50%;
         background-color: $blue-deep;
         display: block;
-        @include animation('pulse-5 1s infinite');
     }
 
     .big {
@@ -193,6 +221,25 @@ footer {
         top: 150px;
         right: -100px;
         opacity: .7;
+    }
+}
+
+.cycle {
+    border-radius: 50%;
+    background-color: $blue-deep;
+
+    &-small {
+        width: 50px;
+        height: 50px;
+        top: -25px;
+        right: 5%;
+    }
+
+    &-smaller {
+        width: 20px;
+        height: 20px;
+        top: 2%;
+        right: 2%;
     }
 }
 

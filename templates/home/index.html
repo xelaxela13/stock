@@ -20,7 +20,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 p-0">
-                    <div class="d-flex w-75 border-top mt-3">
+                    <div class="d-flex w-75 border-top mt-3 block-01 magictime slideLeftReturn delay-2s">
                         <div class="bg-white transparent-3 p-5 digit text-blue-deep">01</div>
                         <div class="bg-white transparent-8 p-3 p-lg-5">
                             <div class="h1 mb-3">
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>
-        <div class="fill-path-right position-absolute d-none d-lg-block">
+        <div class="fill-path-right position-absolute d-none magictime" style="display: none">
             <img src="{% static 'images/home/fill-first.svg' %}">
             <div class="position-absolute text-white pl-5 ml-3 description">
                 <p class="h3 text-white">#2019</p>
@@ -62,7 +62,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="d-flex">
+                    <div class="d-flex block-02 magictime" style="opacity: 0">
                         <figure>
                             <img src="{% static 'images/home/tree.png' %}">
                         </figure>
@@ -89,10 +89,12 @@
     <section class="position-relative">
         <div class="cycles position-absolute">
             <div class="position-relative">
-                <span class="big"></span>
-                <span class="small position-absolute"></span>
+                <span class="big pulse-down-9"></span>
+                <span class="small position-absolute pulse-up-1"></span>
             </div>
         </div>
+        <div class="cycle cycle-small position-absolute"></div>
+        <div class="cycle cycle-smaller position-absolute pulse-up-1"></div>
         <div class="container p-3 p-lg-5">
             <div class="row">
                 <div class="col-12">
@@ -151,7 +153,8 @@
     <script>
         $(function () {
             moveElement();
-            activatePopover('.light', $('.light span').html(), 'right')
+            activatePopover('.light', $('.light span').html(), 'right');
+            animateBlocks();
         })
     </script>
 {% endblock %}

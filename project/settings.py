@@ -204,7 +204,8 @@ PIPELINE = {
         'styles': {
             'source_filenames': (
                 'styles.scss',
-                'open-iconic/font/css/open-iconic-bootstrap.scss'
+                'open-iconic/font/css/open-iconic-bootstrap.scss',
+                'magic/magic.min.css'
             ),
             'output_filename': 'styles.css',
             'extra_context': {

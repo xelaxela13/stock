@@ -27,11 +27,24 @@ $(window).on('mousemove click', function (e) {
 
 function activatePopover(element, content, placement) {
     $(element).length &&
-        $(element).popover(
-            {
-                trigger: 'hover',
-                placement: placement,
-                content: content
-            }
-        )
+    $(element).popover(
+        {
+            trigger: 'hover',
+            placement: placement,
+            content: content
+        }
+    )
+}
+
+function offsetBottom(element) {
+    return $(element).offset().top + $(element).height();
+}
+
+function animateBlocks() {
+    $(window).on('scroll', function () {
+        $('.fill-path-right').addClass('slideRightReturn d-lg-block');
+        setTimeout(() => {
+            $('.block-02').css('opacity', '1').addClass('slideLeftReturn')
+        }, 1000)
+    })
 }
