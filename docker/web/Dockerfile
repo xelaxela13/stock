@@ -9,4 +9,4 @@ RUN apt-get install nodejs
 RUN npm -g install yuglify sass babel-cli babel-core babel-preset-env babel-plugin-transform-remove-strict-mode
 #RUN python3 set_env_vars.py
 #RUN pip install pip-tools && pip-compile --output-file requirements.txt requirements.in
-RUN pip install --upgrade -r requirements.in
+RUN pip install --upgrade -r requirements.txt
