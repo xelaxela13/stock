@@ -37,6 +37,11 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool, default=False)
 
+
+def log_level():
+    return 'INFO' if DEBUG else 'INFO'
+
+
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')], default='127.0.0.1')
 
 ADMINS = [('Alex', 'xelaxela13@gmail.com'), ]
@@ -273,11 +278,6 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
-
-
-def log_level():
-    return 'DEBUG' if DEBUG else 'INFO'
-
 
 LOGGING = {
     'version': 1,

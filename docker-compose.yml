@@ -14,7 +14,11 @@ services:
     ports:
     - 5432:5432
     environment:
-      PGDATA: /var/lib/postgresql/data
+    - PGDATA=/var/lib/postgresql/data
+    - PORT=5432
+    - HOST=db
+    - NAME=postgres
+    - USER=postgres
     volumes:
     - pgdata:/var/lib/postgresql/data
   celery:
@@ -45,6 +49,9 @@ services:
     image: memcached:latest
     container_name: memcached-stock
     restart: always
+    environment:
+    - MEMCACHED_HOST=memcached
+    - MEMCACHED_PORT=11211
     logging:
       driver: "json-file"
       options:

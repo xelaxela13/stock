@@ -1,4 +1,4 @@
-Django>=2.0
+Django
 django-bootstrap4
 requests
 django-rosetta
@@ -18,3 +18,5 @@ django-import-export
 django-jet
 xhtml2pdf
 django-pipeline
+flake8
+pip

@@ -9,6 +9,11 @@ services:
       dockerfile: docker/web/Dockerfile
     volumes:
     - .:/srv/www/stock
+    environment:
+    - SECRET_KEY=D!LS]SC+A\7s3*^YgbNEzsE!^Idnks/u-WM/CTDF(5pi~cI{X
+    - DEBUG=True
+    - ALLOWED_HOSTS=*
+#      - IPSTACK_ACCESS_KEY: "0e3e331a2e84afc272c53c97982cc67c"
     expose:
     - 8000
     ports:
