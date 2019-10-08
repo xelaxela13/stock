@@ -1,0 +1,15 @@
+setup:
+  addons:
+    - plan: heroku-postgresql
+#    - plan: heroku-redis
+build:
+  docker:
+    web: ./Dockerfile
+  config:
+    REQUIREMENTS_FILENAME: heroku.yml
+release:
+  image: web
+#  command:
+#    - ./release.sh
+run:
+  web: gunicorn -c gunicorn.py project.wsgi

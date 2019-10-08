@@ -6,7 +6,7 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: docker/web/Dockerfile
+      dockerfile: Dockerfile
     volumes:
     - .:/srv/www/stock
     environment:

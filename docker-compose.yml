@@ -24,7 +24,7 @@ services:
   celery:
     build:
       context: .
-      dockerfile: docker/web/Dockerfile
+      dockerfile: Dockerfile
     container_name: celery-stock
     environment:
       - SECRET_KEY=D!LS]SC+A\7s3*^YgbNEzsE!^Idnks/u-WM/CTDF(5pi~cI{X
@@ -38,7 +38,7 @@ services:
   celerybeat:
     build:
       context: .
-      dockerfile: docker/web/Dockerfile
+      dockerfile: Dockerfile
     container_name: celerybeat-stock
     environment:
       - SECRET_KEY=D!LS]SC+A\7s3*^YgbNEzsE!^Idnks/u-WM/CTDF(5pi~cI{X

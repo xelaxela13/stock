@@ -7,7 +7,7 @@ services:
     # указываем откуда собирать образ
     build:
       context: .
-      dockerfile: docker/web/Dockerfile
+      dockerfile: Dockerfile
     # монтируем директорию проекта
     volumes:
     - .:/srv/www/stock
