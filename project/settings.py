@@ -116,7 +116,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
     }
 }
-get_db_settings(DATABASES, rel('.env'))
+get_db_settings(DATABASES, locals())
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
@@ -256,8 +256,9 @@ IPSTACK_ACCESS_KEY = config('IPSTACK_ACCESS_KEY', default='')
 # DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
 # Activate Django-Heroku, uncomment it when deploy to Heroku
-# import django_heroku
-# django_heroku.settings(locals())
+if not DEBUG:
+    import django_heroku
+    django_heroku.settings(locals())
 
 # Google Cloud API
 GOOGLE_APPLICATION_CREDENTIALS = rel('baseprojectdjango-208a1c3136b5.json')
