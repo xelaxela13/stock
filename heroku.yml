@@ -12,4 +12,4 @@ release:
 #  command:
 #    - ./release.sh
 run:
-  web: gunicorn -c gunicorn.py project.wsgi
+  web: gunicorn project.wsgi
