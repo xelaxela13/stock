@@ -40,11 +40,20 @@ function offsetBottom(element) {
     return $(element).offset().top + $(element).height();
 }
 
+function scrollTo(element, speed=100) {
+    $('html, body').animate({ scrollTop: $(element).offset().top }, speed);
+}
+
 function animateBlocks() {
+    var flag = true;
     $(window).on('scroll', function () {
         $('.fill-path-right').addClass('slideRightReturn d-lg-block');
         setTimeout(() => {
             $('.block-02').css('opacity', '1').addClass('slideLeftReturn')
-        }, 1000)
+        }, 1000);
+        if (this.pageYOffset >= $('.solar-bg').offset().top && flag) {
+            scrollTo('#stab');
+            flag = false;
+        }
     })
 }

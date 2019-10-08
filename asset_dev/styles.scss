@@ -25,6 +25,11 @@ $colors: (
         blue-deep: $blue-deep,
         blue-extra-light: $blue-extra-light
 );
+html {
+    scroll-behavior: smooth;
+    transition: all .3s ease-in;
+}
+
 body {
     font-family: 'Merriweather', serif;
     font-size: 14px;
@@ -125,10 +130,11 @@ a {
 }
 
 @each $index, $value in $digit {
-    .delay-#{$index}s{
+    .delay-#{$index}s {
         animation-delay: #{$index}s;
     }
 }
+
 footer {
     background: linear-gradient(#f3f3f3 10%, #f1f1f1);
 
@@ -240,6 +246,43 @@ footer {
         height: 20px;
         top: 2%;
         right: 2%;
+    }
+}
+
+@keyframes scroll {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: translateY(46px);
+        transform: translateY(46px);
+    }
+}
+
+.icon-scroll {
+    width: 40px;
+    height: 70px;
+    box-shadow: inset 0 0 0 1px #fff;
+    border-radius: 25px;
+    position: relative;
+
+    &:before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background: #fff;
+        margin-left: -4px;
+        border-radius: 4px;
+        -webkit-animation-duration: 1.5s;
+        animation-duration: 1.5s;
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-name: scroll;
+        animation-name: scroll;
+        position: absolute;
+        top: 15%;
+        left: 50%;
     }
 }
 
