@@ -129,12 +129,6 @@ a {
     z-index: 9;
 }
 
-@each $index, $value in $digit {
-    .delay-#{$index}s {
-        animation-delay: #{$index}s;
-    }
-}
-
 footer {
     background: linear-gradient(#f3f3f3 10%, #f1f1f1);
 
@@ -192,17 +186,17 @@ footer {
             transform: scale(1);
         }
     }
-}
-
-@each $index, $value in $digit {
     .pulse-up-#{$index} {
         @include animation('pulse-up-#{$index} 3s infinite');
     }
-}
-
-@each $index, $value in $digit {
     .pulse-down-#{$index} {
         @include animation('pulse-down-#{$index} 4s infinite');
+    }
+    .delay-#{$index}s {
+        animation-delay: #{$index}s;
+    }
+    .z-index-#{$index}{
+        z-index: $index;
     }
 }
 
@@ -337,6 +331,14 @@ footer {
             background: url("/static/images/home/stab-bg.jpg") no-repeat top center;
             height: 300px;
             background-size: cover;
+        }
+
+        .docs-bg {
+            background: url("/static/images/home/docs.jpg") no-repeat top center;
+            height: 500px;
+            width: 100%;
+            background-size: cover;
+            top: 0;
         }
     }
 }
