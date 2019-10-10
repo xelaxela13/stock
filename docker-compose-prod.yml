@@ -4,17 +4,14 @@ services:
   web:
     container_name: web
     restart: always
-    # указываем откуда собирать образ
     build:
       context: .
       dockerfile: Dockerfile
-    # монтируем директорию проекта
     volumes:
     - .:/srv/www/stock
     ports:
-#    - 8001:8002
+    - 8001:8002
     - 8444:8002
-    # запускаем gunicorn
     command: "gunicorn -c gunicorn.py project.wsgi"
     depends_on:
     - postgres
