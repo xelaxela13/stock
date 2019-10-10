@@ -195,9 +195,9 @@ STATICFILES_FINDERS = (
     'pipeline.finders.PipelineFinder',
 )
 
-# CompressedManifestStaticFilesStorage.manifest_strict = False
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+CompressedManifestStaticFilesStorage.manifest_strict = False
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 PIPELINE = {
     'PIPELINE_ENABLED': not DEBUG,
@@ -253,11 +253,11 @@ DELETE_MEDIA_FILES = True  # delete files after deleting model entity
 IPSTACK_ACCESS_KEY = config('IPSTACK_ACCESS_KEY', default='')
 
 # Activate Django-Heroku, uncomment it when deploy to Heroku
-# if not DEBUG:
-#     import dj_database_url
-#     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-#     import django_heroku
-#     django_heroku.settings(locals())
+if not DEBUG and config('HEROKU', default=False):
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    import django_heroku
+    django_heroku.settings(locals())
 
 # Google Cloud API
 GOOGLE_APPLICATION_CREDENTIALS = rel('baseprojectdjango-208a1c3136b5.json')
