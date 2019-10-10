@@ -6,6 +6,7 @@ python-decouple
 psycopg2
 gunicorn
 django-heroku
+dj_database_url
 whitenoise
 pillow
 celery

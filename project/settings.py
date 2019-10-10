@@ -251,12 +251,10 @@ DELETE_MEDIA_FILES = True  # delete files after deleting model entity
 #  free geo api
 IPSTACK_ACCESS_KEY = config('IPSTACK_ACCESS_KEY', default='')
 
-# DB Heroku, uncomment it when deploy to Heroku
-# import dj_database_url
-# DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-
 # Activate Django-Heroku, uncomment it when deploy to Heroku
 if not DEBUG:
+    import dj_database_url
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
     import django_heroku
     django_heroku.settings(locals())
 
