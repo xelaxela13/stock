@@ -195,9 +195,9 @@ STATICFILES_FINDERS = (
     'pipeline.finders.PipelineFinder',
 )
 
-CompressedManifestStaticFilesStorage.manifest_strict = False
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+# CompressedManifestStaticFilesStorage.manifest_strict = False
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 
 PIPELINE = {
     'PIPELINE_ENABLED': not DEBUG,
