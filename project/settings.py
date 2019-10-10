@@ -203,9 +203,9 @@ PIPELINE = {
     'PIPELINE_ENABLED': not DEBUG,
     'COMPRESS_ENABLED': not DEBUG,
     'COMPILERS': ('pipeline.compilers.es6.ES6Compiler', 'pipeline.compilers.sass.SASSCompiler'),
-    'JS_COMPRESSOR': 'pipeline.compressors.yuglify.YuglifyCompressor',
-    'BABEL_BINARY': '/usr/bin/babel',
-    'BABEL_ARGUMENTS': '--presets env --plugins transform-remove-strict-mode',
+    # 'JS_COMPRESSOR': 'pipeline.compressors.yuglify.YuglifyCompressor',
+    # 'BABEL_BINARY': '/usr/bin/babel',
+    # 'BABEL_ARGUMENTS': '--presets env --plugins transform-remove-strict-mode',
     'STYLESHEETS': {
         'styles': {
             'source_filenames': (
