@@ -59,8 +59,8 @@ INSTALLED_APPS = [
     # external apps
     'bootstrap4',
     'rosetta',
-    'django_celery_results',
-    'django_celery_beat',
+    # 'django_celery_results',
+    # 'django_celery_beat',
     'import_export',
     'pipeline',
     # local apps
