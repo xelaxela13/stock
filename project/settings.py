@@ -15,8 +15,6 @@ from decouple import config
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from project.utils import get_db_settings
-
 from whitenoise.storage import CompressedManifestStaticFilesStorage
 
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
@@ -114,9 +112,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('NAME', default='postgres'),
+        'USER': config('USER', default='postgres'),
+        'HOST': config('HOST', default='db'),
+        'PORT': config('PORT', default=5432),
     }
 }
-get_db_settings(DATABASES, locals())
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
