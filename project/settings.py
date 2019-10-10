@@ -82,7 +82,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',  # i18n
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'project.middleware.DefaultLanguageMiddleware',
 ]
 
