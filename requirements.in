@@ -20,5 +20,5 @@ django-jet
 xhtml2pdf
 django-pipeline
 flake8
-pip
 redis
+jsmin

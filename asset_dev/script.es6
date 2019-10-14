@@ -40,7 +40,8 @@ function offsetBottom(element) {
     return $(element).offset().top + $(element).height();
 }
 
-function scrollTo(element, speed=100) {
+function scrollTo(element, speed) {
+    speed = speed ? speed : 100;
     $('html, body').animate({ scrollTop: $(element).offset().top }, speed);
 }
 

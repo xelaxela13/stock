@@ -194,21 +194,19 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'pipeline.finders.FileSystemFinder',
     'pipeline.finders.AppDirectoriesFinder',
-    'pipeline.finders.CachedFileFinder',
     'pipeline.finders.PipelineFinder',
 )
 
 # CompressedManifestStaticFilesStorage.manifest_strict = False
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
 
 PIPELINE = {
     'PIPELINE_ENABLED': not DEBUG,
-    'COMPRESS_ENABLED': False,
+    'COMPRESS_ENABLED': not DEBUG,
     'COMPILERS': ('pipeline.compilers.es6.ES6Compiler', 'pipeline.compilers.sass.SASSCompiler'),
     # 'JS_COMPRESSOR': 'pipeline.compressors.yuglify.YuglifyCompressor',
-    # 'BABEL_BINARY': '/usr/bin/babel',
-    # 'BABEL_ARGUMENTS': '--presets env --plugins transform-remove-strict-mode',
+    'JS_COMPRESSOR': 'pipeline.compressors.jsmin.JSMinCompressor',
     'STYLESHEETS': {
         'styles': {
             'source_filenames': (
