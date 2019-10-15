@@ -202,11 +202,9 @@ STATICFILES_FINDERS = (
 STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
 
 PIPELINE = {
-    'PIPELINE_ENABLED': not DEBUG,
-    'COMPRESS_ENABLED': not DEBUG,
-    'COMPILERS': ('pipeline.compilers.es6.ES6Compiler', 'pipeline.compilers.sass.SASSCompiler'),
-    # 'JS_COMPRESSOR': 'pipeline.compressors.yuglify.YuglifyCompressor',
-    'JS_COMPRESSOR': 'pipeline.compressors.jsmin.JSMinCompressor',
+    'COMPILERS': ('pipeline.compilers.es6.ES6Compiler', 'pipeline.compilers.sass.SASSCompiler', ),
+    'BABEL_ARGUMENTS': '--presets @babel/env',
+    'COLLECTOR_ENABLED': True,
     'STYLESHEETS': {
         'styles': {
             'source_filenames': (
