@@ -4,7 +4,7 @@ services:
   web:
     container_name: web
     restart: always
-    image: stock:latest
+    image: xelaxela13/stock:latest
     volumes:
     - .:/srv/www/stock
     ports:

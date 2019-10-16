@@ -15,7 +15,8 @@ SYNCDB=true
 COLLECTSTATIC=true
 COMPILEMASSAGE=true
 SUPERUSER=false
-
+DOCKER_REPO=stock
+DOCKER_REPO_VERSION=latest
 # Parse arguments
 while [[ $# > 0 ]]
 do
@@ -107,6 +108,7 @@ fi
 # Update source code from repository
 if [ "${PULL}" = true ]; then
     git pull origin $BRANCH
+    docker pull xelaxela13/$DOCKER_REPO:$DOCKER_REPO_VERSION
 fi
 
 # Remove Python compiled files
