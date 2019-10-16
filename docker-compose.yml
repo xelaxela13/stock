@@ -18,9 +18,7 @@ services:
     volumes:
     - pgdata:/var/lib/postgresql/data
   celery:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: stock:latest
     container_name: celery-stock
     command: celery -A project worker -l info --pidfile=/run/celery.pid
     restart: always
@@ -30,9 +28,7 @@ services:
     - postgres
     - redis
   celerybeat:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: stock:latest
     container_name: celerybeat-stock
     command: celery -A project beat -l info --schedule=/run/celerybeat-schedule --pidfile=/run/celerybeat.pid
     restart: always

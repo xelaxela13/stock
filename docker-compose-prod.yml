@@ -4,9 +4,7 @@ services:
   web:
     container_name: web
     restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: stock:latest
     volumes:
     - .:/srv/www/stock
     ports:
