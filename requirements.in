@@ -3,6 +3,7 @@ django-bootstrap4
 requests
 django-rosetta
 python-decouple
+psycopg2-binary
 psycopg2
 gunicorn
 django-heroku

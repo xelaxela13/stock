@@ -8,7 +8,7 @@ function moveElement() {
     x += (lFollowX - x) * friction;
     y += (lFollowY - y) * friction;
 
-    translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.1)';
+    var translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.1)';
 
     $('.ktp').css({
         '-webit-transform': translate,
