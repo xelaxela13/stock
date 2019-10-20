@@ -8,7 +8,7 @@ services:
     volumes:
     - .:/srv/www/stock
     ports:
-    - 8001:8002
+#    - 8001:8002
     - 8444:8002
     command: "gunicorn -c gunicorn.py project.wsgi"
     depends_on:
