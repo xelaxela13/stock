@@ -1,5 +1,4 @@
-FROM python:3.7.5-alpine3.10
-ENV USER=xela UID=05448 GID=05448
+FROM python:3.6-alpine
 # Prevents Python from writing pyc files to disc
 ENV PYTHONDONTWRITEBYTECODE 1
 # Prevents Python from buffering stdout and stderr
@@ -11,26 +10,24 @@ COPY . $PROJECT_ROOT
 WORKDIR $PROJECT_ROOT
 # common dependencies
 RUN apk add --update\
-    alpine-sdk \
-    py-setuptools \
+    build-base \
+    libpq \
+    postgresql \
     postgresql-dev \
-    python3-dev \
+    # pillow dependencies
     jpeg-dev \
     zlib-dev \
+    # i18n
     gettext \
+    # node
     nodejs \
     nodejs-npm \
+    mc \
     && rm -rf /var/cache/apk/*
 RUN npm -g install --save-dev @babel/core @babel/cli @babel/preset-env
-RUN npm -g install mc yuglify uglify-js sass
-RUN pip3.7 install --upgrade pip
-#RUN pip3.7 install pip-tools && pip-compile --output-file requirements.txt requirements.in
-RUN pip3.7 install -r requirements.txt
-RUN addgroup --gid "$GID" "$USER" \
-  && adduser \
-  --disabled-password \
-  --gecos "" \
-  --ingroup "$USER" \
-  --uid "$UID" \
-  "$USER"
-USER $USER
+RUN npm -g install yuglify uglify-js sass
+RUN pip3.6 install --upgrade pip
+RUN pip3.6 install -r requirements.txt
+
+#docker build -t stock:latest .
+#docker tag stock:latest xelaxela13/stock:latest
