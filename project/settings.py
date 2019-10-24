@@ -15,7 +15,7 @@ from decouple import config
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from whitenoise.storage import CompressedManifestStaticFilesStorage
+# from whitenoise.storage import CompressedManifestStaticFilesStorage
 
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))

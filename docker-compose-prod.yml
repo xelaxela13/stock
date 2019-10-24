@@ -10,7 +10,8 @@ services:
     ports:
 #    - 8001:8002
     - 8444:8002
-    command: "gunicorn -c gunicorn.py project.wsgi"
+#    command: "gunicorn -c gunicorn.py project.wsgi"
+    command: "uwsgi --ini uwsgi.ini"
     depends_on:
     - postgres
     - redis

@@ -14,6 +14,8 @@ RUN apk add --update --no-cache --virtual .build-deps\
     libpq \
     postgresql \
     postgresql-dev \
+    linux-headers \
+    pcre \
     # pillow dependencies
     jpeg-dev \
     zlib-dev \
@@ -25,7 +27,7 @@ RUN apk add --update --no-cache --virtual .build-deps\
     mc \
     && rm -rf /var/cache/apk/*
 RUN npm -g install --save-dev @babel/core @babel/cli @babel/preset-env
-RUN npm -g install yuglify uglify-js sass
+RUN npm -g install yuglify sass
 RUN pip3.6 install --upgrade pip
 RUN pip3.6 install -r requirements.txt
 RUN apk del .build-deps
