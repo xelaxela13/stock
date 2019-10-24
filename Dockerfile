@@ -9,7 +9,7 @@ ENV PYTHONPATH $PYTHONPATH:$PROJECT_ROOT
 COPY . $PROJECT_ROOT
 WORKDIR $PROJECT_ROOT
 # common dependencies
-RUN apk add --update\
+RUN apk add --update --no-cache --virtual .build-deps\
     build-base \
     libpq \
     postgresql \
@@ -28,6 +28,6 @@ RUN npm -g install --save-dev @babel/core @babel/cli @babel/preset-env
 RUN npm -g install yuglify uglify-js sass
 RUN pip3.6 install --upgrade pip
 RUN pip3.6 install -r requirements.txt
-
+RUN apk del .build-deps
 #docker build -t stock:latest .
 #docker tag stock:latest xelaxela13/stock:latest
