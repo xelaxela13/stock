@@ -6,7 +6,7 @@ services:
     restart: always
     image: xelaxela13/stock:latest
     volumes:
-    - .:/srv/www/stock
+    - .:/home/stock
     expose:
     - 8000
     ports:
