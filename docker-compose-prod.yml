@@ -6,12 +6,12 @@ services:
     restart: always
     image: xelaxela13/stock:latest
     volumes:
-    - .:/home/stock
+    - .:${PROJECT_ROOT}
     ports:
 #    - 8001:8002
     - 8444:8002
-#    command: "gunicorn -c gunicorn.py project.wsgi"
-    command: "uwsgi --ini uwsgi.ini"
+    command: "gunicorn -c gunicorn.py project.wsgi"
+#    command: "uwsgi --ini uwsgi.ini"
     depends_on:
     - postgres
     - redis

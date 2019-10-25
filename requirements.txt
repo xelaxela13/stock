@@ -5,6 +5,7 @@ django-rosetta
 python-decouple
 psycopg2-binary
 psycopg2
+gunicorn
 django-heroku
 dj_database_url
 whitenoise
@@ -19,6 +20,4 @@ django-import-export
 django-jet
 xhtml2pdf
 django-pipeline
-flake8
 redis
-uwsgi

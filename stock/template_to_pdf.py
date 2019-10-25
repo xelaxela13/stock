@@ -6,7 +6,7 @@ from django.conf import settings
 
 try:
     from StringIO import BytesIO
-except:
+except ImportError:
     from django.utils.six import BytesIO, StringIO
 
 import os

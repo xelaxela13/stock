@@ -13,6 +13,6 @@ def settings_to_template(request):
 
 
 def is_home(request):
-    if request.path == '/'+request.LANGUAGE_CODE+'/' or request.path == '/':
+    if request.path == '/' + request.LANGUAGE_CODE + '/' or request.path == '/':
         return True
     return False
