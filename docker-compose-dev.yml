@@ -4,7 +4,7 @@ services:
   web:
     container_name: web
     restart: always
-    image: xelaxela13/stock:latest
+    image: ${IMAGE}
     volumes:
     - .:${PROJECT_ROOT}
     expose:

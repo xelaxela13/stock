@@ -21,3 +21,4 @@ django-jet
 xhtml2pdf
 django-pipeline
 redis
+flake8

@@ -4,14 +4,13 @@ services:
   web:
     container_name: web
     restart: always
-    image: xelaxela13/stock:latest
+    image: ${IMAGE}
     volumes:
     - .:${PROJECT_ROOT}
     ports:
 #    - 8001:8002
     - 8444:8002
     command: "gunicorn -c gunicorn.py project.wsgi"
-#    command: "uwsgi --ini uwsgi.ini"
     depends_on:
     - postgres
     - redis

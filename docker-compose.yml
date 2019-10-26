@@ -18,9 +18,9 @@ services:
     volumes:
     - pgdata:/var/lib/postgresql/data
   celery:
-    image: xelaxela13/stock:latest
+    image: ${IMAGE}
     container_name: celery-stock
-    command: celery -A project worker -l info --pidfile=/run/celery.pid
+    command: celery -A project worker -l info --pidfile=/tmp/celery.pid
     restart: always
     volumes:
     - .:${PROJECT_ROOT}
@@ -28,9 +28,9 @@ services:
     - postgres
     - redis
   celerybeat:
-    image: xelaxela13/stock:latest
+    image: ${IMAGE}
     container_name: celerybeat-stock
-    command: celery -A project beat -l info --schedule=/run/celerybeat-schedule --pidfile=/run/celerybeat.pid
+    command: celery -A project beat -l info --schedule=/tmp/celerybeat-schedule --pidfile=/tmp/celerybeat.pid
     restart: always
     volumes:
     - .:${PROJECT_ROOT}

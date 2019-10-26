@@ -24,6 +24,7 @@ def run():
                 'HOST': 'db',
                 'PORT': '5432'
             }
+            config.update({'PROJECT_ROOT': '/home/user/stock', 'IMAGE': 'xelaxela13/stock:latest'})
             break
         except ValueError:
             continue
