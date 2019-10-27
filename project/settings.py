@@ -205,7 +205,7 @@ PIPELINE = {
     'COMPILERS': ('pipeline.compilers.es6.ES6Compiler', 'pipeline.compilers.sass.SASSCompiler', ),
     # 'BABEL_BINARY': '/usr/lib/node_modules/@babel',
     'BABEL_ARGUMENTS': '--presets /usr/lib/node_modules/@babel/preset-env',
-    'COLLECTOR_ENABLED': True,
+    'JS_COMPRESSOR': 'pipeline.compressors.jsmin.JSMinCompressor',
     'STYLESHEETS': {
         'styles': {
             'source_filenames': (

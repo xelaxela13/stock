@@ -29,7 +29,7 @@ RUN set -ex \
 # create directory for the app user
 RUN mkdir -p /home/user
 # create the app user
-#RUN addgroup -S user && adduser -S user -G user
+RUN addgroup -S user && adduser -S user -G user
 
 ENV PROJECT_ROOT /home/user/stock
 ENV PATH $PATH:$PROJECT_ROOT
@@ -38,13 +38,13 @@ RUN mkdir $PROJECT_ROOT
 WORKDIR $PROJECT_ROOT
 
 RUN npm -g install --save-dev @babel/core @babel/cli @babel/preset-env
-RUN npm -g install yuglify sass
+RUN npm -g install sass
 
 COPY . $PROJECT_ROOT
 
-#RUN chown -R user:user $PROJECT_ROOT
+RUN chown -R user:user $PROJECT_ROOT
 
-#USER user
+USER user
 
 #docker build -t stock:latest .
 #docker tag stock:latest xelaxela13/stock:latest
