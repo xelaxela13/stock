@@ -233,7 +233,7 @@ PIPELINE = {
             'source_filenames': (
                 'script.es6',
             ),
-            'output_filename': 'compressed_script.js',
+            'output_filename': 'script.js',
         }
     }
 }
