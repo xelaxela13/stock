@@ -38,7 +38,7 @@ RUN mkdir $PROJECT_ROOT
 WORKDIR $PROJECT_ROOT
 
 RUN npm -g install --save-dev @babel/core @babel/cli @babel/preset-env
-RUN npm -g install sass
+RUN npm -g install yuglify sass
 
 COPY . $PROJECT_ROOT
 
