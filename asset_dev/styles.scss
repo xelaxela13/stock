@@ -4,6 +4,7 @@ $gray: #9397a5;
 $gray-light: #abab9f;
 $blue-deep: #006cfc;
 $blue-extra-light: #f6faff;
+$black: #171717;
 $light: 300;
 $normal: 400;
 $bold: 700;
@@ -23,7 +24,8 @@ $colors: (
         gray: $gray,
         gray-light: $gray-light,
         blue-deep: $blue-deep,
-        blue-extra-light: $blue-extra-light
+        blue-extra-light: $blue-extra-light,
+        black: $black
 );
 html {
     scroll-behavior: smooth;
@@ -131,10 +133,6 @@ a {
 
 footer {
     background: linear-gradient(#f3f3f3 10%, #f1f1f1);
-
-    .shadow {
-        box-shadow: 0px 24px 43px -10px rgba(0, 0, 0, 0.1);
-    }
 }
 
 @mixin keyframes($animation-name) {
