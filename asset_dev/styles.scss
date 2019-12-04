@@ -113,7 +113,7 @@ section{
         width: 100%;
         height: 100%;
         border-radius: 1rem;
-        @include bg-transparent($beige, .8);
+        @include bg-transparent($beige, .6);
     }
 }
 
@@ -310,9 +310,9 @@ footer {
 @media (min-width: 992px) {
     .home {
         .header-bg {
-            background: url("/static/images/home/home-header-image.jpg") no-repeat bottom center;
+            background: url("/static/images/home/home-header-image.jpg") no-repeat top center;
             min-height: 100vh;
-            background-size: cover;
+            background-size: 150%;
 
             .ktp {
                 width: 30vw;
@@ -326,7 +326,7 @@ footer {
         }
 
         .fill-path-right {
-            right: 0;
+            right: -1rem;
             top: 450px;
 
             .description {

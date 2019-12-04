@@ -8,7 +8,7 @@ function moveElement() {
     x += (lFollowX - x) * friction;
     y += (lFollowY - y) * friction;
 
-    var translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.1)';
+    let translate = 'translate(' + x + 'px, ' + y + 'px) scale(1.1)';
 
     $('.ktp').css({
         '-webit-transform': translate,
@@ -18,11 +18,27 @@ function moveElement() {
     window.requestAnimationFrame(moveElement);
 }
 
+$.fn.isInViewport = function () {
+    let elementTop = $(this).offset().top,
+        elementBottom = elementTop + $(this).outerHeight(),
+        viewportTop = $(window).scrollTop(),
+        viewportBottom = viewportTop + $(window).height();
+    return elementBottom > viewportTop && elementTop < viewportBottom;
+};
+
 $(window).on('mousemove click', function (e) {
-    var lMouseX = Math.max(-100, Math.min(100, $(window).width() / 2 - e.clientX));
-    var lMouseY = Math.max(-100, Math.min(100, $(window).height() / 2 - e.clientY));
+    let lMouseX = Math.max(-100, Math.min(100, $(window).width() / 2 - e.clientX));
+    let lMouseY = Math.max(-100, Math.min(100, $(window).height() / 2 - e.clientY));
     lFollowX = (20 * lMouseX) / 100; // 100 : 12 = lMouxeX : lFollow
     lFollowY = (10 * lMouseY) / 100;
+});
+
+$(document).on('scroll', function () {
+    let wst = $(window).scrollTop(), element = $('.header-bg'), elementHeight = element.height(),
+        elementBgSize = 150 - ((wst * 100 / elementHeight) * 100 / 150);
+    element.isInViewport() && elementBgSize > 100 &&
+        element.css('background-size', elementBgSize + '%')
+
 });
 
 function activatePopover(element, content, placement) {
@@ -42,7 +58,7 @@ function offsetBottom(element) {
 
 function scrollTo(element, speed) {
     speed = speed ? speed : 100;
-    $('html, body').animate({ scrollTop: $(element).offset().top }, speed);
+    $('html, body').animate({scrollTop: $(element).offset().top}, speed);
 }
 
 function animateBlocks() {
