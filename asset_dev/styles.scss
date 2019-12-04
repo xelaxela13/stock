@@ -2,6 +2,7 @@
 
 $gray: #9397a5;
 $gray-light: #abab9f;
+$beige: rgba(223, 220, 218);
 $blue-deep: #006cfc;
 $blue-extra-light: #f6faff;
 $black: #171717;
@@ -25,8 +26,38 @@ $colors: (
         gray-light: $gray-light,
         blue-deep: $blue-deep,
         blue-extra-light: $blue-extra-light,
-        black: $black
+        black: $black,
+        beige: $beige
 );
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name}{
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};
+}
+
+@mixin bg-transparent($color, $value){
+    background-color: rgba($color, $value);
+}
 html {
     scroll-behavior: smooth;
     transition: all .3s ease-in;
@@ -55,6 +86,12 @@ a {
     color: $blue-deep;
 }
 
+section{
+    border-radius: 1rem;
+    margin: 1rem;
+    position: relative;
+}
+
 .bg {
     @each $name, $color in $colors {
         &-#{$name} {
@@ -68,6 +105,15 @@ a {
                 }
             }
         }
+    }
+    &-overlay{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+        @include bg-transparent($beige, .8);
     }
 }
 
@@ -133,32 +179,6 @@ a {
 
 footer {
     background: linear-gradient(#f3f3f3 10%, #f1f1f1);
-}
-
-@mixin keyframes($animation-name) {
-    @-webkit-keyframes #{$animation-name}{
-        @content;
-    }
-    @-moz-keyframes #{$animation-name} {
-        @content;
-    }
-    @-ms-keyframes #{$animation-name} {
-        @content;
-    }
-    @-o-keyframes #{$animation-name} {
-        @content;
-    }
-    @keyframes #{$animation-name} {
-        @content;
-    }
-}
-
-@mixin animation($str) {
-    -webkit-animation: #{$str};
-    -moz-animation: #{$str};
-    -ms-animation: #{$str};
-    -o-animation: #{$str};
-    animation: #{$str};
 }
 
 @each $index, $value in $digit {
