@@ -7,6 +7,7 @@ $blue-deep: #006cfc;
 $blue-light: rgb(169, 187, 201);
 $blue-extra-light: #f6faff;
 $black: #171717;
+$black-light: #505050;
 $white-dark: rgb(250, 250, 250);
 $light: 300;
 $normal: 400;
@@ -31,6 +32,7 @@ $colors: (
         blue-light: $blue-light,
         blue-extra-light: $blue-extra-light,
         black: $black,
+        black-light: $black-light,
         beige: $beige,
 );
 @mixin keyframes($animation-name) {
@@ -72,11 +74,11 @@ body {
     font-family: 'Merriweather', serif;
     font-size: 14px;
     font-weight: $light;
-    color: $gray;
+    color: $black-light;
 }
 
 h1, h2, h3, .h1, .h2, .h3 {
-    color: black;
+    color: $black-light;
     font-weight: $light;
     margin-bottom: 0;
 }
@@ -201,6 +203,10 @@ div {
         border-radius: 50%;
         padding: 10px;
     }
+}
+
+.rounded{
+    border-radius: 1rem !important;
 }
 
 footer {
