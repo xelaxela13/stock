@@ -347,8 +347,8 @@ footer {
     .home {
         .fill-path-right {
             right: -1rem;
-            top: 450px;
-
+            top: 400px;
+            z-index: 9;
             .description {
                 top: 120px;
                 right: 0;
@@ -377,10 +377,9 @@ footer {
                 }
 
                 &-solar {
-                    background: url("/static/images/home/solar-bg.jpg") no-repeat top center;
-                    height: 300px;
+                    background: url("/static/images/home/solar-bg.jpg") no-repeat bottom center;
                     background-size: cover;
-                    border-radius: 0 0 1rem 1rem;
+                    background-position-y: 400px;
                 }
 
                 &-stab {

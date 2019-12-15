@@ -33,11 +33,22 @@ $(window).on('mousemove click', function (e) {
     lFollowY = (10 * lMouseY) / 100;
 });
 
-$(document).on('scroll', function () {
-    let wst = $(window).scrollTop(), element = $('.bg-section-first'), elementHeight = element.height(),
-        elementBgSize = 130 - ((wst * 100 / elementHeight) * 100 / 130);
+function backgroundSize(el, size) {
+    let wst = $(window).scrollTop(), element = $(el), elementHeight = element.height(),
+        elementBgSize = size - ((wst * 100 / elementHeight) * 100 / size);
     element.isInViewport() && elementBgSize > 100 &&
-        element.css('background-size', elementBgSize + '%')
+    $(element).css('background-size', elementBgSize + '%')
+}
+
+function backgroundPosition(el, position) {
+    let wst = $(window).scrollTop(), element = $(el), elementHeight = element.height(),
+        elementPosition = position - ((wst * 100 / elementHeight) * 100 / position) * 3;
+    element.isInViewport() && $(element).css('background-position-y', elementPosition + 'px')
+}
+
+$(document).on('scroll', function () {
+    backgroundSize('.bg-section-first', 130);
+    backgroundPosition('.bg-section-solar', 400);
 });
 
 function activatePopover(element, content, placement) {
@@ -62,9 +73,10 @@ function scrollTo(element, speed) {
 
 function scrollToSection(section) {
     let offset = $(section).prev().offset().top;
-    if ($(section).isInViewport() && window.pageYOffset < offset && window.pageYOffset > offset - 100) {
-            scrollTo(section);
-        }
+    console.log(offset, offset - 100, window.pageYOffset)
+    if ($(section).isInViewport() && window.pageYOffset < offset && window.pageYOffset > offset - 50) {
+        scrollTo(section);
+    }
 }
 
 function animateBlocks() {
@@ -74,10 +86,6 @@ function animateBlocks() {
         setTimeout(() => {
             $('.block-02').css('opacity', '1').addClass('slideLeftReturn')
         }, 1000);
-        // if (this.pageYOffset >= $('.bg-section-solar').offset().top && flag) {
-        //     scrollTo('#stab');
-        //     flag = false;
-        // }
-        scrollToSection('#stab')
+        // scrollToSection('#solar')
     })
 }
