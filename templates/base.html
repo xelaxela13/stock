@@ -53,7 +53,7 @@
 {% if not 'javascript_in_head'|bootstrap_setting %}
     <!-- Bootstrap JavaScript if it is in body -->
     {% bootstrap_jquery %}
-    {% bootstrap_javascript %}
+{#    {% bootstrap_javascript %}#}
 {% endif %}
 {% javascript 'js' %}
 {% block extra_script %}{% endblock %}
