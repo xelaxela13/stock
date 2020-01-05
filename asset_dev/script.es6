@@ -52,7 +52,7 @@ $(document).on('scroll', function () {
 });
 
 function activatePopover(element, content, placement) {
-    $(element).length &&
+    $(element).length && $(element).popover === 'function' &&
     $(element).popover(
         {
             trigger: 'hover',
