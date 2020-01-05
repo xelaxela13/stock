@@ -1,3 +1,4 @@
+$.noConflict();
 var lFollowX = 0,
     lFollowY = 0,
     x = 0,
