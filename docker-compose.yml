@@ -20,7 +20,7 @@ services:
   celery:
     image: ${IMAGE}
     container_name: celery-stock
-    command: celery -A project worker -l info --pidfile=celery.pid
+    command: celery -A project worker -l info --pidfile=/tmp/celery.pid
     restart: always
     volumes:
     - .:${PROJECT_ROOT}
@@ -30,7 +30,7 @@ services:
   celerybeat:
     image: ${IMAGE}
     container_name: celerybeat-stock
-    command: celery -A project beat -l info --schedule=celerybeat-schedule --pidfile=celerybeat.pid
+    command: celery -A project beat -l info --schedule=celerybeat-schedule --pidfile=/tmp/celerybeat.pid
     restart: always
     volumes:
     - .:${PROJECT_ROOT}
