@@ -39,6 +39,7 @@
     <script>
         $(function () {
             {#moveElement();#}
+            $.noConflict(true);
             activatePopover('.light', $('.light span').html(), 'right');
             animateBlocks();
         })
