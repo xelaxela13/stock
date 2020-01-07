@@ -367,8 +367,8 @@ BOOTSTRAP4 = {
         "crossorigin": "anonymous",
     },
     "javascript_url": {
-        "url": "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
-        "integrity": "sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6",
+        "url": "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js",
+        "integrity": "sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm",
         "crossorigin": "anonymous",
     },
     "jquery_url": {
@@ -376,6 +376,7 @@ BOOTSTRAP4 = {
         "integrity": "sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=",
         "crossorigin": "anonymous",
     },
+    "popper_url": {},
 }
 if DEBUG:
     INTERNAL_IPS = ('127.0.0.1',)
