@@ -10,7 +10,7 @@ services:
     restart: always
   postgres:
     container_name: db
-    image: postgres:9.3.22
+    image: postgres:latest
     ports:
     - 5432:5432
     environment:

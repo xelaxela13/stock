@@ -45,3 +45,4 @@ COPY . $PROJECT_ROOT
 
 #docker build -t stock:latest .
 #docker tag stock:latest xelaxela13/stock:latest
+#docker run --rm --volumes-from db postgres:9.3.22 bash -c "rm -r /var/lib/postgresql/data/*"

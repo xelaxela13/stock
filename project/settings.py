@@ -37,7 +37,7 @@ DEBUG = config('DEBUG', cast=bool, default=False)
 
 
 def log_level():
-    return 'INFO' if DEBUG else 'INFO'
+    return 'WARNING' if DEBUG else 'INFO'
 
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')], default='127.0.0.1')
@@ -59,8 +59,8 @@ INSTALLED_APPS = [
     # external apps
     'bootstrap4',
     'rosetta',
-    # 'django_celery_results',
-    # 'django_celery_beat',
+    'django_celery_results',
+    'django_celery_beat',
     'import_export',
     'pipeline',
     # local apps
@@ -305,14 +305,16 @@ LOGGING = {
             'formatter': 'verbose',
         },
         'secure_file_log': {
-            'level': 'ERROR',
+            'level': 'WARNING',
             'class': 'logging.FileHandler',
+            'mode': 'w' if DEBUG else 'a',
             'filename': rel('log', '{}_secure.log'.format(timezone.now().strftime('%Y%m%d'))),
             'formatter': 'verbose',
         },
         'request_file_log': {
-            'level': log_level(),
+            'level': 'WARNING',
             'class': 'logging.FileHandler',
+            'mode': 'w' if DEBUG else 'a',
             'filename': rel('log', '{}_request.log'.format(timezone.now().strftime('%Y%m%d'))),
             'formatter': 'verbose',
         },
@@ -345,12 +347,12 @@ LOGGING = {
         'django.request': {
             'handler': ['mail_admins', 'request_file_log'],
             'propagate': True,
-            'level': 'ERROR',
+            'level': 'WARNING',
             'email_backend': 'django.core.mail.backends.smtp.EmailBackend',
         },
         'django.security': {
-            'handlers': ['secure_file_log'],
-            'level': 'ERROR',
+            'handlers': ['mail_admins', 'secure_file_log'],
+            'level': 'WARNING',
             'propagate': False,
         },
         'celery': {
@@ -360,24 +362,7 @@ LOGGING = {
         },
     }
 }
-BOOTSTRAP4 = {
-    "css_url": {
-        "href": "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css",
-        "integrity": "sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh",
-        "crossorigin": "anonymous",
-    },
-    "javascript_url": {
-        "url": "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js",
-        "integrity": "sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm",
-        "crossorigin": "anonymous",
-    },
-    "jquery_url": {
-        "url": "https://code.jquery.com/jquery-3.4.1.min.js",
-        "integrity": "sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=",
-        "crossorigin": "anonymous",
-    },
-    "popper_url": {},
-}
+
 if DEBUG:
     INTERNAL_IPS = ('127.0.0.1',)
     INSTALLED_APPS.append('debug_toolbar')
