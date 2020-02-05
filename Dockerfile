@@ -1,20 +1,17 @@
-FROM python:3.8.0-alpine
+FROM python:3.8-alpine3.11
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 COPY requirements.txt /tmp/
 RUN set -ex \
     && apk add --no-cache --virtual .build-deps \
-        --repository http://dl-cdn.alpinelinux.org/alpine/v3.9/main \
        gcc \
        postgresql-dev \
        musl-dev \
-    && apk add --no-cache \
-        --repository http://dl-cdn.alpinelinux.org/alpine/v3.9/main \
        gettext \
        postgresql-client \
     && apk add --no-cache \
-        --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+        --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
        gdal \
        jpeg-dev \
        zlib-dev \
