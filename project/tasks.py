@@ -18,6 +18,6 @@ def clear_log_files():
     for file in log_files:
         if datetime.fromtimestamp(path.getmtime(file)).date() < now().date() - timedelta(days=30):
             try:
-                subprocess.call(f'rm {file}')
+                subprocess.call(f'rm {file}', shell=True)
             except (FileNotFoundError, OSError, IOError) as err:
                 logger.error(err)

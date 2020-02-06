@@ -20,7 +20,7 @@ services:
   celery:
     image: ${IMAGE}
     container_name: celery-stock
-    command: celery -A project worker -l info --pidfile=
+    command: celery -A project worker -l info
     restart: always
     volumes:
     - .:${PROJECT_ROOT}
@@ -30,7 +30,7 @@ services:
   celerybeat:
     image: ${IMAGE}
     container_name: celerybeat-stock
-    command: celery -A project beat -l info --schedule=celerybeat-schedule --pidfile=
+    command: celery -A project beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     restart: always
     volumes:
     - .:${PROJECT_ROOT}
