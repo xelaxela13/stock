@@ -24,6 +24,15 @@ server {
     location @fallback {
         proxy_pass      http://localhost:8001;
     }
+    
+    location /static {
+        autoindex on;
+        alias /home/USER/web/DOMAIN/public_shtml/static_content/asset;
+    }
+    location /media {
+        autoindex on;
+        alias /home/USER/web/DOMAIN/public_shtml/static_content/media;
+    }
     location ~ /\.ht    {return 404;}
         location ~ /\.svn/  {return 404;}
         location ~ /\.git/  {return 404;}
@@ -62,8 +71,15 @@ server {
     location @fallback {
         proxy_pass      http://localhost:8444;
     }
-
-     location ~ /\.ht    {return 404;}
+    location /static {
+        autoindex on;
+        alias /home/USER/web/DOMAIN/public_shtml/static_content/asset;
+    }
+    location /media {
+        autoindex on;
+        alias /home/USER/web/DOMAIN/public_shtml/static_content/media;
+    }
+    location ~ /\.ht    {return 404;}
         location ~ /\.svn/  {return 404;}
         location ~ /\.git/  {return 404;}
         location ~ /\.hg/   {return 404;}

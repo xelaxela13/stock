@@ -10,7 +10,7 @@ services:
     restart: always
   postgres:
     container_name: db
-    image: postgres:9.3.22
+    image: postgres:latest
     ports:
     - 5432:5432
     environment:
@@ -18,22 +18,22 @@ services:
     volumes:
     - pgdata:/var/lib/postgresql/data
   celery:
-    image: xelaxela13/stock:latest
+    image: ${IMAGE}
     container_name: celery-stock
-    command: celery -A project worker -l info --pidfile=/run/celery.pid
+    command: celery -A project worker -l info
     restart: always
     volumes:
-    - .:/srv/www/stock
+    - .:${PROJECT_ROOT}
     depends_on:
     - postgres
     - redis
   celerybeat:
-    image: xelaxela13/stock:latest
+    image: ${IMAGE}
     container_name: celerybeat-stock
-    command: celery -A project beat -l info --schedule=/run/celerybeat-schedule --pidfile=/run/celerybeat.pid
+    command: celery -A project beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     restart: always
     volumes:
-    - .:/srv/www/stock
+    - .:${PROJECT_ROOT}
     depends_on:
     - postgres
     - redis

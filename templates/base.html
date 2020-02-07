@@ -26,8 +26,7 @@
     {% stylesheet 'styles' %}
     {% if 'javascript_in_head'|bootstrap_setting %}
         <!-- Bootstrap JavaScript if it is in head -->
-        {% bootstrap_jquery %}
-        {% bootstrap_javascript %}
+        {% bootstrap_javascript jquery='slim' %}
     {% endif %}
 
     {% block extra_head %}{% endblock %}
@@ -52,11 +51,10 @@
 </footer>
 {% if not 'javascript_in_head'|bootstrap_setting %}
     <!-- Bootstrap JavaScript if it is in body -->
-    {% bootstrap_jquery %}
-    {% bootstrap_javascript %}
+    {% bootstrap_javascript jquery='true' %}
 {% endif %}
 {% javascript 'js' %}
-{% block extra_script %}{% endblock %}
+{% block extra_script %}{% endblock extra_script %}
 </body>
 
 </html>

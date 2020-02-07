@@ -6,8 +6,8 @@ from django.conf import settings
 
 try:
     from StringIO import BytesIO
-except:
-    from django.utils.six import BytesIO, StringIO
+except ImportError:
+    from django.utils.six import BytesIO
 
 import os
 import posixpath

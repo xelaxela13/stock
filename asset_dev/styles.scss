@@ -2,8 +2,13 @@
 
 $gray: #9397a5;
 $gray-light: #abab9f;
+$beige: rgba(223, 220, 218);
 $blue-deep: #006cfc;
+$blue-light: rgb(169, 187, 201);
 $blue-extra-light: #f6faff;
+$black: #171717;
+$black-light: #505050;
+$white-dark: rgb(250, 250, 250);
 $light: 300;
 $normal: 400;
 $bold: 700;
@@ -20,11 +25,46 @@ $digit: (
 );
 $colors: (
         white: white,
+        white-dark: $white-dark,
         gray: $gray,
         gray-light: $gray-light,
         blue-deep: $blue-deep,
-        blue-extra-light: $blue-extra-light
+        blue-light: $blue-light,
+        blue-extra-light: $blue-extra-light,
+        black: $black,
+        black-light: $black-light,
+        beige: $beige,
 );
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name}{
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};
+}
+
+@mixin bg-transparent($color, $value) {
+    background-color: rgba($color, $value);
+}
+
 html {
     scroll-behavior: smooth;
     transition: all .3s ease-in;
@@ -34,11 +74,11 @@ body {
     font-family: 'Merriweather', serif;
     font-size: 14px;
     font-weight: $light;
-    color: $gray;
+    color: $black-light;
 }
 
 h1, h2, h3, .h1, .h2, .h3 {
-    color: black;
+    color: $black-light;
     font-weight: $light;
     margin-bottom: 0;
 }
@@ -51,6 +91,27 @@ p {
 
 a {
     color: $blue-deep;
+    display: table;
+}
+
+section {
+    border-radius: 1rem;
+    position: relative;
+    min-height: calc(100vh - 2rem);
+}
+
+div {
+    display: flex;
+}
+
+.btn {
+    border-radius: 1.25rem;
+    font-weight: $light;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        border-radius: 1.25rem .25rem .25rem 1.25rem;
+    }
 }
 
 .bg {
@@ -66,6 +127,16 @@ a {
                 }
             }
         }
+    }
+
+    &-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 1rem;
+        @include bg-transparent($blue-light, .6);
     }
 }
 
@@ -83,7 +154,6 @@ a {
 
 .link {
     position: relative;
-    color: black;
 
     &:before, &:after {
         content: '';
@@ -95,7 +165,7 @@ a {
     &:before {
         width: 0;
         height: 3px;
-        background-color: rgba(0, 108, 252, 0.3);
+        @include bg-transparent($blue-deep, .3);
         transform-origin: bottom left;
         bottom: 4px;
     }
@@ -127,40 +197,20 @@ a {
     left: 50px;
     bottom: 50px;
     z-index: 9;
+    width: 28px;
+    img{
+        background-color: $white-dark;
+        border-radius: 50%;
+        padding: 10px;
+    }
+}
+
+.rounded{
+    border-radius: 1rem !important;
 }
 
 footer {
     background: linear-gradient(#f3f3f3 10%, #f1f1f1);
-
-    .shadow {
-        box-shadow: 0px 24px 43px -10px rgba(0, 0, 0, 0.1);
-    }
-}
-
-@mixin keyframes($animation-name) {
-    @-webkit-keyframes #{$animation-name}{
-        @content;
-    }
-    @-moz-keyframes #{$animation-name} {
-        @content;
-    }
-    @-ms-keyframes #{$animation-name} {
-        @content;
-    }
-    @-o-keyframes #{$animation-name} {
-        @content;
-    }
-    @keyframes #{$animation-name} {
-        @content;
-    }
-}
-
-@mixin animation($str) {
-    -webkit-animation: #{$str};
-    -moz-animation: #{$str};
-    -ms-animation: #{$str};
-    -o-animation: #{$str};
-    animation: #{$str};
 }
 
 @each $index, $value in $digit {
@@ -195,7 +245,7 @@ footer {
     .delay-#{$index}s {
         animation-delay: #{$index}s;
     }
-    .z-index-#{$index}{
+    .z-index-#{$index} {
         z-index: $index;
     }
 }
@@ -259,8 +309,9 @@ footer {
     height: 70px;
     box-shadow: inset 0 0 0 1px #fff;
     border-radius: 25px;
-    position: relative;
-
+    position: absolute;
+    bottom: 1rem;
+    left: calc(50% - 20px);
     &:before {
         content: '';
         width: 8px;
@@ -280,6 +331,15 @@ footer {
     }
 }
 
+.home{
+    #docs{
+        .lamps{
+            img{
+               max-height: 250px;
+            }
+        }
+    }
+}
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
 }
@@ -291,26 +351,10 @@ footer {
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
     .home {
-        .header-bg {
-            background: url("/static/images/home/home-header-image.jpg") no-repeat bottom center;
-            min-height: 100vh;
-            background-size: cover;
-
-            .ktp {
-                width: 30vw;
-                top: 10%;
-                right: 10%;
-
-                img {
-                    width: inherit;
-                }
-            }
-        }
-
         .fill-path-right {
-            right: 0;
-            top: 450px;
-
+            right: -1rem;
+            top: 400px;
+            z-index: 9;
             .description {
                 top: 120px;
                 right: 0;
@@ -321,24 +365,44 @@ footer {
             }
         }
 
-        .solar-bg {
-            background: url("/static/images/home/solar-bg.jpg") no-repeat top center;
-            height: 300px;
-            background-size: cover;
-        }
+        .bg {
+            &-section {
+                &-first {
+                    background: url("/static/images/home/home-header-image.jpg") no-repeat top center;
+                    background-size: 130%;
 
-        .stab-bg {
-            background: url("/static/images/home/stab-bg.jpg") no-repeat top center;
-            height: 300px;
-            background-size: cover;
-        }
+                    .ktp {
+                        width: 30vw;
+                        top: 10%;
+                        right: 10%;
 
-        .docs-bg {
-            background: url("/static/images/home/docs.jpg") no-repeat top center;
-            height: 500px;
-            width: 100%;
-            background-size: cover;
-            top: 0;
+                        img {
+                            width: inherit;
+                        }
+                    }
+                }
+
+                &-solar {
+                    background: url("/static/images/home/solar-bg.jpg") no-repeat bottom center;
+                    background-size: cover;
+                    background-position-y: 400px;
+                }
+
+                &-stab {
+                    background: url("/static/images/home/stab-bg.jpg") no-repeat top center;
+                    height: 300px;
+                    background-size: cover;
+                    border-radius: 0 0 1rem 1rem;
+                }
+
+                &-docs {
+                    background: url("/static/images/home/docs.jpg") no-repeat top center;
+                    height: 500px;
+                    width: 100%;
+                    background-size: cover;
+                    top: 0;
+                }
+            }
         }
     }
 }

@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load bootstrap4 %}
 {% load static %}
 {#{% load blueimp_gallery %}#}
 {% load i18n %}
@@ -38,10 +37,10 @@
     {#    {% blueimp_gallery %}#}
     <script>
         $(function () {
-            moveElement();
+            {#moveElement();#}
             activatePopover('.light', $('.light span').html(), 'right');
             animateBlocks();
         })
     </script>
-{% endblock %}
+{% endblock extra_script %}
 

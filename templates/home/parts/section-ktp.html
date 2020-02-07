@@ -1,52 +1,46 @@
 {% load static %}
 
-<section class="header-bg position-relative" id="ktp">
-        <div class="ktp position-absolute">
-            <img src="{% static 'images/home/ktp.png' %}" alt="ktp">
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12 p-0">
-                    <div class="d-flex w-75 border-top mt-3 block-01 magictime slideLeftReturn delay-2s">
-                        <div class="bg-white transparent-3 p-5 digit text-blue-deep">01</div>
-                        <div class="bg-white transparent-8 p-3 p-lg-5">
-                            <div class="h1 mb-3">
-                                ОСФ Сервис
-                            </div>
-                            <div class="h2">
-                                Генподрядчик в строительстве промышленных
-                                солнечных электростанций, дистрибьютор
-                                PV-оборудования
-                            </div>
-                            <div class="d-flex justify-content-end flex-wrap">
-                                <div class="w-25 p-3 d-flex flex-column">
-                                    <span>Производим распределительные шкафы управления для промышленных солнечных электростанций</span>
-                                    <a href="#" class="link mt-3">Подробнее</a>
-                                </div>
-                                <div class="w-25 p-3">Изготовим и смонтируем КТП до 10кВА на вашем объекте в любой части
-                                    страны
-                                </div>
-                            </div>
+<section class="bg-section-first m-3" id="ktp">
+{#    <div class="ktp position-absolute magictime puffIn d-none d-lg-inline">#}
+{#        <img src="{% static 'images/home/ktp.png' %}" alt="ktp">#}
+{#    </div>#}
+    <div class="bg-overlay"></div>
+    <div class="icon-scroll"></div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 p-0">
+                <div class="w-75 block-01 magictime slideLeftReturn delay-2s">
+                    <div class="p-5 digit text-blue-deep">01</div>
+                    <div class="flex-column p-3 p-lg-5">
+                        <div class="h1 mb-3 text-white">
+                            ОСФ Сервис
+                        </div>
+                        <div class="h2 text-white">
+                            Производим распределительные шкафы управления для промышленных солнечных электростанций
+                        </div>
+                        <div class="flex-column mt-3">
+                            <p class="text-white-dark w-75">Изготовим и смонтируем КТП до 10кВА на вашем объекте в любой части
+                                страны
+                            </p>
+                            <p>
+                                <a href="#" class="btn btn-secondary">Подробнее</a>
+                            </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-12">
-                    <div class="d-flex justify-content-center">
-                        <div class="icon-scroll mt-3"></div>
-                    </div>
-                </div>
             </div>
         </div>
-        <div class="fill-path-right position-absolute d-none magictime" style="display: none">
-            <img src="{% static 'images/home/fill-first.svg' %}">
-            <div class="position-absolute text-white pl-5 ml-3 description">
-                <p class="h3 text-white">#2019</p>
-                <p class="m-0">Здано в эксплуатацию 2690 шкафов управления</p>
-                <p class="m-0">Выпущенно 14 КТП до 10КВ</p>
-                <p>Построенно 4 крышные электростанции на 30кВт</p>
-                <p class="h3 text-white">#2018</p>
-                <p class="m-0">Здано в эксплуатацию 1870 шкафов управления</p>
-                <p>Выпущенно 18 КТП до 10КВ</p>
-            </div>
+    </div>
+    <div class="fill-path-right position-absolute d-none magictime" style="display: none">
+        <img src="{% static 'images/home/fill-first.svg' %}">
+        <div class="position-absolute text-white pl-5 ml-3 description flex-column">
+            <p class="h3 text-white">#2019</p>
+            <p class="m-0">Здано в эксплуатацию 2690 шкафов управления</p>
+            <p class="m-0">Выпущенно 14 КТП до 10КВ</p>
+            <p>Построенно 4 крышные электростанции на 30кВт</p>
+            <p class="h3 text-white">#2018</p>
+            <p class="m-0">Здано в эксплуатацию 1870 шкафов управления</p>
+            <p>Выпущенно 18 КТП до 10КВ</p>
         </div>
-    </section>
+    </div>
+</section>
