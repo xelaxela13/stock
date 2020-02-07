@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 from os import path, environ
+
+from celery.schedules import crontab
 from decouple import config
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -37,7 +39,7 @@ DEBUG = config('DEBUG', cast=bool, default=False)
 
 
 def log_level():
-    return 'WARNING' if DEBUG else 'INFO'
+    return 'DEBUG' if DEBUG else 'INFO'
 
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')], default='127.0.0.1')
@@ -271,13 +273,17 @@ environ['GOOGLE_APPLICATION_CREDENTIALS'] = rel('baseprojectdjango-208a1c3136b5.
 CELERY_REDIS_HOST = 'redis'
 CELERY_REDIS_PORT = '6379'
 CELERY_BROKER_URL = 'redis://' + CELERY_REDIS_HOST + ':' + CELERY_REDIS_PORT + '/0'
-BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_RESULT_BACKEND = 'django_celery_results.backends.database.DatabaseBackend'
-CELERY_TASK_ALWAYS_EAGER = False
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
+CELERY_BEAT_SCHEDULE = {
+    'Clear log files': {
+         'task': 'project.tasks.clear_log_files',
+         'schedule': crontab(hour=1, day_of_week=0),
+        },
+}
 
 LOGGING = {
     'version': 1,
