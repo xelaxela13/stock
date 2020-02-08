@@ -1,10 +1,10 @@
-# encoding: utf-8
 import os
-from project.settings import THUMBNAIL_SIZE, AUTH_USER_MODEL, DELETE_MEDIA_FILES
 from PIL import Image
+from io import BytesIO
 from django.db import models
 from django.utils import timezone
-from io import BytesIO
+from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
 
 
@@ -18,7 +18,7 @@ def make_thumbnail(instance, size=None):
     if size and isinstance(size, tuple) and isinstance(size[0], int) and isinstance(size[1], int):
         thumb_size = size
     else:
-        thumb_size = THUMBNAIL_SIZE
+        thumb_size = getattr(settings, 'THUMBNAIL_SIZE', instance.THUMBNAIL_SIZE)
     image.thumbnail(thumb_size, Image.ANTIALIAS)
     thumb_name, thumb_extension = file_name_extension(instance.file.name)
     thumb_filename = thumb_name + '_thumb' + thumb_extension
@@ -51,22 +51,23 @@ def upload_to(instance, filename):
 
 
 class Picture(models.Model):
+    THUMBNAIL_SIZE = (250, 250)
+    DELETE_MEDIA_FILES = True
+
     file = models.ImageField(upload_to=upload_to, blank=True)
     slug = models.SlugField(max_length=20, blank=True, null=True)
-    thumbnail = models.ImageField(upload_to='thumbnails/%Y/%m/%d', blank=True)
-    user = models.ForeignKey(AUTH_USER_MODEL, blank=True, null=True, on_delete=models.SET_NULL)
-    deleted = models.BooleanField(default=False)
+    thumbnail = models.ImageField(upload_to='thumbnails/%Y/%m/%d', blank=True,
+                                  help_text='Default thumbnail size 250x250 px')
+    user = models.ForeignKey(get_user_model(), blank=True, null=True, on_delete=models.SET_NULL)
+    deleted = models.BooleanField(default=False, help_text='Mark as deleted')
     show = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.file.name
 
-    def get_absolute_url(self):
-        return ('upload-new', )
-
     def delete(self, *args, **kwargs):
-        """delete -- Remove to leave file."""
-        self.file.delete(DELETE_MEDIA_FILES)
-        self.thumbnail.delete(DELETE_MEDIA_FILES)
-        super(Picture, self).delete(*args, **kwargs)
+        """delete -- Remove or leave file."""
+        self.file.delete(getattr(settings, 'DELETE_MEDIA_FILES', self.DELETE_MEDIA_FILES))
+        self.thumbnail.delete(getattr(settings, 'DELETE_MEDIA_FILES', self.DELETE_MEDIA_FILES))
+        super().delete(*args, **kwargs)

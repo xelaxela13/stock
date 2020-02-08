@@ -39,7 +39,7 @@ DEBUG = config('DEBUG', cast=bool, default=False)
 
 
 def log_level():
-    return 'DEBUG' if DEBUG else 'INFO'
+    return 'INFO' if DEBUG else 'INFO'
 
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')], default='127.0.0.1')
