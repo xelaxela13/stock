@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'home',
     'fileupload',
     'stock',
+    'multiplefileupload'
 ]
 
 MIDDLEWARE = [
