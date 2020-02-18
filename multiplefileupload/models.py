@@ -7,6 +7,8 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core.files.base import ContentFile
 
+__ALL__ = ('Image', 'ImagesGallery')
+
 
 def file_name_extension(filename):
     name, extension = path.splitext(filename)
@@ -50,8 +52,13 @@ def upload_thumbnail_to(instance, filename):
     return instance.get_settings['THUMBNAIL_PATH'] + filename
 
 
+class ImagesGallery(models.Model):
+    gallery_name = models.CharField(max_length=32, blank=False)
+
+
 class Image(models.Model):
     user = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
+    gallery = models.ForeignKey(ImagesGallery, blank=True, null=True, on_delete=models.CASCADE)
     file = models.ImageField(upload_to=upload_file_to)
     slug = models.SlugField(max_length=20, blank=True)
     thumbnail = models.ImageField(upload_to=upload_thumbnail_to, blank=True,
@@ -85,7 +92,3 @@ class Image(models.Model):
 
     def generate_slug(self):
         return f'{self.pk}-{timezone.now().strftime("%Y-%m-%d")}'
-
-
-class MultipleImage(models.Model):
-    image = models.ForeignKey(Image, on_delete=models.SET_NULL)
