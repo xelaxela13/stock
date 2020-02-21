@@ -1,6 +1,8 @@
 from os import path
 from PIL import Image as PilImage
 from io import BytesIO
+
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
@@ -9,29 +11,39 @@ from django.core.files.base import ContentFile
 
 __ALL__ = ('Image', 'ImagesGallery')
 
+AVAILABLE_EXTENSIONS = {
+    '.jpg': 'JPEG',
+    '.png': 'PNG',
+    '.gif': 'GIF',
+    '.jpeg': 'JPEG'
+}
+
 
 def file_name_extension(filename):
     name, extension = path.splitext(filename)
     return name.lower(), extension.lower()
 
 
+def extension_to_filetype(extension):
+    try:
+        return AVAILABLE_EXTENSIONS[extension]
+    except KeyError:
+        return None
+
+
 def make_thumbnail(instance):
     image = PilImage.open(instance.file)
     thumb_size = instance.get_settings['THUMBNAIL_SIZE']
     image.thumbnail(thumb_size, PilImage.ANTIALIAS)
-    thumb_name, thumb_extension = file_name_extension(instance.file.name)
-    thumb_filename = thumb_name + '_thumb' + thumb_extension
-    if thumb_extension in ['.jpg', '.jpeg']:
-        FTYPE = 'JPEG'
-    elif thumb_extension == '.gif':
-        FTYPE = 'GIF'
-    elif thumb_extension == '.png':
-        FTYPE = 'PNG'
-    else:
-        return False
+    name, extension = file_name_extension(instance.file.name)
+    thumb_filename = f'{name[:20]}_thumb{extension}'
+    filetype = extension_to_filetype(extension)
     # Save thumbnail to in-memory file as BytesIO
     temp_thumb = BytesIO()
-    image.save(temp_thumb, FTYPE)
+    try:
+        image.save(temp_thumb, filetype)
+    except (ValueError, IOError):
+        return False
     temp_thumb.seek(0)
     # set save=False, otherwise it will run in an infinite loop
     instance.thumbnail.save(thumb_filename, ContentFile(temp_thumb.read()), save=False)
@@ -41,11 +53,7 @@ def make_thumbnail(instance):
 
 def upload_file_to(instance, filename):
     name, extension = file_name_extension(filename)
-    filename = '{}{}'.format(name[:20], extension)
-    instance.file.name = filename
-    if not make_thumbnail(instance):
-        raise Exception('Could not create thumbnail - is the file type valid?')
-    return instance.get_settings['IMAGE_PATH'] + filename
+    return instance.get_settings['IMAGE_PATH'] + f'{name[:20], extension}'
 
 
 def upload_thumbnail_to(instance, filename):
@@ -53,7 +61,11 @@ def upload_thumbnail_to(instance, filename):
 
 
 class ImagesGallery(models.Model):
-    gallery_name = models.CharField(max_length=32, blank=False)
+    name = models.CharField(max_length=32, blank=False)
+
+    @property
+    def images_count(self):
+        return self.image_set.all().count()
 
 
 class Image(models.Model):
@@ -88,6 +100,8 @@ class Image(models.Model):
     def clean(self):
         if not self.slug:
             self.slug = self.generate_slug()
+        if not make_thumbnail(self):
+            raise ValidationError('Could not create thumbnail - is the file type valid?')
         return super().clean()
 
     def generate_slug(self):

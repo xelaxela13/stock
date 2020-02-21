@@ -9,7 +9,7 @@ from .models import Image, ImagesGallery
 class ImageAdmin(admin.ModelAdmin):
     fields = ('file', 'slug', 'thumbnail', 'snapshot', 'user', 'deleted', 'show', 'create_at')
     readonly_fields = ('thumbnail', 'snapshot', 'user', 'create_at')
-    list_display = ('snapshot', 'create_at')
+    list_display = ('snapshot', 'create_at', 'gallery')
 
     def save_model(self, request, obj, form, change):
         if obj and not obj.user:
@@ -27,9 +27,10 @@ class ImagesGalleryInline(admin.TabularInline):
 
 @admin.register(ImagesGallery)
 class ImagesGalleryAdmin(admin.ModelAdmin):
-    fields = ('gallery_name', 'images')
+    fields = ('name', 'images')
     form = ImagesGalleryForm
     inlines = (ImagesGalleryInline, )
+    list_display = ('name', 'images_count')
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
