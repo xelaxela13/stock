@@ -23,3 +23,6 @@ django-pipeline
 redis
 flake8
 jsmin
+pytest
+pytest-django
+factory_boy
