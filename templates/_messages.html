@@ -1,7 +1,5 @@
-{% load bootstrap4 %}
-
 {% if messages %}
     {% for message in messages %}
-        {% bootstrap_messages %}
+        {{ message }}
     {% endfor %}
 {% endif %}

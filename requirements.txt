@@ -1,5 +1,4 @@
 Django==2.2.9
-django-bootstrap4
 requests
 django-rosetta
 python-decouple
@@ -26,3 +25,5 @@ jsmin
 pytest
 pytest-django
 factory_boy
+mock
+ipdb

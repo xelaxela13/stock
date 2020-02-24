@@ -44,7 +44,7 @@ def log_level():
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')], default='127.0.0.1')
 
-ADMINS = [('Alex', 'xelaxela13@gmail.com'), ]
+ADMINS = [('Alex', config('ADMIN_EMAIL', default='dummy@mail.com')), ]
 
 # Application definition
 INSTALLED_APPS = [
@@ -59,7 +59,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # external apps
-    'bootstrap4',
     'rosetta',
     'django_celery_results',
     'django_celery_beat',
@@ -85,7 +84,7 @@ MIDDLEWARE = [
     'django.middleware.locale.LocaleMiddleware',  # i18n
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'project.middleware.DefaultLanguageMiddleware',
 ]
 
@@ -197,12 +196,12 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'pipeline.finders.FileSystemFinder',
     'pipeline.finders.AppDirectoriesFinder',
-    'pipeline.finders.PipelineFinder',
+    # 'pipeline.finders.PipelineFinder',
 )
 
 # CompressedManifestStaticFilesStorage.manifest_strict = False
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
 
 PIPELINE = {
     'COMPILERS': ('pipeline.compilers.es6.ES6Compiler', 'pipeline.compilers.sass.SASSCompiler', ),
@@ -248,8 +247,6 @@ SITE_LOGO_SECOND = path.join(STATIC_URL, 'images/logo.png')
 # https://docs.djangoproject.com/en/2.0/howto/static-files/#serving-files-uploaded-by-a-user-during-development
 MEDIA_URL = '/media/'
 MEDIA_ROOT = rel(STATIC_FOLDER, 'media')
-THUMBNAIL_SIZE = [250, 250]
-DELETE_MEDIA_FILES = True  # delete files after deleting model entity
 
 #  https://ipstack.com/
 #  free geo api
@@ -262,13 +259,6 @@ if not DEBUG and config('HEROKU', default=False):
     import django_heroku
     django_heroku.settings(locals())
 
-# Google Cloud API
-GOOGLE_APPLICATION_CREDENTIALS = rel('baseprojectdjango-208a1c3136b5.json')
-environ['GOOGLE_APPLICATION_CREDENTIALS'] = rel('baseprojectdjango-208a1c3136b5.json')
-
-# Celery settings
-#: Only add pickle to this list if your broker is secured
-#: from unwanted access (see userguide/security.html)
 
 # REDIS related settings
 CELERY_REDIS_HOST = 'redis'
@@ -374,13 +364,13 @@ if DEBUG:
     INTERNAL_IPS = ('127.0.0.1',)
     INSTALLED_APPS.append('debug_toolbar')
     MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
-    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    # STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
     DEBUG_TOOLBAR_CONFIG = {
         "SHOW_TOOLBAR_CALLBACK": lambda request: True,
     }
     PIPELINE['JS_COMPRESSOR'] = None
     from pprint import pprint
-    from pdb import set_trace
+    from ipdb import set_trace
 
     __builtins__["pp"] = pprint
     __builtins__["st"] = set_trace

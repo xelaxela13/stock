@@ -11,7 +11,6 @@ def run():
                 'SECRET_KEY': random_string(),
                 'ALLOWED_HOSTS': '*',
                 'DEBUG': True,
-                'IPSTACK_ACCESS_KEY': '0e3e331a2e84afc272c53c97982cc67c',
                 'GMAIL_PASSWORD': '',
                 'GMAIL_USER': '',
                 'MEMCACHED_HOST': 'memcached',
@@ -26,7 +25,8 @@ def run():
             }
             config['common'] = {
                 'PROJECT_ROOT': '/home/user/stock',
-                'IMAGE': 'xelaxela13/stock:latest'
+                'IMAGE': 'xelaxela13/stock:latest',
+                'ADMIN_EMAIL': 'dummy@mail.com'
             }
             break
         except ValueError:
