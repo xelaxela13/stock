@@ -80,9 +80,8 @@ body {
 h1, h2, h3, .h1, .h2, .h3 {
     color: $black-light;
 }
-h1, h2, h3, h4, h5, h6 .h1, .h2, .h3, .h4, .h5, .h6{
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     font-weight: $light;
-    margin-bottom: 0;
 }
 p {
     &:last-child {
@@ -104,7 +103,22 @@ section {
 div {
     display: flex;
 }
-
+.blockquote{
+    &-title{
+        position: relative;
+        &:after{
+            content: '';
+            position: absolute;
+            background: url("/static/open-iconic/svg/double-quote-sans-left.svg") no-repeat center;
+            background-size: contain;
+            width: 3rem;
+            height: 3rem;
+            opacity: .5;
+            top: -2rem;
+            left: -2rem;
+        }
+}
+}
 .btn {
     border-radius: 1.25rem;
     font-weight: $light;
