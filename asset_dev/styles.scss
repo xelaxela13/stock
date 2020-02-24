@@ -7,7 +7,7 @@ $blue-deep: #006cfc;
 $blue-light: rgb(169, 187, 201);
 $blue-extra-light: #f6faff;
 $black: #171717;
-$black-light: #505050;
+$black-light: #393939;
 $white-dark: rgb(250, 250, 250);
 $light: 300;
 $normal: 400;
@@ -79,10 +79,11 @@ body {
 
 h1, h2, h3, .h1, .h2, .h3 {
     color: $black-light;
+}
+h1, h2, h3, h4, h5, h6 .h1, .h2, .h3, .h4, .h5, .h6{
     font-weight: $light;
     margin-bottom: 0;
 }
-
 p {
     &:last-child {
         margin-bottom: 0;

@@ -52,7 +52,7 @@ $(document).on('scroll', function () {
 });
 
 function activatePopover(element, content, placement) {
-    $(element).length && $(element).popover === 'function' &&
+    $(element).length &&
     $(element).popover(
         {
             trigger: 'hover',
@@ -82,7 +82,6 @@ function scrollToSection(section) {
 function animateBlocks() {
     // var flag = true;
     $(window).on('scroll', function () {
-        $('.fill-path-right').addClass('slideRightReturn d-lg-block');
         setTimeout(() => {
             $('.block-02').css('opacity', '1').addClass('slideLeftReturn')
         }, 1000);
