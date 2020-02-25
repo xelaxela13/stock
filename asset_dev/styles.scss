@@ -3,12 +3,14 @@
 $gray: #9397a5;
 $gray-light: #abab9f;
 $beige: rgba(223, 220, 218);
-$blue-deep: #006cfc;
-$blue-light: rgb(169, 187, 201);
-$blue-extra-light: #f6faff;
-$black: #171717;
+$blue-deep: rgb(40, 35, 74);;
+$blue-light: #edf5f8;
+$blue: rgb(87, 212, 230);;
+$black: rgb(42, 42, 48);
 $black-light: #393939;
 $white-dark: rgb(250, 250, 250);
+$green: rgb(96, 216, 143);
+$yellow: rgb(255, 216, 102);
 $light: 300;
 $normal: 400;
 $bold: 700;
@@ -30,10 +32,12 @@ $colors: (
         gray-light: $gray-light,
         blue-deep: $blue-deep,
         blue-light: $blue-light,
-        blue-extra-light: $blue-extra-light,
+        blue: $blue,
         black: $black,
         black-light: $black-light,
         beige: $beige,
+        green: $green,
+        yellow: $yellow
 );
 @mixin keyframes($animation-name) {
     @-webkit-keyframes #{$animation-name}{
@@ -77,11 +81,9 @@ body {
     color: $black-light;
 }
 
-h1, h2, h3, .h1, .h2, .h3 {
-    color: $black-light;
-}
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     font-weight: $light;
+    color: $blue-deep;
 }
 p {
     &:last-child {
@@ -94,15 +96,6 @@ a {
     display: table;
 }
 
-section {
-    border-radius: 1rem;
-    position: relative;
-    min-height: calc(100vh - 2rem);
-}
-
-div {
-    display: flex;
-}
 .blockquote{
     &-title{
         position: relative;
@@ -152,6 +145,17 @@ div {
         height: 100%;
         border-radius: 1rem;
         @include bg-transparent($blue-light, .6);
+    }
+    &-docs{
+        background: url("/static/images/home/opensource.svg");
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+    &-solar{
+        background: url("/static/images/home/solar-bg.jpg") no-repeat bottom;
+        background-size: contain;
     }
 }
 
@@ -222,10 +226,6 @@ div {
 
 .rounded{
     border-radius: 1rem !important;
-}
-
-footer {
-    background: linear-gradient(#f3f3f3 10%, #f1f1f1);
 }
 
 @each $index, $value in $digit {
@@ -347,10 +347,16 @@ footer {
 }
 
 .home{
+    .first-section{
+        background: linear-gradient(150deg, white 40%, white, 15%, $blue-light 15%, $blue-light 100%);
+    }
+    .second-section{
+        background: linear-gradient(150deg, $blue-light 70%, $blue-light, 15%, white 15%, white 100%);
+    }
     #docs{
-        .lamps{
-            img{
-               max-height: 250px;
+        ul.color-list{
+            li{
+                padding: 1rem 0;
             }
         }
     }
@@ -365,61 +371,6 @@ footer {
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-    .home {
-        .fill-path-right {
-            right: -1rem;
-            top: 400px;
-            z-index: 9;
-            .description {
-                top: 120px;
-                right: 0;
-            }
-
-            img {
-                width: 300px;
-            }
-        }
-
-        .bg {
-            &-section {
-                &-first {
-                    background: url("/static/images/home/home-header-image.jpg") no-repeat top center;
-                    background-size: 130%;
-
-                    .ktp {
-                        width: 30vw;
-                        top: 10%;
-                        right: 10%;
-
-                        img {
-                            width: inherit;
-                        }
-                    }
-                }
-
-                &-solar {
-                    background: url("/static/images/home/solar-bg.jpg") no-repeat bottom center;
-                    background-size: cover;
-                    background-position-y: 400px;
-                }
-
-                &-stab {
-                    background: url("/static/images/home/stab-bg.jpg") no-repeat top center;
-                    height: 300px;
-                    background-size: cover;
-                    border-radius: 0 0 1rem 1rem;
-                }
-
-                &-docs {
-                    background: url("/static/images/home/docs.jpg") no-repeat top center;
-                    height: 500px;
-                    width: 100%;
-                    background-size: cover;
-                    top: 0;
-                }
-            }
-        }
-    }
 }
 
 // Extra large devices (large desktops, 1200px and up)

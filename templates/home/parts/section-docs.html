@@ -1,18 +1,20 @@
 {% load static %}
-<section id="docs" class="bg-black m-3">
+<section id="docs" class="bg-black">
     <div class="container p-3 p-lg-5">
         <div class="row">
-            <div class="col-12 col-lg-3">
+            <div class="col-12 col-lg-6">
                 <div class="h2 text-white">Проектная документация под ключ</div>
-            </div>
-            <div class="col-12 col-lg-2">
                 <div class="d-flex">
                     <div class="digit text-white-dark mr-3">
                         04
                     </div>
                 </div>
-            </div>
-            <div class="col-12 col-lg-7">
+                <ul class="color-list">
+                    <li class="h5 text-blue">Ipsum для распечатки образцов</li>
+                    <li class="text-white">Ipsum для распечатки образцов</li>
+                    <li class="text-green">Ipsum для распечатки образцов</li>
+                    <li class="text-yellow">Ipsum для распечатки образцов</li>
+                </ul>
                 <div class="text-white-dark">
                     Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum
                     является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий
@@ -24,15 +26,19 @@
                     которых используется Lorem Ipsum.
                 </div>
             </div>
-            <div class="col-12 py-3">
-                <div class="justify-content-around w-100 lamps">
-                    <figure><img src="{% static 'images/home/lamps/lamp1.png' %}"></figure>
-                    <figure><img src="{% static 'images/home/lamps/lamp2.png' %}"></figure>
-                    <figure><img src="{% static 'images/home/lamps/lamp3.png' %}"></figure>
-                    <figure><img src="{% static 'images/home/lamps/lamp4.png' %}"></figure>
+            <div class="col-12 col-lg-6">
+                <div class="bg-docs">
+                    <figure class="text-center w-50"><img class="w-50" src="{% static 'images/home/lamps/lamp1.png' %}"></figure>
                 </div>
             </div>
+{#            <div class="col-12 py-3">#}
+{#                <div class="justify-content-around w-100 lamps">#}
+{#                    <figure><img src="{% static 'images/home/lamps/lamp1.png' %}"></figure>#}
+{#                    <figure><img src="{% static 'images/home/lamps/lamp2.png' %}"></figure>#}
+{#                    <figure><img src="{% static 'images/home/lamps/lamp3.png' %}"></figure>#}
+{#                    <figure><img src="{% static 'images/home/lamps/lamp4.png' %}"></figure>#}
+{#                </div>#}
+{#            </div>#}
         </div>
     </div>
-    {#    <div class="docs-bg position-absolute"></div>#}
 </section>
