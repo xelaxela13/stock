@@ -2,17 +2,14 @@ version: '3'
 
 services:
   web:
-    container_name: web
+#    container_name: web
     restart: always
     image: ${IMAGE}
     volumes:
     - .:${PROJECT_ROOT}
-    expose:
-    - 8000
     ports:
-    - 8100:8100
-    - 8101:8101
-    command: python manage.py runserver 0:8100
+    - ${UWSGI_PORT_RANGE}
+    command: python manage.py runserver 0:${UWSGI_PORT}
     depends_on:
     - postgres
     - redis
