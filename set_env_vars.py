@@ -7,6 +7,13 @@ def run():
     config = {}
     while True:
         try:
+            config['common'] = {
+                'COMPOSE_PROJECT_NAME': 'stock',
+                'COMPOSE_FILE': 'docker-compose.yml:docker-compose.dev.yml',
+                'PROJECT_ROOT': '/home/user/stock',
+                'IMAGE': 'xelaxela13/stock:latest',
+                'ADMIN_EMAIL': 'dummy@mail.com',
+            }
             config['SETTINGS'] = {
                 'SECRET_KEY': random_string(),
                 'ALLOWED_HOSTS': '*',
@@ -23,10 +30,9 @@ def run():
                 'HOST': 'db',
                 'PORT': '5432'
             }
-            config['common'] = {
-                'PROJECT_ROOT': '/home/user/stock',
-                'IMAGE': 'xelaxela13/stock:latest',
-                'ADMIN_EMAIL': 'dummy@mail.com'
+            config['UWSGI'] = {
+                'UWSGI_PORT': '8100',
+                'UWSGI_PORT_RANGE': '8100-8101',
             }
             break
         except ValueError:

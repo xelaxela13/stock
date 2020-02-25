@@ -6,10 +6,8 @@ volumes:
 services:
   redis:
     image: redis:latest
-#    container_name: redis-stock
     restart: always
   postgres:
-#    container_name: db
     image: postgres:latest
     ports:
     - 5432:5432
@@ -19,7 +17,6 @@ services:
     - pgdata:/var/lib/postgresql/data
   celery:
     image: ${IMAGE}
-#    container_name: celery-stock
     command: celery -A project worker -l info
     restart: always
     volumes:
@@ -29,7 +26,6 @@ services:
     - redis
   celerybeat:
     image: ${IMAGE}
-#    container_name: celerybeat-stock
     command: celery -A project beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     restart: always
     volumes:
@@ -39,7 +35,6 @@ services:
     - redis
   memcached:
     image: memcached:latest
-#    container_name: memcached-stock
     restart: always
     logging:
       driver: "json-file"
