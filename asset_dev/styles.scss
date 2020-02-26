@@ -3,9 +3,11 @@
 $gray: #9397a5;
 $gray-light: #abab9f;
 $beige: rgba(223, 220, 218);
-$blue-deep: rgb(40, 35, 74);;
+$blue-deep: rgb(40, 35, 74);
+;
 $blue-light: #edf5f8;
-$blue: rgb(87, 212, 230);;
+$blue: rgb(87, 212, 230);
+;
 $black: rgb(42, 42, 48);
 $black-light: #393939;
 $white-dark: rgb(250, 250, 250);
@@ -81,10 +83,14 @@ body {
     color: $black-light;
 }
 
-h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: $light;
     color: $blue-deep;
 }
+h1, h2, .h1, .h2{
+    font-weight: $bold;
+}
+
 p {
     &:last-child {
         margin-bottom: 0;
@@ -96,10 +102,20 @@ a {
     display: table;
 }
 
-.blockquote{
-    &-title{
+header {
+    img.logo {
+        width: 60px;
+    }
+    .navbar-light .navbar-nav .nav-link {
+        color: $black;
+    }
+}
+
+.blockquote {
+    &-title {
         position: relative;
-        &:after{
+
+        &:after {
             content: '';
             position: absolute;
             background: url("/static/open-iconic/svg/double-quote-sans-left.svg") no-repeat center;
@@ -110,8 +126,9 @@ a {
             top: -2rem;
             left: -2rem;
         }
+    }
 }
-}
+
 .btn {
     border-radius: 1.25rem;
     font-weight: $light;
@@ -119,6 +136,18 @@ a {
 
     &:hover {
         border-radius: 1.25rem .25rem .25rem 1.25rem;
+    }
+
+    &-yellow {
+        color: $black;
+        background-color: $yellow;
+        border-color: $yellow;
+    }
+
+    &-green {
+        color: $black;
+        background-color: $green;
+        border-color: $green;
     }
 }
 
@@ -146,14 +175,16 @@ a {
         border-radius: 1rem;
         @include bg-transparent($blue-light, .6);
     }
-    &-docs{
+
+    &-docs {
         background: url("/static/images/home/opensource.svg");
         display: flex;
         align-items: center;
         justify-content: center;
         height: 100%;
     }
-    &-solar{
+
+    &-solar {
         background: url("/static/images/home/solar-bg.jpg") no-repeat bottom;
         background-size: contain;
     }
@@ -217,14 +248,15 @@ a {
     bottom: 50px;
     z-index: 9;
     width: 28px;
-    img{
+
+    img {
         background-color: $white-dark;
         border-radius: 50%;
         padding: 10px;
     }
 }
 
-.rounded{
+.rounded {
     border-radius: 1rem !important;
 }
 
@@ -327,6 +359,7 @@ a {
     position: absolute;
     bottom: 1rem;
     left: calc(50% - 20px);
+
     &:before {
         content: '';
         width: 8px;
@@ -346,21 +379,24 @@ a {
     }
 }
 
-.home{
-    .first-section{
+.home {
+    .first-section {
         background: linear-gradient(150deg, white 40%, white, 15%, $blue-light 15%, $blue-light 100%);
     }
-    .second-section{
+
+    .second-section {
         background: linear-gradient(150deg, $blue-light 70%, $blue-light, 15%, white 15%, white 100%);
     }
-    #docs{
-        ul.color-list{
-            li{
+
+    #docs {
+        ul.color-list {
+            li {
                 padding: 1rem 0;
             }
         }
     }
 }
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
 }

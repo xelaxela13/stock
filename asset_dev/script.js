@@ -46,18 +46,17 @@ function backgroundPosition(el, position) {
     element.isInViewport() && $(element).css('background-position-y', elementPosition + 'px')
 }
 
-$(document).on('scroll', function () {
-    backgroundSize('.bg-section-first', 130);
-    backgroundPosition('.bg-section-solar', 400);
-});
+// $(document).on('scroll', function () {
+//     backgroundSize('.bg-section-first', 130);
+//     backgroundPosition('.bg-section-solar', 400);
+// });
 
-function activatePopover(element, content, placement) {
+function activatePopover(element, placement) {
     $(element).length &&
     $(element).popover(
         {
             trigger: 'hover',
             placement: placement,
-            content: content
         }
     )
 }
@@ -80,11 +79,11 @@ function scrollToSection(section) {
 }
 
 function animateBlocks() {
-    // var flag = true;
     $(window).on('scroll', function () {
-        setTimeout(() => {
-            $('.block-02').css('opacity', '1').addClass('slideLeftReturn')
-        }, 1000);
-        // scrollToSection('#solar')
+        $('.solar-animate-1').isInViewport() && $('.solar-animate-1').css('opacity', '1').addClass('slideLeftReturn');
+
+        $('.docs-animate-1').isInViewport() && $('.docs-animate-1').css('opacity', '1').addClass('slideLeftReturn');
+        $('.docs-animate-2').isInViewport() && $('.docs-animate-2').css('opacity', '1').addClass('slideLeftReturn');
+        $('.docs-animate-3').isInViewport() && $('.docs-animate-3 figure').addClass('puffIn');
     })
 }

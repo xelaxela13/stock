@@ -1,43 +1,44 @@
 {% load i18n %}
-{#<header>#}
-    {#<div class="container">#}
-    {#    <div class="row">#}
-    {#        <div class="col-12">#}
-    {#            <ul class="nav justify-content-end">#}
-    {#                {% get_current_language as LANGUAGE_CODE %}#}
-    {#                {% with '/'|add:LANGUAGE_CODE|add:'/' as code %}#}
-    {#                    {% if request.path != code and request.path != '/' %}#}
-    {#                        <a class="navbar-brand" href="{% url 'home' %}">#}
-    {#                            {% if SITE_LOGO_SECOND %}#}
-    {#                                <img src="{{ SITE_LOGO_SECOND }}">#}
-    {#                            {% else %}#}
-    {#                                {% trans 'Home' %}#}
-    {#                            {% endif %}#}
-    {#                        </a>#}
-    {#                    {% endif %}#}
-    {#                {% endwith %}#}
-    {#                {% if user.is_authenticated %}#}
-    {#                    <li class="nav-item inline">#}
-    {#                        <a class="nav-link" href="{% url 'panel' %}">{% trans 'My account' %}</a>#}
-    {#                    </li>#}
-    {#                    <li class="nav-item inline">#}
-    {#                        <a class="nav-link" href="{% url 'logout' %}">{% trans 'Log out' %}</a>#}
-    {#                    </li>#}
-    {#                {% else %}#}
-    {#                    <li class="nav-item inline">#}
-    {#                        <a class="nav-link" href="{% url 'login' %}">{% trans 'Log in' %}</a>#}
-    {#                    </li>#}
-    {#                    <li class="nav-item inline">#}
-    {#                        <a class="nav-link" href="{% url 'signup' %}">{% trans 'Sign up' %}</a>#}
-    {#                    </li>#}
-    {#                {% endif %}#}
-    {#                {% if USE_I18N and SHOW_LANG_SWITCH %}#}
-    {#                    <li class="nav-item inline">#}
-    {#                        {% include '_switch_language.html' %}#}
-    {#                    </li>#}
-    {#                {% endif %}#}
-    {#            </ul>#}
-    {#        </div>#}
-    {#    </div>#}
-    {#</div>#}
-{#</header>#}
+{% load static %}
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                    <a class="navbar-brand" href="{% url 'home' %}">
+                        <img class="logo" src="{% static 'images/logo.png' %}">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item inline">
+                                <a class="nav-link" href="#ktp">КТП</a>
+                            </li>
+                            <li class="nav-item inline">
+                                <a class="nav-link" href="#solar">Солнечная энергетика</a>
+                            </li>
+                            <li class="nav-item inline">
+                                <a class="nav-link" href="#docs">Проектирование</a>
+                            </li>
+                            <li class="nav-item inline">
+                                <a class="nav-link" href="#stab">Бесперебойное питание</a>
+                            </li>
+                            <li class="nav-item inline">
+                                <a class="nav-link" href="#toka">TOKA Energy</a>
+                            </li>
+                            {% if USE_I18N and SHOW_LANG_SWITCH %}
+                                <li class="nav-item inline">
+                                    {% include '_switch_language.html' %}
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

@@ -4,13 +4,10 @@
 {% load i18n %}
 
 {% block body_class %}home{% endblock %}
-{% block header %}{% endblock header %}
 {% block content %}
-    <div class="position-fixed light" data-toggle="popover" data-content="">
+    <div class="position-fixed light" title="ОСФ СЕРВИС" data-toggle="popover"
+         data-content="(067)563 44 95 | (095)291 92 13 г.Днепр, Воздухофлотская, 2а/43">
         <img src="{% static 'open-iconic/svg/lightbulb.svg' %}">
-        <span class="d-none">
-            (067)563 44 95 | (095)291 92 13 г.Днепр, Воздухофлотская, 2а/43
-        </span>
     </div>
     {% include 'home/parts/section-ktp.html'  %}
     {% include 'home/parts/section-solar.html'  %}
@@ -37,7 +34,7 @@
     {#    {% blueimp_gallery %}#}
     <script>
         $(function () {
-            activatePopover('.light', $('.light span').html(), 'right');
+            activatePopover('.light', 'right');
             animateBlocks();
         })
     </script>
