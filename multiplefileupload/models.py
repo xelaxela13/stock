@@ -63,6 +63,9 @@ def upload_thumbnail_to(instance, filename):
 class ImagesGallery(models.Model):
     name = models.CharField(max_length=32, blank=False)
 
+    def __str__(self):
+        return f'{self.pk} {self.name}'
+
     @property
     def images_count(self):
         return self.image_set.all().count()
