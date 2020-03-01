@@ -26,4 +26,5 @@ pytest
 pytest-django
 factory_boy
 mock
+ipdb
 sorl-thumbnail
