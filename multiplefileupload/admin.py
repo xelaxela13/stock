@@ -34,10 +34,6 @@ class ImagesGalleryAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
-
-        images = []
         for image in request.FILES.getlist('images'):
-            images.append(Image(file=image, user=request.user, gallery=obj))
-
-        if images:
-            Image.objects.bulk_create(images)
+            instance = Image.objects.create(file=image, user=request.user, gallery=obj)
+            instance.create_thumbnail()
