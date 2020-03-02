@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     'django_celery_beat',
     'import_export',
     'pipeline',
+    'sorl.thumbnail',
     # local apps
     'project',
     'accounts',
