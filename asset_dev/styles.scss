@@ -87,7 +87,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: $light;
     color: $blue-deep;
 }
-h1, h2, .h1, .h2{
+
+h1, h2, .h1, .h2 {
     font-weight: $bold;
 }
 
@@ -106,6 +107,7 @@ header {
     img.logo {
         width: 60px;
     }
+
     .navbar-light .navbar-nav .nav-link {
         color: $black;
     }
@@ -393,6 +395,22 @@ header {
             li {
                 padding: 1rem 0;
             }
+        }
+    }
+
+    #gallery {
+        .grid-sizer,
+        .grid-item {
+            width: 33.333%;
+        }
+
+        .grid-item {
+            float: left;
+        }
+
+        .grid-item img {
+            display: inline-block;
+            max-width: 100%;
         }
     }
 }

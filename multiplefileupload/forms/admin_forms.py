@@ -6,7 +6,7 @@ from ..models import Image
 
 class ImagesGalleryForm(forms.ModelForm):
     upload_images = forms.ImageField(required=False, widget=forms.ClearableFileInput(attrs={'multiple': 'true'}))
-    select_images = forms.ModelMultipleChoiceField(queryset=Image.objects.none(),
+    select_images = forms.ModelMultipleChoiceField(queryset=Image.objects.none(), required=False,
                                                    widget=FilteredSelectMultiple('Select images', True))
 
     def __init__(self, *args, **kwargs):
