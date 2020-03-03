@@ -1,14 +1,15 @@
 {% load static %}
-<section id="gallery" class="bg-black">
-    <div class="container p-3 p-lg-5">
+{% load thumbnail %}
+<section id="gallery" class="my-3 my-lg-5 py-lg-5">
+    <div class="container ">
         <div class="row">
             <div class="col-12">
-                <div class="grid">
-                    <div class="grid-sizer"></div>
+                <div class="h3 mb-3">Наши преимущества:</div>
+                <div class="slick">
                     {% for image in images %}
-                        <div class="grid-item">
-                            <img src="media/{{ image }}">
-                        </div>
+                        {% thumbnail image "200x200" as im %}
+                            <div class="slick-item" style="background: url('media/{{ im }}') no-repeat;"></div>
+                        {% endthumbnail %}
                     {% endfor %}
                 </div>
             </div>

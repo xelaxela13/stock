@@ -81,9 +81,32 @@ function scrollToSection(section) {
 function animateBlocks() {
     $(window).on('scroll', function () {
         $('.solar-animate-1').isInViewport() && $('.solar-animate-1').css('opacity', '1').addClass('slideLeftReturn');
-
         $('.docs-animate-1').isInViewport() && $('.docs-animate-1').css('opacity', '1').addClass('slideLeftReturn');
         $('.docs-animate-2').isInViewport() && $('.docs-animate-2').css('opacity', '1').addClass('slideLeftReturn');
         $('.docs-animate-3').isInViewport() && $('.docs-animate-3 figure').addClass('puffIn');
     })
+}
+
+function activateSlick(element) {
+    $(element).slick(
+        {
+            dots: false,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 5,
+            centerMode: true,
+            centerPadding: '20px',
+            prevArrow: '<div class="slick-prev shadow"><span class="oi oi-caret-left"></span></div>',
+            nextArrow: '<div class="slick-next shadow"><span class="oi oi-caret-right"></span></div>',
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        arrows: false,
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        }
+    )
 }

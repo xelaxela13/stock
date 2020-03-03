@@ -86,6 +86,7 @@ body {
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-weight: $light;
     color: $blue-deep;
+    margin: 0;
 }
 
 h1, h2, .h1, .h2 {
@@ -252,7 +253,7 @@ header {
     width: 28px;
 
     img {
-        background-color: $white-dark;
+        background-color: $beige;
         border-radius: 50%;
         padding: 10px;
     }
@@ -399,18 +400,36 @@ header {
     }
 
     #gallery {
-        .grid-sizer,
-        .grid-item {
-            width: 33.333%;
-        }
+        .slick {
+            position: relative;
 
-        .grid-item {
-            float: left;
-        }
+            &-item {
+                margin: 5px;
+                background-size: cover !important;
+                height: 200px;
+                border-radius: 10px;
+            }
 
-        .grid-item img {
-            display: inline-block;
-            max-width: 100%;
+            &-prev, &-next {
+                position: absolute;
+                background: $beige;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                top: 42%;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 9;
+            }
+
+            &-prev {
+                left: -1rem;
+            }
+
+            &-next {
+                right: -1rem;
+            }
         }
     }
 }

@@ -10,9 +10,10 @@
         <img src="{% static 'open-iconic/svg/lightbulb.svg' %}">
     </div>
     {% include 'home/parts/section-ktp.html' %}
+    {% include 'home/parts/section-gallery.html' %}
     {% include 'home/parts/section-solar.html' %}
     {% include 'home/parts/section-docs.html' %}
-    {% include 'home/parts/section-gallery.html' %}
+
     {#    {% include 'home/parts/section-stab.html'  %}#}
 
 
@@ -37,15 +38,7 @@
         $(function () {
             activatePopover('.light', 'right');
             animateBlocks();
-            var $grid = $('.grid').masonry({
-                itemSelector: '.grid-item',
-                percentPosition: true,
-                columnWidth: '.grid-sizer'
-            });
-// layout Masonry after each image loads
-            $grid.imagesLoaded().progress(function () {
-                $grid.masonry();
-            });
+            activateSlick('.slick')
         })
     </script>
 {% endblock extra_script %}
