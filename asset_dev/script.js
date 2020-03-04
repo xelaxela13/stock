@@ -65,16 +65,17 @@ function offsetBottom(element) {
     return $(element).offset().top + $(element).height();
 }
 
-function scrollTo(element, speed) {
+function scrollToElement(element, speed, offset) {
     speed = speed ? speed : 100;
-    $('html, body').animate({scrollTop: $(element).offset().top}, speed);
+    offset = offset ? offset : 0;
+    $('html, body').animate({scrollTop: $(element).offset().top - offset}, speed);
 }
 
 function scrollToSection(section) {
     let offset = $(section).prev().offset().top;
     console.log(offset, offset - 100, window.pageYOffset)
     if ($(section).isInViewport() && window.pageYOffset < offset && window.pageYOffset > offset - 50) {
-        scrollTo(section);
+        scrollToElement(section);
     }
 }
 

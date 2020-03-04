@@ -9,6 +9,10 @@
          data-content="(067)563 44 95 | (095)291 92 13 г.Днепр, Воздухофлотская, 2а/43">
         <img src="{% static 'open-iconic/svg/lightbulb.svg' %}">
     </div>
+    <div class="icon-scroll"></div>
+    <div class="right-block">
+        067 563 44 95
+    </div>
     {% include 'home/parts/section-ktp.html' %}
     {% include 'home/parts/section-gallery.html' %}
     {% include 'home/parts/section-solar.html' %}
@@ -33,7 +37,7 @@
     {#    {% endif %}#}
 {% endblock content %}
 {% block extra_script %}
-    {#    {% blueimp_gallery %}#}
+{#        {% blueimp_gallery %}#}
     <script>
         $(function () {
             activatePopover('.light', 'right');
