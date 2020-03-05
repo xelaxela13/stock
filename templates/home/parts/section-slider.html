@@ -1,15 +1,15 @@
 {% load static %}
 {% load thumbnail %}
-<section id="gallery">
+<section id="slider">
     <div class="container border-top border-bottom my-3 my-lg-5 py-lg-5">
         <div class="row">
             <div class="col-12">
                 <div class="h3 mb-3">Наши преимущества:</div>
-                <div id="links" class="grid">
-                    {% for image in boxes_images %}
+                <div id="links" class="slick">
+                    {% for image in images %}
                         <a href="media/{{ image }}" data-gallery>
-                            {% thumbnail image "100x100" as im %}
-                                <span class="grid-item" style="background: url('media/{{ im }}') no-repeat;"></span>
+                            {% thumbnail image "200x200" as im %}
+                                <span class="slick-item" style="background: url('media/{{ im }}') no-repeat;"></span>
                             {% endthumbnail %}
                         </a>
                     {% endfor %}

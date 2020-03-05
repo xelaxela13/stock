@@ -16,28 +16,21 @@
     {% include 'home/parts/section-ktp.html' %}
     {% include 'home/parts/section-gallery.html' %}
     {% include 'home/parts/section-solar.html' %}
+    {% include 'home/parts/section-slider.html' %}
     {% include 'home/parts/section-docs.html' %}
 
     {#    {% include 'home/parts/section-stab.html'  %}#}
-
-
-
-    {#    {% if pictures %}#}
-    {#        <div class="col-lg-12 text-center">#}
-    {#            <ul id="links" class="pictures">#}
-    {#                {% for picture in pictures %}#}
-    {#                    <li>#}
-    {#                        <a href="{{ picture.file.url }}">#}
-    {#                            <img src="{{ picture.thumbnail.url }}">#}
-    {#                        </a>#}
-    {#                    </li>#}
-    {#                {% endfor %}#}
-    {#            </ul>#}
-    {#        </div>#}
-    {#    {% endif %}#}
+    <div id="blueimp-gallery" class="blueimp-gallery">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+    </div>
 {% endblock content %}
 {% block extra_script %}
-{#        {% blueimp_gallery %}#}
     <script>
         $(function () {
             activatePopover('.light', 'right');

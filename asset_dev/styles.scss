@@ -408,7 +408,7 @@ header {
         }
     }
 
-    #gallery {
+    #slider {
         .slick {
             position: relative;
 
@@ -442,10 +442,42 @@ header {
                 right: -1rem;
             }
         }
-        .blueimp-gallery{
-            .prev, .next{
+    }
+
+    #gallery {
+        .grid::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: $beige;
+        }
+
+        .grid::-webkit-scrollbar {
+            width: 4px;
+            background-color: $beige;
+        }
+
+        .grid::-webkit-scrollbar-thumb {
+            background-color: $blue-deep;
+        }
+
+        .grid {
+            height: 340px;
+            overflow-y: scroll;
+            text-align: center;
+
+            &-item {
+                border-radius: 10px;
+                width: 100px;
+                height: 100px;
+                margin: 5px;
+                background-size: cover !important;
                 display: inline-block;
             }
+        }
+    }
+
+    .blueimp-gallery {
+        .prev, .next {
+            display: inline-block;
         }
     }
 }

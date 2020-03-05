@@ -1,4 +1,6 @@
 from os import path
+
+from django.core.cache import cache
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
@@ -23,6 +25,29 @@ class ImagesGallery(models.Model):
     @property
     def images_count(self):
         return self.image_set.all().count()
+
+    @classmethod
+    def cache_key(cls, name):
+        return f'images_from_{name}'
+
+    @classmethod
+    def get_images_from_gallery(cls, name):
+        images = cache.get(cls.cache_key(name))
+        if not images:
+            try:
+                images = cls.objects.get(name=name).image_set.filter(show=True)
+            except cls.DoesNotExist:
+                return cls.objects.none()
+            except cls.MultipleObjectsReturned:
+                images = cls.objects.filter(name=name).last().image_set.filter(show=True)
+            finally:
+                cache.set(cls.cache_key(name), images)
+        return images
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        cache.delete(self.cache_key(self.name))
 
 
 class Image(models.Model):
