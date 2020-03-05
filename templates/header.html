@@ -1,10 +1,10 @@
 {% load i18n %}
 {% load static %}
 <header class="fixed-top w-100 z-index-9 bg-white">
-    <div class="container">
+    <div class="container border-bottom">
         <div class="row">
             <div class="col-12">
-                <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+                <nav class="navbar navbar-expand-lg navbar-light">
                     <a class="navbar-brand" href="{% url 'home' %}">
                         <img class="logo" src="{% static 'images/logo.png' %}">
                     </a>
@@ -16,19 +16,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item inline">
-                                <a class="nav-link" href="#ktp">КТП</a>
+                                <a class="nav-link" href="#" onclick="scrollToElement('#ktp', 300)">КТП</a>
                             </li>
                             <li class="nav-item inline">
-                                <a class="nav-link" href="#solar">Солнечная энергетика</a>
+                                <a class="nav-link" href="#" onclick="scrollToElement('#solar', 300, 100)">Солнечная энергетика</a>
                             </li>
                             <li class="nav-item inline">
-                                <a class="nav-link" href="#docs">Проектирование</a>
+                                <a class="nav-link" href="#" onclick="scrollToElement('#docs', 300, 100)">Проектирование</a>
                             </li>
                             <li class="nav-item inline">
-                                <a class="nav-link" href="#stab">Бесперебойное питание</a>
+                                <a class="nav-link" href="#" onclick="scrollToElement('#stab')">Бесперебойное питание</a>
                             </li>
                             <li class="nav-item inline">
-                                <a class="nav-link" href="#toka">TOKA Energy</a>
+                                <a class="nav-link" href="#" onclick="scrollToElement('#toka')">TOKA Energy</a>
                             </li>
                             {% if USE_I18N and SHOW_LANG_SWITCH %}
                                 <li class="nav-item inline">

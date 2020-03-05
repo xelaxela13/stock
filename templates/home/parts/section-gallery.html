@@ -1,16 +1,27 @@
 {% load static %}
 {% load thumbnail %}
-<section id="gallery" class="my-3 my-lg-5 py-lg-5">
-    <div class="container ">
+<section id="gallery">
+    <div class="container border-top border-bottom my-3 my-lg-5 py-lg-5">
         <div class="row">
             <div class="col-12">
                 <div class="h3 mb-3">Наши преимущества:</div>
-                <div class="slick">
+                <div id="links" class="slick">
                     {% for image in images %}
-                        {% thumbnail image "200x200" as im %}
-                            <div class="slick-item" style="background: url('media/{{ im }}') no-repeat;"></div>
-                        {% endthumbnail %}
+                        <a href="media/{{ image }}" data-gallery>
+                            {% thumbnail image "200x200" as im %}
+                                <span class="slick-item" style="background: url('media/{{ im }}') no-repeat;"></span>
+                            {% endthumbnail %}
+                        </a>
                     {% endfor %}
+                </div>
+                <div id="blueimp-gallery" class="blueimp-gallery">
+                    <div class="slides"></div>
+                    <h3 class="title"></h3>
+                    <a class="prev">‹</a>
+                    <a class="next">›</a>
+                    <a class="close">×</a>
+                    <a class="play-pause"></a>
+                    <ol class="indicator"></ol>
                 </div>
             </div>
         </div>
