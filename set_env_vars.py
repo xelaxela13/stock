@@ -25,10 +25,11 @@ def run():
 
             }
             config['DB'] = {
-                'name': 'postgres',
-                'USER': 'postgres',
-                'HOST': 'db',
-                'PORT': '5432'
+                'DB_NAME': 'postgres',
+                'DB_USER': 'postgres',
+                'DB_HOST': config['common']['COMPOSE_PROJECT_NAME'] + '_postgres_1',
+                'DB_PORT': '5432',
+                'DB_PASSWORD': 'postgres'
             }
             config['UWSGI'] = {
                 'UWSGI_PORT': '8100',

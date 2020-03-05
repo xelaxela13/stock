@@ -114,11 +114,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('NAME', default='postgres'),
-        'USER': config('USER', default='postgres'),
-        'HOST': config('HOST', default='db'),
-        'PORT': config('PORT', default=5432),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': config('DB_NAME', default='postgres'),
+        'USER': config('DB_USER', default='postgres'),
+        'HOST': config('DB_HOST', default='db'),
+        'PORT': config('DB_PORT', default=5432),
+        'PASSWORD': config('DB_PASSWORD', default='test')
     }
 }
 
