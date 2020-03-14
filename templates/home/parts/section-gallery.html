@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="h3 mb-3">Наши преимущества:</div>
                 <div id="links" class="grid">
-                    {% for image in boxes_images %}
+                    {% for image in boxes %}
                         <a href="media/{{ image }}" data-gallery>
                             {% thumbnail image "100x100" as im %}
                                 <span class="grid-item" style="background: url('media/{{ im }}') no-repeat;"></span>
