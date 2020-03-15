@@ -37,7 +37,27 @@
     {% include 'header.html' %}
 {% endblock header %}
 
-{% block content %}{% endblock content %}
+{% block content %}
+    <div class="position-fixed light" title="ОСФ СЕРВИС" data-toggle="popover"
+         data-content="(067)563 44 95 | (095)291 92 13 г.Днепр, Воздухофлотская, 2а/43">
+        <img src="{% static 'open-iconic/svg/lightbulb.svg' %}">
+    </div>
+    <div class="icon-scroll"></div>
+    <div class="right-block">
+        067 563 44 95
+    </div>
+    <div id="blueimp-gallery" class="blueimp-gallery">
+        <div class="slides"></div>
+        <h3 class="title"></h3>
+        <a class="prev">‹</a>
+        <a class="next">›</a>
+        <a class="close">×</a>
+        <a class="play-pause"></a>
+        <ol class="indicator"></ol>
+    </div>
+{% endblock content %}
+
+
 
 {% block footer %}
     {% include 'footer.html' %}
@@ -55,7 +75,12 @@
 <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="{% static 'js/fileupload/jquery.blueimp-gallery.min.js' %}"></script>
 <script src="{% static 'script.js' %}"></script>
-
+<script>
+    $(function () {
+        activatePopover('.light', 'right');
+        animateBlocks();
+    })
+</script>
 {% block extra_script %}{% endblock extra_script %}
 </body>
 

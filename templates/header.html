@@ -16,19 +16,19 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item inline">
-                                <a class="nav-link" href="#" onclick="scrollToElement('#ktp', 300)">КТП</a>
+                                <a class="nav-link" href="{% url 'home' %}">КТП</a>
                             </li>
                             <li class="nav-item inline">
-                                <a class="nav-link" href="#" onclick="scrollToElement('#solar', 300, 100)">Солнечная энергетика</a>
+                                <a class="nav-link" href="{% url 'solar' %}">Солнечная энергетика</a>
                             </li>
                             <li class="nav-item inline">
-                                <a class="nav-link" href="#" onclick="scrollToElement('#docs', 300, 100)">Проектирование</a>
+                                <a class="nav-link" href="#">Проектирование</a>
                             </li>
                             <li class="nav-item inline">
-                                <a class="nav-link" href="#" onclick="scrollToElement('#stab')">Бесперебойное питание</a>
+                                <a class="nav-link" href="{% url 'stabilizator' %}">Бесперебойное питание</a>
                             </li>
                             <li class="nav-item inline">
-                                <a class="nav-link" href="#" onclick="scrollToElement('#toka')">TOKA Energy</a>
+                                <a class="nav-link" href="#">TOKA Energy</a>
                             </li>
                             {% if USE_I18N and SHOW_LANG_SWITCH %}
                                 <li class="nav-item inline">

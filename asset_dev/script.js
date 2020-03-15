@@ -19,11 +19,14 @@ function moveElement() {
 }
 
 $.fn.isInViewport = function () {
-    let elementTop = $(this).offset().top,
-        elementBottom = elementTop + $(this).outerHeight(),
-        viewportTop = $(window).scrollTop(),
-        viewportBottom = viewportTop + $(window).height();
-    return elementBottom > viewportTop && elementTop < viewportBottom;
+    if ($(this).length > 0) {
+        let elementTop = $(this).offset().top,
+            elementBottom = elementTop + $(this).outerHeight(),
+            viewportTop = $(window).scrollTop(),
+            viewportBottom = viewportTop + $(window).height();
+        return elementBottom > viewportTop && elementTop < viewportBottom;
+    }
+    return false;
 };
 
 $(window).on('mousemove click', function (e) {
@@ -81,10 +84,9 @@ function scrollToSection(section) {
 
 function animateBlocks() {
     $(window).on('scroll', function () {
-        $('.solar-animate-1').isInViewport() && $('.solar-animate-1').css('opacity', '1').addClass('slideLeftReturn');
-        $('.docs-animate-1').isInViewport() && $('.docs-animate-1').css('opacity', '1').addClass('slideLeftReturn');
-        $('.docs-animate-2').isInViewport() && $('.docs-animate-2').css('opacity', '1').addClass('slideLeftReturn');
-        $('.docs-animate-3').isInViewport() && $('.docs-animate-3 img').css('opacity', '1').addClass('puffIn');
+        $('.stab-animate-1').isInViewport() && $('.stab-animate-1').css('opacity', '1').addClass('slideLeftReturn');
+        $('.stab-animate-2').isInViewport() && $('.stab-animate-2').css('opacity', '1').addClass('slideLeftReturn');
+        $('.stab-animate-3').isInViewport() && $('.stab-animate-3 img').css('opacity', '1').addClass('puffIn');
     })
 }
 

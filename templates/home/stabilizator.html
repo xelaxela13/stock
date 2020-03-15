@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}stab{% endblock %}
+{% block content %}
+    {{ block.super }}
+    {% include 'home/parts/section-stab.html' %}
+{% endblock content %}
