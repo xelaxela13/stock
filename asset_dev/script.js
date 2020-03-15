@@ -84,7 +84,7 @@ function animateBlocks() {
         $('.solar-animate-1').isInViewport() && $('.solar-animate-1').css('opacity', '1').addClass('slideLeftReturn');
         $('.docs-animate-1').isInViewport() && $('.docs-animate-1').css('opacity', '1').addClass('slideLeftReturn');
         $('.docs-animate-2').isInViewport() && $('.docs-animate-2').css('opacity', '1').addClass('slideLeftReturn');
-        $('.docs-animate-3').isInViewport() && $('.docs-animate-3 figure').addClass('puffIn');
+        $('.docs-animate-3').isInViewport() && $('.docs-animate-3 img').css('opacity', '1').addClass('puffIn');
     })
 }
 

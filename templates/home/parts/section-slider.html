@@ -4,11 +4,11 @@
     <div class="container border-top border-bottom my-3 my-lg-5 py-lg-5">
         <div class="row">
             <div class="col-12">
-                <div class="h3 mb-3">Наши преимущества:</div>
+                <div class="h3 mb-3">Сертификаты:</div>
                 <div id="links" class="slick">
-                    {% for image in images %}
+                    {% for image in certifications %}
                         <a href="media/{{ image }}" data-gallery>
-                            {% thumbnail image "200x200" as im %}
+                            {% thumbnail image "200x300" as im %}
                                 <span class="slick-item" style="background: url('media/{{ im }}') no-repeat;"></span>
                             {% endthumbnail %}
                         </a>

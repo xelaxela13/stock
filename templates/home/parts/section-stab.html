@@ -1,53 +1,100 @@
 {% load static %}
-
-<section id="stab" class="m-3 bg-beige" >
-    <div class="cycles position-absolute">
-        <div class="position-relative">
-            <span class="big pulse-down-9"></span>
-            <span class="small position-absolute pulse-up-1"></span>
-        </div>
-    </div>
-    <div class="cycle cycle-small position-absolute"></div>
-    <div class="cycle cycle-smaller position-absolute pulse-up-1"></div>
-    <div class="container p-3 p-lg-5">
+<section id="stab" class="bg-black">
+    <div class="container py-3 py-lg-5">
         <div class="row">
-            <div class="col-12">
-                <div class="h2">Стабилизаторы напряжения, системы бесперебойного питания.</div>
-            </div>
-            <div class="col-12 col-lg-3 flex-column">
-                <div class="digit text-white p-3">
-                    03
+            <div class="col-12 col-lg-6 bg-docs">
+                <div class="h2 text-white">Стабилизаторы напряжений, системы безперебойного питания, резервное
+                    электроснабжение
                 </div>
-                <div class="text-center">
-                    <a href="#" class="link text-black">Подробнее</a>
+                <div class="d-flex">
+                    <div class="digit text-white-dark mr-3">
+                        03
+                    </div>
+                </div>
+                <div class="docs-animate-3 justify-content-around w-100 lamps">
+                    <figure><img class="magictime delay-1s" style="opacity: 0"
+                                 src="{% static 'images/home/lamps/lamp1.png' %}">
+                    </figure>
+                    <figure><img class="magictime delay-1s" style="opacity: 0"
+                                 src="{% static 'images/home/lamps/lamp2.png' %}">
+                    </figure>
+                    <figure><img class="magictime delay-1s" style="opacity: 0"
+                                 src="{% static 'images/home/lamps/lamp3.png' %}">
+                    </figure>
+                    <figure><img class="magictime delay-1s" style="opacity: 0"
+                                 src="{% static 'images/home/lamps/lamp4.png' %}">
+                    </figure>
+                </div>
+                <div class="docs-animate-2 text-white-dark magictime text-justify" style="opacity: 0">
+                </div>
+                <div class="d-flex mt-3">
+                    <a href="#" class="btn btn-yellow mr-3">Подробнее</a>
+                    <a href="#" class="btn btn-green">Подробнее</a>
                 </div>
             </div>
-            <div class="col-12 col-lg-4 border-left">
-                Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum
-                является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий
-                безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem
-                Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных
-                изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое
-                время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в
-                более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах
-                которых используется Lorem Ipsum.
+            <div class="col-12 col-lg-6">
+                <div class="h5 mb-3 text-white">"Миллион" причин выбрать стабилизатор напряжения &trade; АЛЬЯНС</div>
+                <ul class="docs-animate-1 color-list magictime" style="opacity: 0">
+                    <li class="text-blue">Энергосберегающая технология при стабилизации напряжения</li>
+                    <li class="text-white">Двухпроцессорное управление, обеспечивающее добротность и стабильность
+                    </li>
+                    <li class="text-green">Мощные силовые электронные ключи с запасом до 200% и медный
+                        трансформатор
+                    </li>
+                    <li class="text-yellow">Точная стабилизация, благодаря измерению истинного значения напряжения и
+                        тока (true RMS)
+                    </li>
+                    <li class="text-white">
+                        Двухуровневая мгновенная защита от перенапряжения по напряжению сети и нагрузки
+                    </li>
+                    <li class="text-white">
+                        Эффективная защита от короткого замыкания в нагрузке — электромагнитный расцепитель
+                    </li>
+                    <li class="text-white">
+                        Защита от длительного перегруза по току с помощью надежного теплового расцепителя
+                    </li>
+                    <li class="text-white">
+                        Измерение точного значения температуры всех силовых элементов
+                    </li>
+                    <li class="text-white">
+                        АПВ — автоматическое восстановление после любой аварии (без участия человека)
+                    </li>
+                    <li class="text-white">
+                        Память всех аварийных ситуаций и отработанного времени
+                    </li>
+                    <li class="text-white">
+                        Расширенная индикация параметров нагрузки, аварийных ситуаций и предупреждений на русском языке
+                        без шифров
+                    </li>
+                    <li class="text-white">
+                        Фиксация максимальных отклонений входного напряжения и тока нагрузки
+                    </li>
+                    <li class="text-white">
+                        Значительный запас по допустимой мощности нагрузки
+                    </li>
+                    <li class="text-white">
+                        Электронный транзит!
+                    </li>
+                    <li class="text-white">
+                        Обязательные полные стендовые испытания всей выпускаемой продукции
+                    </li>
+                    <li class="text-white">
+                        Применение высокотехнологичных электронных элементов и комплектующих, проводников и изоляционных
+                        материалов
+                    </li>
+                    <li class="text-white">
+                        Полноценное гарантийное обслуживание
+                    </li>
+                </ul>
             </div>
-            <div class="col-12 col-lg-5 border-left">
-                Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum
-                является стандартной "рыбой" для текстов на латинице с начала XVI века. В то время некий
-                безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem
-                Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных
-                изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое
-                время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в
-                более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах
-                которых используется Lorem Ipsum.
-            </div>
-            <div class="col-12 col-lg-9 offset-lg-3 mt-3">
-                <figure>
-                    <img class="rounded w-100" src="{% static 'images/home/stab.jpg' %}">
-                </figure>
-            </div>
+            {#            <div class="col-12 py-3">#}
+            {#                <div class="justify-content-around w-100 lamps">#}
+            {#                    <figure><img src="{% static 'images/home/lamps/lamp1.png' %}"></figure>#}
+            {#                    <figure><img src="{% static 'images/home/lamps/lamp2.png' %}"></figure>#}
+            {#                    <figure><img src="{% static 'images/home/lamps/lamp3.png' %}"></figure>#}
+            {#                    <figure><img src="{% static 'images/home/lamps/lamp4.png' %}"></figure>#}
+            {#                </div>#}
+            {#            </div>#}
         </div>
     </div>
-{#    <div class="bg-section-stab"></div>#}
 </section>

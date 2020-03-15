@@ -180,10 +180,6 @@ header {
 
     &-docs {
         background: url("/static/images/home/opensource.svg");
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
     }
 
     &-solar {
@@ -400,10 +396,15 @@ header {
         background: linear-gradient(150deg, $blue-light 70%, $blue-light, 15%, white 15%, white 100%);
     }
 
-    #docs {
+    #stab {
         ul.color-list {
             li {
-                padding: 1rem 0;
+                padding: .5rem 0;
+            }
+        }
+        .lamps{
+            img{
+                height: 170px;
             }
         }
     }
@@ -415,7 +416,7 @@ header {
             &-item {
                 margin: 5px;
                 background-size: cover !important;
-                height: 200px;
+                height: 300px;
                 width: 200px;
                 display: inline-block;
                 border-radius: 10px;
