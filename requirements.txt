@@ -1,4 +1,4 @@
-Django==2.2.9
+Django
 requests
 django-rosetta
 python-decouple
@@ -28,3 +28,5 @@ factory_boy
 mock
 ipdb
 sorl-thumbnail
+django-sortedm2m
+six

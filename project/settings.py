@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-from os import path, environ
+from os import path
 
 from celery.schedules import crontab
 from decouple import config
@@ -28,13 +28,8 @@ def rel(*x):
     return path.join(BASE_DIR, *x)
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', cast=bool, default=False)
 
 
@@ -65,6 +60,7 @@ INSTALLED_APPS = [
     'import_export',
     'pipeline',
     'sorl.thumbnail',
+    'sortedm2m',
     # local apps
     'project',
     'accounts',
@@ -209,7 +205,7 @@ PIPELINE = {
     'COMPILERS': ('pipeline.compilers.es6.ES6Compiler', 'pipeline.compilers.sass.SASSCompiler', ),
     # 'BABEL_BINARY': '/usr/lib/node_modules/@babel',
     'BABEL_ARGUMENTS': '--presets /usr/lib/node_modules/@babel/preset-env',
-    'JS_COMPRESSOR': None, #'pipeline.compressors.jsmin.JSMinCompressor',
+    'JS_COMPRESSOR': None,  # 'pipeline.compressors.jsmin.JSMinCompressor',
     'STYLESHEETS': {
         'styles': {
             'source_filenames': (

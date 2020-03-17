@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.urls import reverse
 from sorl.thumbnail import ImageField
+from sortedm2m.fields import SortedManyToManyField
 
 __ALL__ = ('Image', 'ImagesGallery')
 
@@ -16,43 +17,8 @@ def upload_file(instance, filename):
     return f'{instance.get_settings["IMAGE_PATH"]}{name[:10]}{extension}'
 
 
-class ImagesGallery(models.Model):
-    name = models.CharField(max_length=32, blank=False)
-
-    def __str__(self):
-        return f'{self.pk} {self.name}'
-
-    @property
-    def images_count(self):
-        return self.image_set.all().count()
-
-    @classmethod
-    def cache_key(cls, name):
-        return f'images_from_{name}'
-
-    @classmethod
-    def get_images_from_gallery(cls, name):
-        images = cache.get(cls.cache_key(name))
-        if not images:
-            try:
-                images = cls.objects.get(name=name).image_set.filter(show=True)
-            except cls.DoesNotExist:
-                return cls.objects.none()
-            except cls.MultipleObjectsReturned:
-                images = cls.objects.filter(name=name).last().image_set.filter(show=True)
-            finally:
-                cache.set(cls.cache_key(name), images)
-        return images
-
-    def save(self, force_insert=False, force_update=False, using=None,
-             update_fields=None):
-        super().save(force_insert, force_update, using, update_fields)
-        cache.delete(self.cache_key(self.name))
-
-
 class Image(models.Model):
     user = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
-    gallery = models.ForeignKey(ImagesGallery, blank=True, null=True, on_delete=models.SET_NULL)
     file = ImageField(upload_to=upload_file)
     slug = models.SlugField(max_length=20, blank=True)
     show = models.BooleanField(default=True)
@@ -84,3 +50,38 @@ class Image(models.Model):
         if not self.slug:
             self.slug = self.generate_slug()
             self.save(update_fields=('slug',))
+
+
+class ImagesGallery(models.Model):
+    name = models.CharField(max_length=32, blank=False)
+    images = SortedManyToManyField(Image, blank=True)
+
+    def __str__(self):
+        return f'{self.pk} {self.name}'
+
+    @property
+    def images_count(self):
+        return self.images.count()
+
+    @classmethod
+    def cache_key(cls, name):
+        return f'images_from_{name}'
+
+    @classmethod
+    def get_images_from_gallery(cls, name):
+        images = cache.get(cls.cache_key(name))
+        if not images:
+            try:
+                images = cls.objects.get(name=name).images.filter(show=True)
+            except cls.DoesNotExist:
+                return cls.objects.none()
+            except cls.MultipleObjectsReturned:
+                images = cls.objects.filter(name=name).last().images.filter(show=True)
+            finally:
+                cache.set(cls.cache_key(name), images)
+        return images
+
+    def save(self, force_insert=False, force_update=False, using=None,
+             update_fields=None):
+        super().save(force_insert, force_update, using, update_fields)
+        cache.delete(self.cache_key(self.name))

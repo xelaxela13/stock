@@ -7,7 +7,7 @@ from django.conf import settings
 try:
     from StringIO import BytesIO
 except ImportError:
-    from django.utils.six import BytesIO
+    from io import BytesIO
 
 import os
 import posixpath
