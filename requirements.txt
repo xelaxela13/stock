@@ -16,7 +16,8 @@ django-celery-beat
 python-memcached
 django-debug-toolbar
 django-import-export
-django-jet
+# django-jet  until dont support django3
+https://github.com/xelaxela13/django-jet/archive/dev.zip
 xhtml2pdf
 django-pipeline
 redis
@@ -29,4 +30,3 @@ mock
 ipdb
 sorl-thumbnail
 django-sortedm2m
-six
