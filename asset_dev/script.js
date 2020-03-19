@@ -85,8 +85,7 @@ function scrollToSection(section) {
 function animateBlocks() {
     $(window).on('scroll', function () {
         $('.stab-animate-1').isInViewport() && $('.stab-animate-1').css('opacity', '1').addClass('slideLeftReturn');
-        $('.stab-animate-2').isInViewport() && $('.stab-animate-2').css('opacity', '1').addClass('slideLeftReturn');
-        $('.stab-animate-3').isInViewport() && $('.stab-animate-3 img').css('opacity', '1').addClass('puffIn');
+        $('.stab-animate-2').isInViewport() && $('.stab-animate-2').css('opacity', '1').addClass('slideRightReturn');
     })
 }
 

@@ -115,6 +115,7 @@ header {
 
 section{
     margin-top: 5rem;
+    overflow: hidden;
 }
 
 .blockquote {
@@ -202,6 +203,7 @@ section{
 
 .digit {
     font-size: 8rem;
+    line-height: 1;
 }
 
 .link {
@@ -387,7 +389,7 @@ section{
     right: -10rem;
     color: #dfdcda;
     font-size: 4rem;
-    transform: rotate(90deg);
+    transform: rotate(90deg) scale(1.02);
     font-weight: bold;
 }
 
