@@ -5,4 +5,12 @@
 {% block content %}
     {{ block.super }}
     {% include 'home/parts/section-stab.html' %}
+    {% include 'home/parts/section-gallery.html' with title='Модельный ряд:' gallery_name='stabilizators' %}
 {% endblock content %}
+{% block extra_script %}
+    <script>
+    $(function () {
+        activatePopover('.warranty', 'bottom');
+    })
+</script>
+{% endblock extra_script %}

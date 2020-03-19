@@ -360,8 +360,8 @@ LOGGING = {
 
 if DEBUG:
     INTERNAL_IPS = ('127.0.0.1',)
-    # INSTALLED_APPS.append('debug_toolbar')
-    # MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
+    INSTALLED_APPS.append('debug_toolbar')
+    MIDDLEWARE.append('debug_toolbar.middleware.DebugToolbarMiddleware')
     STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
     DEBUG_TOOLBAR_CONFIG = {
         "SHOW_TOOLBAR_CALLBACK": lambda request: True,
