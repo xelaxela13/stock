@@ -29,7 +29,14 @@ class ImagesGalleryAdmin(admin.ModelAdmin):
     list_display = ('name', 'images_count')
     filter_horizontal = ('images',)
 
-    def save_model(self, request, obj, form, change):
-        super().save_model(request, obj, form, change)
-        for image in request.FILES.getlist('upload_images'):
-            Image.objects.create(file=image, user=request.user)
+    class Media:
+        js = ('/static/admin/js/custom.js', )
+
+    def save_form(self, request, form, change):
+        images = []
+        for image in form.files.getlist('upload_images'):
+            new_img = Image.objects.create(file=image, user=request.user)
+            images.append(new_img)
+        if images:
+            form.cleaned_data['images'] += images
+        super().save_form(request, form, change)

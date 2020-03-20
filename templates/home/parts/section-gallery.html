@@ -3,12 +3,12 @@
 {% load get_context %}
 {% get_context_data_by_name gallery_name as gallery %}
 {% if gallery %}
-    <section id="gallery" class="mt-0">
+    <section class="mt-0">
         <div class="container border-top border-bottom py-lg-5">
             <div class="row">
                 <div class="col-12">
                     <div class="h3 mb-3">{{ title }}</div>
-                    <div id="links" class="grid">
+                    <div id="gallery" class="grid">
                         {% for image in gallery %}
                             <a href="media/{{ image }}" data-gallery>
                                 {% thumbnail image "100x100" as im %}
