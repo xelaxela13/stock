@@ -1,5 +1,9 @@
 (function ($) {
     $(function () {
+        let styles = {
+            'width': '100%'
+        };
+        $('.related-widget-wrapper span.select2.select2-container--jet').css(styles);
         $('.related-widget-wrapper span.select2').click(() => {
             $('ul.select2-results__options').css({'display': 'inline-flex', 'flex-wrap': 'wrap'});
             $('li.select2-results__option').map((index, element) => {

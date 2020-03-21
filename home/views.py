@@ -16,14 +16,14 @@ class GalleryContextMixin(ContextMixin):
 
 class Home(TemplateView, GalleryContextMixin):
     template_name = 'home/home.html'
-    galleries_names = {'boxes', }
+    galleries_names = {'certifications', 'boxes'}
 
 
 class Solar(TemplateView, GalleryContextMixin):
     template_name = 'home/solar.html'
-    galleries_names = {'certifications', 'boxes'}
+    galleries_names = {'solar'}
 
 
 class Stabilizator(TemplateView, GalleryContextMixin):
     template_name = 'home/stabilizator.html'
-    galleries_names = {'stabilizators', }
+    galleries_names = {'stabilizators'}

@@ -1,12 +1,15 @@
 {% load static %}
 {% load thumbnail %}
-<section id="slider" class="mt-0">
-    <div class="container border-top border-bottom py-lg-5">
+{% load get_context %}
+{% get_context_data_by_name gallery_name as gallery %}
+{% if gallery %}
+<section class="mt-0">
+    <div class="container border-top border-bottom py-lg-5 mb-3">
         <div class="row">
             <div class="col-12">
-                <div class="h3 mb-3">Сертификаты:</div>
-                <div id="links" class="slick">
-                    {% for image in certifications %}
+                <div class="h3 mb-3">{{ title }}</div>
+                <div id="slider" class="slick">
+                    {% for image in gallery %}
                         <a href="media/{{ image }}" data-gallery>
                             {% thumbnail image "200x300" as im %}
                                 <span class="slick-item" style="background: url('media/{{ im }}') no-repeat;"></span>
@@ -18,3 +21,4 @@
         </div>
     </div>
 </section>
+{% endif %}

@@ -39,4 +39,4 @@ class ImagesGalleryAdmin(admin.ModelAdmin):
             images.append(new_img)
         if images:
             form.cleaned_data['images'] += images
-        super().save_form(request, form, change)
+        return super().save_form(request, form, change)

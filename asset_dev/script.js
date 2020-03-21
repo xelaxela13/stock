@@ -112,3 +112,7 @@ function activateSlick(element) {
         }
     )
 }
+
+function activateScrollSpy(element) {
+    $('body').scrollspy({target: element})
+}

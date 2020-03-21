@@ -5,14 +5,5 @@
 {% block content %}
     {{ block.super }}
     {% include 'home/parts/section-solar.html' %}
-    {% include 'home/parts/section-slider.html' %}
-    {% include 'home/parts/section-gallery.html' with title='Наши работы:' gallery_name='boxes' %}
+    {% include 'home/parts/section-gallery.html' with title='Наши работы:' gallery_name='solar' %}
 {% endblock content %}
-{% block extra_script %}
-    <script>
-        $(function () {
-            activateSlick('.slick')
-        })
-    </script>
-{% endblock extra_script %}
-
