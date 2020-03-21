@@ -27,3 +27,8 @@ class Solar(TemplateView, GalleryContextMixin):
 class Stabilizator(TemplateView, GalleryContextMixin):
     template_name = 'home/stabilizator.html'
     galleries_names = {'stabilizators'}
+
+
+class Docs(TemplateView, GalleryContextMixin):
+    template_name = 'home/docs.html'
+    galleries_names = {'docs'}

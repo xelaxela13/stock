@@ -114,5 +114,5 @@ function activateSlick(element) {
 }
 
 function activateScrollSpy(element) {
-    $('body').scrollspy({target: element})
+    $('#containerStab').scrollspy({target: element})
 }

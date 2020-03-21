@@ -21,9 +21,7 @@ from django.conf import settings
 
 
 def use_i18n(urlpatterns_list):
-    if not settings.USE_I18N:
-        return urlpatterns_list
-    elif not settings.SHOW_LANG_SWITCH:
+    if not settings.USE_I18N and not settings.SHOW_LANG_SWITCH:
         return urlpatterns_list
     return i18n_patterns(*urlpatterns_list)
 
