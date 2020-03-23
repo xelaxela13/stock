@@ -5,8 +5,10 @@ COPY requirements.txt /tmp/
 RUN set -ex \
     && apk add --no-cache --virtual .build-deps \
        gcc \
+       libc-dev \
+       libffi-dev \
+       openssl-dev \
        postgresql-dev \
-       musl-dev \
        gettext \
        postgresql-client \
     && apk add --no-cache \
@@ -43,6 +45,5 @@ COPY . $PROJECT_ROOT
 
 #USER user
 
-#docker build -t stock:latest .
-#docker tag stock:latest xelaxela13/stock:latest
+#docker build -t xelaxela13/stock:latest .
 #docker run --rm --volumes-from db postgres:9.3.22 bash -c "rm -r /var/lib/postgresql/data/*"

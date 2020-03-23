@@ -9,7 +9,8 @@ services:
     ports:
     - 8001:8002
     - 8444:8002
-    command: "gunicorn -c gunicorn_conf.py project.wsgi"
+    command: "daphne project.asgi:application -b 0.0.0.0 -p 8002 "
+#    command: "gunicorn -c gunicorn_conf.py project.wsgi"
     depends_on:
     - postgres
     - redis

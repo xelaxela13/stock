@@ -30,3 +30,5 @@ mock
 ipdb
 sorl-thumbnail
 django-sortedm2m
+daphne
+Twisted[http2,tls]
