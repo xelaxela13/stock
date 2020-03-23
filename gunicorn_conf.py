@@ -16,4 +16,4 @@ env = {
 }
 
 reload = True
-name = 'stock'
+name = environ.get('COMPOSE_PROJECT_NAME', 'test')
