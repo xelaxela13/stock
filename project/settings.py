@@ -202,7 +202,7 @@ STATICFILES_FINDERS = (
 STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
 
 PIPELINE = {
-    'COMPILERS': ('pipeline.compilers.sass.SASSCompiler', ),
+    'COMPILERS': ('pipeline.compilers.sass.SASSCompiler', 'pipeline.compilers.es6.ES6Compiler'),
     # 'BABEL_BINARY': '/usr/lib/node_modules/@babel',
     'BABEL_ARGUMENTS': '--presets /usr/lib/node_modules/@babel/preset-env',
     'JS_COMPRESSOR': 'pipeline.compressors.jsmin.JSMinCompressor',
@@ -210,9 +210,6 @@ PIPELINE = {
         'styles': {
             'source_filenames': (
                 'styles.scss',
-                'open-iconic/font/css/open-iconic-bootstrap.scss',
-                'magic/magic.min.css',
-                'css/fileupload/blueimp-gallery.min.css'
             ),
             'output_filename': 'styles.css',
             'extra_context': {
@@ -232,8 +229,7 @@ PIPELINE = {
     'JAVASCRIPT': {
         'js': {
             'source_filenames': (
-                'js/fileupload/jquery.blueimp-gallery.min.js',
-                'script.js',
+                'script.es6',
             ),
             'output_filename': 'scripts.js',
         }
