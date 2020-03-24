@@ -17,7 +17,7 @@ from decouple import config
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
-from whitenoise.storage import CompressedManifestStaticFilesStorage
+# from whitenoise.storage import CompressedManifestStaticFilesStorage
 
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
@@ -190,28 +190,29 @@ STATICFILES_DIRS = [
     rel('asset_dev')
 ]
 STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # 'pipeline.finders.FileSystemFinder',
-    # 'pipeline.finders.AppDirectoriesFinder',
-    # 'pipeline.finders.PipelineFinder',
+    # 'django.contrib.staticfiles.finders.FileSystemFinder',
+    # 'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'pipeline.finders.FileSystemFinder',
+    'pipeline.finders.AppDirectoriesFinder',
+    'pipeline.finders.PipelineFinder',
 )
 
-CompressedManifestStaticFilesStorage.manifest_strict = False
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+# CompressedManifestStaticFilesStorage.manifest_strict = False
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
 
 PIPELINE = {
-    'COMPILERS': ('pipeline.compilers.es6.ES6Compiler', 'pipeline.compilers.sass.SASSCompiler', ),
+    'COMPILERS': ('pipeline.compilers.sass.SASSCompiler', ),
     # 'BABEL_BINARY': '/usr/lib/node_modules/@babel',
     'BABEL_ARGUMENTS': '--presets /usr/lib/node_modules/@babel/preset-env',
-    'JS_COMPRESSOR': None,  # 'pipeline.compressors.jsmin.JSMinCompressor',
+    'JS_COMPRESSOR': 'pipeline.compressors.jsmin.JSMinCompressor',
     'STYLESHEETS': {
         'styles': {
             'source_filenames': (
                 'styles.scss',
                 'open-iconic/font/css/open-iconic-bootstrap.scss',
-                'magic/magic.min.css'
+                'magic/magic.min.css',
+                'css/fileupload/blueimp-gallery.min.css'
             ),
             'output_filename': 'styles.css',
             'extra_context': {
@@ -231,9 +232,10 @@ PIPELINE = {
     'JAVASCRIPT': {
         'js': {
             'source_filenames': (
-                'script.es6',
+                'js/fileupload/jquery.blueimp-gallery.min.js',
+                'script.js',
             ),
-            'output_filename': 'script.js',
+            'output_filename': 'scripts.js',
         }
     }
 }
