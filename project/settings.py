@@ -203,8 +203,7 @@ STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
 
 PIPELINE = {
     'COMPILERS': ('pipeline.compilers.sass.SASSCompiler', 'pipeline.compilers.es6.ES6Compiler'),
-    # 'BABEL_BINARY': '/usr/lib/node_modules/@babel',
-    'BABEL_ARGUMENTS': '--presets /usr/lib/node_modules/@babel/preset-env',
+    # 'BABEL_ARGUMENTS': '--presets /usr/lib/node_modules/@babel/preset-env '
     'JS_COMPRESSOR': 'pipeline.compressors.jsmin.JSMinCompressor',
     'STYLESHEETS': {
         'styles': {
