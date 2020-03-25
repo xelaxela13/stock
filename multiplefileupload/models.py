@@ -17,18 +17,28 @@ def upload_file(instance, filename):
     return f'{instance.get_settings["IMAGE_PATH"]}{name[:10]}{extension}'
 
 
+def upload_watermark(instance, filename):
+    name, extension = path.splitext(filename)
+    return f'watermark/watermark{extension}'
+
+
+class Watermark(models.Model):
+    file = ImageField(upload_to=upload_watermark)
+
+
 class Image(models.Model):
     user = models.ForeignKey(get_user_model(), null=True, on_delete=models.SET_NULL)
     file = ImageField(upload_to=upload_file)
     slug = models.SlugField(max_length=20, blank=True)
     show = models.BooleanField(default=True)
+    watermark = models.BooleanField(default=True)
     create_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.file.name
 
     def get_absolute_url(self):
-        return reverse('image:image-slug', args=(self.slug, ))
+        return reverse('image:image-slug', args=(self.slug,))
 
     @property
     def get_settings(self):
