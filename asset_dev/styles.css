@@ -1844,17 +1844,33 @@ section {
   background: linear-gradient(150deg, #edf5f8 70%, #edf5f8, 15%, white 15%, white 100%);
 }
 
+.scroll-y::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #dfdcda;
+}
+.scroll-y::-webkit-scrollbar {
+  width: 4px;
+  background-color: #dfdcda;
+}
+.scroll-y::-webkit-scrollbar-thumb {
+  background-color: #28234a;
+}
+
 #stab ul.color-list li {
   padding: 0.5rem 0;
 }
 #stab .lamps img {
   height: 170px;
 }
+#stab .scrollspy-stab {
+  height: 500px;
+  overflow-y: scroll;
+}
 
-#slider .slick {
+#slider, .slick {
   position: relative;
 }
-#slider .slick-item {
+#slider-item, .slick-item {
   margin: 5px;
   background-size: cover !important;
   height: 300px;
@@ -1862,7 +1878,7 @@ section {
   display: inline-block;
   border-radius: 10px;
 }
-#slider .slick-prev, #slider .slick-next {
+#slider-prev, #slider-next, .slick-prev, .slick-next {
   position: absolute;
   background: #dfdcda;
   border-radius: 50%;
@@ -1874,30 +1890,19 @@ section {
   justify-content: center;
   z-index: 1;
 }
-#slider .slick-prev {
+#slider-prev, .slick-prev {
   left: -1rem;
 }
-#slider .slick-next {
+#slider-next, .slick-next {
   right: -1rem;
 }
 
-#gallery.grid::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #dfdcda;
-}
-#gallery.grid::-webkit-scrollbar {
-  width: 4px;
-  background-color: #dfdcda;
-}
-#gallery.grid::-webkit-scrollbar-thumb {
-  background-color: #28234a;
-}
-#gallery.grid {
+#gallery, .gallery {
   height: 340px;
   overflow-y: scroll;
   text-align: center;
 }
-#gallery.grid-item {
+#gallery-item, .gallery-item {
   border-radius: 10px;
   width: 100px;
   height: 100px;
