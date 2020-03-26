@@ -6,6 +6,8 @@ def watermark_with_transparency(input_image_path, watermark_image_path, output_i
     watermark = Image.open(watermark_image_path)
     if watermark.mode != 'RGBA':
         watermark = watermark.convert("RGBA")
+    while watermark.size > input_image.size:
+        watermark = watermark.resize(tuple(map(lambda x: x/2, watermark.size)))
     width_of_input_image, height_of_input_image = input_image.size
     width_of_watermark, height_of_watermark = watermark.size
     if not position or not isinstance(position, tuple):

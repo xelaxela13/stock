@@ -9,7 +9,7 @@ from django.urls import reverse
 from sorl.thumbnail import ImageField
 from sortedm2m.fields import SortedManyToManyField
 
-__ALL__ = ('Image', 'ImagesGallery')
+__ALL__ = ('Watermark', 'Image', 'ImagesGallery')
 
 
 def upload_file(instance, filename):
@@ -19,7 +19,7 @@ def upload_file(instance, filename):
 
 def upload_watermark(instance, filename):
     name, extension = path.splitext(filename)
-    return f'watermark/watermark{extension}'
+    return f'watermark/watermark_{name[:10]}{extension}'
 
 
 class Watermark(models.Model):
@@ -31,7 +31,7 @@ class Image(models.Model):
     file = ImageField(upload_to=upload_file)
     slug = models.SlugField(max_length=20, blank=True)
     show = models.BooleanField(default=True)
-    watermark = models.BooleanField(default=True)
+    watermarked = models.BooleanField(default=False)
     create_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -65,6 +65,8 @@ class Image(models.Model):
 class ImagesGallery(models.Model):
     name = models.CharField(max_length=32, blank=False)
     images = SortedManyToManyField(Image, blank=True)
+    watermark = models.ForeignKey(Watermark, blank=True, null=True, on_delete=models.SET_NULL,
+                                  help_text='Optional field. Select a watermark to overlay on images.')
 
     def __str__(self):
         return f'{self.pk} {self.name}'
