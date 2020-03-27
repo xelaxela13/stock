@@ -1,4 +1,6 @@
 import configparser
+from os import path
+from django.conf import settings
 
 
 def get_db_settings(database_dict, file):
@@ -15,3 +17,8 @@ def get_db_settings(database_dict, file):
         pass
     except configparser.MissingSectionHeaderError:
         return
+
+
+def rel(*x):
+    #  For example: rel('log', 'file.log') will to returned /var/www/stock/log/file.log
+    return path.join(settings.BASE_DIR, *x)

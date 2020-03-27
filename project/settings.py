@@ -18,24 +18,17 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from whitenoise.storage import CompressedManifestStaticFilesStorage
+from .utils import rel
 
 # Build paths inside the project like this: path.join(BASE_DIR, ...)
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
-
-
-def rel(*x):
-    #  For example: rel('log', 'file.log') will to returned /var/www/stock/log/file.log
-    return path.join(BASE_DIR, *x)
-
 
 SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', cast=bool, default=False)
 
-
 def log_level():
     return 'INFO' if DEBUG else 'INFO'
-
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')], default='127.0.0.1')
 
