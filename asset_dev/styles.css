@@ -36,11 +36,6 @@ header .navbar-light .navbar-nav .nav-link {
   color: #2a2a30;
 }
 
-section {
-  margin-top: 5rem;
-  overflow: hidden;
-}
-
 .blockquote-title {
   position: relative;
 }
@@ -1913,6 +1908,21 @@ section {
 
 .blueimp-gallery .prev, .blueimp-gallery .next {
   display: inline-block;
+}
+
+#sectionFirst {
+  background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat top center;
+  background-size: cover;
+}
+#sectionSolar .bg {
+  background: url("/static/images/home/solar-bg.jpg") no-repeat top center;
+  background-size: cover;
+  min-height: 400px;
+}
+#sectionProjects .bg {
+  background: url("/static/images/home/section-projects/section-projects-bg.jpg") no-repeat center;
+  background-size: cover;
+  min-height: 600px;
 }
 
 /*# sourceMappingURL=styles.css.map */

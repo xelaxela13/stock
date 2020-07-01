@@ -111,11 +111,6 @@ header {
     }
 }
 
-section {
-    margin-top: 5rem;
-    overflow: hidden;
-}
-
 .blockquote {
     &-title {
         position: relative;
@@ -489,6 +484,27 @@ section {
     }
 }
 
+#section {
+    &First {
+        background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat top center;
+        background-size: cover;
+    }
+
+    &Solar {
+        .bg {
+            background: url("/static/images/home/solar-bg.jpg") no-repeat top center;
+            background-size: cover;
+            min-height: 400px;
+        }
+    }
+    &Projects{
+        .bg{
+            background: url("/static/images/home/section-projects/section-projects-bg.jpg") no-repeat center;
+            background-size: cover;
+            min-height: 600px;
+        }
+    }
+}
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
