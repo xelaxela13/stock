@@ -1,0 +1,36 @@
+{% load static %}
+{% load i18n %}
+<nav class="navbar navbar-light p-0">
+    <div class="hamburger" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+    onclick="$(this).toggleClass('open')">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <div class="collapse navbar-collapse bg-white p-3 mt-5" id="navbarSupportedContent">
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item inline">
+                <a class="nav-link" href="{% if request.path == '/' %}#sectionFirst{% else %}{% url 'home' %}?#sectionFirst{% endif %}">О компании</a>
+            </li>
+            <li class="nav-item inline">
+                <a class="nav-link" href="{% if request.path == '/' %}#sectionSolar{% else %}{% url 'home' %}?#sectionSolar{% endif %}">Солнечная энергетика</a>
+            </li>
+            <li class="nav-item inline">
+                <a class="nav-link" href="{% if request.path == '/' %}#sectionProjects{% else %}{% url 'home' %}?#sectionProjects{% endif %}">Проектирование</a>
+            </li>
+            <li class="nav-item inline">
+                <a class="nav-link" href="{% url 'stabilizators' %}">Бесперебойное питание</a>
+            </li>
+            <li class="nav-item inline">
+                <a class="nav-link" href="#">TOKA Energy</a>
+            </li>
+            {% if USE_I18N and SHOW_LANG_SWITCH %}
+                <li class="nav-item inline">
+                    {% include '_switch_language.html' %}
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
