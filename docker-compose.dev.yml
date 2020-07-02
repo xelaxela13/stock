@@ -10,6 +10,5 @@ services:
     - ${UWSGI_PORT_RANGE}:${UWSGI_PORT_RANGE}
     command: python manage.py runserver 0:${UWSGI_PORT}
     depends_on:
-    - postgres
     - redis
     - memcached

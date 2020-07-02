@@ -20,15 +20,16 @@ from django.utils.translation import gettext_lazy as _
 from whitenoise.storage import CompressedManifestStaticFilesStorage
 from .utils import rel
 
-# Build paths inside the project like this: path.join(BASE_DIR, ...)
 BASE_DIR = path.dirname(path.dirname(path.abspath(__file__)))
 
 SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = config('DEBUG', cast=bool, default=False)
 
+
 def log_level():
     return 'INFO' if DEBUG else 'INFO'
+
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')], default='127.0.0.1')
 
@@ -51,7 +52,6 @@ INSTALLED_APPS = [
     'django_celery_results',
     'django_celery_beat',
     'import_export',
-    'pipeline',
     'sorl.thumbnail',
     'sortedm2m',
     # local apps
@@ -103,12 +103,8 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DB_NAME', default='postgres'),
-        'USER': config('DB_USER', default='postgres'),
-        'HOST': config('DB_HOST', default='db'),
-        'PORT': config('DB_PORT', default=5432),
-        'PASSWORD': config('DB_PASSWORD', default='test')
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': config('DB_NAME', default='sqlite3'),
     }
 }
 
@@ -185,48 +181,10 @@ STATICFILES_DIRS = [
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    # 'pipeline.finders.FileSystemFinder',
-    # 'pipeline.finders.AppDirectoriesFinder',
-    # 'pipeline.finders.PipelineFinder',
 )
 
 CompressedManifestStaticFilesStorage.manifest_strict = False
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
-
-PIPELINE = {
-    'COMPILERS': ('pipeline.compilers.sass.SASSCompiler', 'pipeline.compilers.es6.ES6Compiler'),
-    'BABEL_ARGUMENTS': '--presets /usr/lib/node_modules/@babel/preset-env ',
-    'JS_COMPRESSOR': 'pipeline.compressors.jsmin.JSMinCompressor',
-    'STYLESHEETS': {
-        'styles': {
-            'source_filenames': (
-                'styles.scss',
-            ),
-            'output_filename': 'styles.css',
-            'extra_context': {
-                'media': 'screen',
-            },
-        },
-        'admin': {
-            'source_filenames': (
-                'admin/css/custom.scss',
-            ),
-            'output_filename': 'admin/css/custom.css',
-            'extra_context': {
-                'media': 'screen',
-            },
-        },
-    },
-    'JAVASCRIPT': {
-        'js': {
-            'source_filenames': (
-                'script.es6',
-            ),
-            'output_filename': 'scripts.js',
-        }
-    }
-}
 
 SITE_LOGO_FIRST = path.join(STATIC_URL, 'images/logo.png')
 SITE_LOGO_SECOND = path.join(STATIC_URL, 'images/logo.png')
@@ -243,10 +201,11 @@ IPSTACK_ACCESS_KEY = config('IPSTACK_ACCESS_KEY', default='')
 # Activate Django-Heroku, uncomment it when deploy to Heroku
 if not DEBUG and config('HEROKU', default=False):
     import dj_database_url
+
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
     import django_heroku
-    django_heroku.settings(locals())
 
+    django_heroku.settings(locals())
 
 # REDIS related settings
 CELERY_REDIS_HOST = 'redis'
@@ -259,9 +218,9 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_BEAT_SCHEDULE = {
     'Clear log files': {
-         'task': 'project.tasks.clear_log_files',
-         'schedule': crontab(hour=1, day_of_week=0),
-        },
+        'task': 'project.tasks.clear_log_files',
+        'schedule': crontab(hour=1, day_of_week=0),
+    },
 }
 
 LOGGING = {
@@ -356,7 +315,6 @@ if DEBUG:
     DEBUG_TOOLBAR_CONFIG = {
         "SHOW_TOOLBAR_CALLBACK": lambda request: True,
     }
-    PIPELINE['JS_COMPRESSOR'] = None
     from pprint import pprint
     from ipdb import set_trace
 

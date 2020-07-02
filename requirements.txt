@@ -19,7 +19,6 @@ django-import-export
 # django-jet  until dont support django3
 https://github.com/xelaxela13/django-jet/archive/dev.zip
 xhtml2pdf
-django-pipeline
 redis
 flake8
 jsmin

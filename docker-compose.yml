@@ -1,24 +1,9 @@
 version: '3.1'
 
-#volumes:
-#  pgdata:
-#    driver: local
 services:
   redis:
     image: redis:latest
     restart: always
-  postgres:
-    image: postgres:latest
-    restart: unless-stopped
-    ports:
-    - ${DB_PORT}:${DB_PORT}
-    environment:
-#    - PGDATA=/var/lib/postgresql/data/pgdata
-    - POSTGRES_USER=${DB_USER}
-    - POSTGRES_PASSWORD=${DB_PASSWORD}
-    - POSTGRES_DB=${DB_NAME}
-    volumes:
-    - ./data/postgres:/var/lib/postgresql/data
   celery:
     image: ${IMAGE}
     command: celery -A project worker -l info
@@ -26,7 +11,6 @@ services:
     volumes:
     - .:${PROJECT_ROOT}
     depends_on:
-    - postgres
     - redis
   celerybeat:
     image: ${IMAGE}
@@ -35,7 +19,6 @@ services:
     volumes:
     - .:${PROJECT_ROOT}
     depends_on:
-    - postgres
     - redis
   memcached:
     image: memcached:latest
