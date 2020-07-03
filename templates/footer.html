@@ -1,11 +1,24 @@
 {% load static %}
 <footer class="bg-black-light">
-    <div class="container">
+    <div class="container py-5">
         <div class="row">
+            <div class="col-12 text-white">
+                <div class="d-flex flex-column flex-lg-row justify-content-between">
+                    <div>
+                        <div>Днепр, Воздухофлотская 2а/43</div>
+                        <div>(067) 563 44 95</div>
+                        <div>(095) 291 92 13</div>
+                    </div>
+                    <div>
+                        {% include '_nav_footer.html' %}
+                    </div>
+                </div>
+                <hr>
+            </div>
             <div class="col-12">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <div class="font-weight-bold text-white-dark">
+                        <div class="text-white-dark">
                             ОСФ Сервис - производство, продажа, сервис
                         </div>
                         <div class="small text-white-dark">
@@ -14,7 +27,8 @@
                     </div>
                     <div>
                         <div class="small">
-                            <a class="text-white-dark" href="https://www.facebook.com/stabilizators.net/">facebook</a>
+                            <a class="text-white-dark" href="https://www.facebook.com/stabilizators.net/"
+                               target="_blank">facebook</a>
                         </div>
                     </div>
                 </div>

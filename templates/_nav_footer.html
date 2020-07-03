@@ -1,0 +1,23 @@
+{% load static %}
+<ul class="list-unstyled my-3">
+    <li class="d-inline px-1">
+        <a class="text-white"
+           href="{% if request.path == '/' %}#sectionFirst{% else %}{% url 'home' %}?#sectionFirst{% endif %}">О
+            компании</a>
+    </li>
+    <li class="d-inline px-1">
+        <a class="text-white"
+           href="{% if request.path == '/' %}#sectionSolar{% else %}{% url 'home' %}?#sectionSolar{% endif %}">Солнечная
+            энергетика</a>
+    </li>
+    <li class="d-inline px-1">
+        <a class="text-white"
+           href="{% if request.path == '/' %}#sectionProjects{% else %}{% url 'home' %}?#sectionProjects{% endif %}">Проектирование</a>
+    </li>
+    <li class="d-inline px-1">
+        <a class="text-white" href="{% url 'stabilizators' %}">Бесперебойное питание</a>
+    </li>
+    <li class="d-inline px-1">
+        <a class="text-white" href="#">TOKA Energy</a>
+    </li>
+</ul>

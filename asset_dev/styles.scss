@@ -101,12 +101,13 @@ a {
     color: $blue-deep;
 }
 
-nav {
-    &.navbar {
+#nav {
+    &Header {
         position: absolute;
         top: 1rem;
         right: 1rem;
         z-index: 9;
+
         .hamburger {
             width: 35px;
             height: 30px;
@@ -195,6 +196,7 @@ nav {
         }
     }
 }
+
 
 .blockquote {
     &-title {
@@ -588,6 +590,12 @@ nav {
             background: url("/static/images/home/section-projects/section-projects-bg.jpg") no-repeat center;
             background-size: cover;
             min-height: 600px;
+        }
+    }
+
+    &Partners {
+        img {
+            width: 100px;
         }
     }
 }

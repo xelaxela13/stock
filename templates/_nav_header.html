@@ -1,6 +1,6 @@
 {% load static %}
 {% load i18n %}
-<nav class="navbar navbar-light p-0">
+<nav class="navbar navbar-light p-0" id="navHeader">
     <div class="hamburger" data-toggle="collapse"
             data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
@@ -9,7 +9,7 @@
         <span></span>
         <span></span>
     </div>
-    <div class="collapse navbar-collapse bg-white p-3 mt-5" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse bg-white p-3 mt-5" id="navbarSupportedContentHeader">
         <ul class="navbar-nav mx-auto">
             <li class="nav-item inline">
                 <a class="nav-link" href="{% if request.path == '/' %}#sectionFirst{% else %}{% url 'home' %}?#sectionFirst{% endif %}">О компании</a>

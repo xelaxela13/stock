@@ -29,13 +29,13 @@ a {
   color: #28234a;
 }
 
-nav.navbar {
+#navHeader {
   position: absolute;
   top: 1rem;
   right: 1rem;
   z-index: 9;
 }
-nav.navbar .hamburger {
+#navHeader .hamburger {
   width: 35px;
   height: 30px;
   position: absolute;
@@ -51,7 +51,7 @@ nav.navbar .hamburger {
   transition: 0.5s ease-in-out;
   cursor: pointer;
 }
-nav.navbar .hamburger span {
+#navHeader .hamburger span {
   display: block;
   position: absolute;
   height: 4px;
@@ -69,28 +69,28 @@ nav.navbar .hamburger span {
   -o-transition: 0.25s ease-in-out;
   transition: 0.25s ease-in-out;
 }
-nav.navbar .hamburger span:nth-child(1) {
+#navHeader .hamburger span:nth-child(1) {
   top: 0;
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
   transform-origin: left center;
 }
-nav.navbar .hamburger span:nth-child(2) {
+#navHeader .hamburger span:nth-child(2) {
   top: 12px;
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
   transform-origin: left center;
 }
-nav.navbar .hamburger span:nth-child(3) {
+#navHeader .hamburger span:nth-child(3) {
   top: 24px;
   -webkit-transform-origin: left center;
   -moz-transform-origin: left center;
   -o-transform-origin: left center;
   transform-origin: left center;
 }
-nav.navbar .hamburger.open span:nth-child(1) {
+#navHeader .hamburger.open span:nth-child(1) {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
   -o-transform: rotate(45deg);
@@ -98,11 +98,11 @@ nav.navbar .hamburger.open span:nth-child(1) {
   top: 0;
   left: 8px;
 }
-nav.navbar .hamburger.open span:nth-child(2) {
+#navHeader .hamburger.open span:nth-child(2) {
   width: 0;
   opacity: 0;
 }
-nav.navbar .hamburger.open span:nth-child(3) {
+#navHeader .hamburger.open span:nth-child(3) {
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
@@ -1998,6 +1998,9 @@ nav.navbar .hamburger.open span:nth-child(3) {
   background: url("/static/images/home/section-projects/section-projects-bg.jpg") no-repeat center;
   background-size: cover;
   min-height: 600px;
+}
+#sectionPartners img {
+  width: 100px;
 }
 
 /*# sourceMappingURL=styles.css.map */
