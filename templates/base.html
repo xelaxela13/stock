@@ -25,7 +25,6 @@
     <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
     <link rel="stylesheet" href="{% static 'open-iconic/font/css/open-iconic-bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'magic/magic.min.css' %}">
     <link rel="stylesheet" href="{% static 'css/fileupload/blueimp-gallery.min.css' %}"/>
     {% block extra_head %}{% endblock %}
 </head>
@@ -52,12 +51,9 @@
     </div>
 {% endblock content %}
 
-
-
 {% block footer %}
     {% include 'footer.html' %}
 {% endblock footer %}
-
 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -73,10 +69,8 @@
 <script>
     $(function () {
         activatePopover('.light', 'right');
-        animateBlocks();
     })
 </script>
 {% block extra_script %}{% endblock extra_script %}
 </body>
-
 </html>

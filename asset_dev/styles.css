@@ -30,7 +30,7 @@ a {
 }
 
 #navHeader {
-  position: absolute;
+  position: fixed;
   top: 1rem;
   right: 1rem;
   z-index: 9;
@@ -54,7 +54,7 @@ a {
 #navHeader .hamburger span {
   display: block;
   position: absolute;
-  height: 4px;
+  height: 5px;
   width: 100%;
   background: white;
   border-radius: 4px;
@@ -68,6 +68,7 @@ a {
   -moz-transition: 0.25s ease-in-out;
   -o-transition: 0.25s ease-in-out;
   transition: 0.25s ease-in-out;
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 #navHeader .hamburger span:nth-child(1) {
   top: 0;
@@ -1926,17 +1927,6 @@ a {
   background-color: #28234a;
 }
 
-#stab ul.color-list li {
-  padding: 0.5rem 0;
-}
-#stab .lamps img {
-  height: 170px;
-}
-#stab .scrollspy-stab {
-  height: 500px;
-  overflow-y: scroll;
-}
-
 #slider, .slick {
   position: relative;
 }
@@ -2001,6 +1991,20 @@ a {
 }
 #sectionPartners img {
   width: 100px;
+}
+#sectionStab ul.color-list li {
+  padding: 0.5rem 0;
+}
+#sectionStab .lamps img {
+  height: 170px;
+}
+#sectionStab .scrollspy-stab {
+  height: 500px;
+  overflow-y: scroll;
+}
+#sectionStab .bg {
+  background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat top center;
+  background-size: cover;
 }
 
 /*# sourceMappingURL=styles.css.map */

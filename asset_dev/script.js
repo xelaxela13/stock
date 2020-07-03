@@ -90,13 +90,6 @@ function scrollToSection(section) {
     }
 }
 
-function animateBlocks() {
-    $(window).on('scroll', function () {
-        $('.stab-animate-1').isInViewport() && $('.stab-animate-1').css('opacity', '1').addClass('slideLeftReturn');
-        $('.stab-animate-2').isInViewport() && $('.stab-animate-2').css('opacity', '1').addClass('slideRightReturn');
-    })
-}
-
 function activateSlick(element) {
     $(element).slick(
         {

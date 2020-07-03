@@ -1,47 +1,25 @@
 {% load static %}
-<section id="stab">
-    <div class="container py-3 py-lg-5">
-        <div class="row">
-            <div class="col-12 col-lg-8">
-                <div class="h2 blockquote-title magictime slideUpReturn">Стабилизаторы напряжений, системы
-                    безперебойного питания, резервное
-                    электроснабжение
-                </div>
-            </div>
-            <div class="col-12 col-lg-4">
-                <div class="digit magictime slideUpReturn">
-                    03
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="bg-black d-none d-lg-block">
-        <div class="container">
+<section id="sectionStab">
+    <div class="container-fluid bg py-lg-5">
+        <div class="container py-3 py-lg-5">
             <div class="row">
-                <div class="col-8 offset-2 py-5">
-                    <div class="d-flex justify-content-around w-100 lamps ">
-                        <img class="magictime puffIn delay-1s" style="opacity: 0"
-                             src="{% static 'images/home/lamps/lamp1.png' %}">
-                        <img class="magictime puffIn delay-1s" style="opacity: 0"
-                             src="{% static 'images/home/lamps/lamp2.png' %}">
-                        <img class="magictime puffIn delay-1s" style="opacity: 0"
-                             src="{% static 'images/home/lamps/lamp3.png' %}">
-                        <img class="magictime puffIn delay-1s" style="opacity: 0"
-                             src="{% static 'images/home/lamps/lamp4.png' %}">
-                    </div>
-                    <div class="h5 text-center text-white mt-3 warranty" data-toggle="popover"
-                         data-content="Гарантия зависит от модели стабилизатора напряжения. Гарантия действует на всей територии Украины.">
-                        * Гарантия от 5 до 10 лет!
+                <div class="col-12 col-lg-8">
+                    <div class="digit text-white mb-3">03</div>
+                    <div class="h3 text-white">Стабилизаторы напряжений, системы
+                        безперебойного питания, резервное
+                        электроснабжение
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container my-3 my-lg-5" id="containerStab">
+    <div class="container my-3 my-lg-5">
         <div class="row">
-            <div class="col-12 col-lg-6 stab-animate-1 magictime text-justify" style="opacity: 0">
-                <div class="h5 mb-3">"Миллион" причин выбрать стабилизатор напряжения &trade; АЛЬЯНС</div>
-                <div class="card shadow mb-3">
+            <div class="col-12">
+                <p class="text-gray-light my-3">"Миллион" причин выбрать стабилизатор напряжения &trade; АЛЬЯНС</p>
+            </div>
+            <div class="col-12 col-lg-6 text-justify">
+                <div class="card mb-3">
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Энергосберегающая технология при стабилизации напряжения</li>
@@ -54,7 +32,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card shadow mb-3">
+                <div class="card mb-3">
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">Точная стабилизация, благодаря измерению истинного значения
@@ -70,7 +48,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card shadow mb-3">
+                <div class="card mb-3">
                     <div class="card-body">
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item">
@@ -84,8 +62,8 @@
                 </div>
             </div>
             <div class="col-12 col-lg-6">
-                <div class="flex-column stab-animate-2 magictime" style="opacity: 0">
-                    <div class="card shadow mb-3">
+                <div class="flex-column">
+                    <div class="card mb-3">
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
@@ -102,7 +80,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="card shadow mb-3">
+                    <div class="card mb-3">
                         <div class="card-body">
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
@@ -130,6 +108,29 @@
                     </div>
                 </div>
             </div>
+
+        </div>
+    </div>
+    <div class="bg-black d-none d-lg-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-8 offset-2 py-5">
+                    <div class="d-flex justify-content-around w-100 lamps ">
+                        <img src="{% static 'images/home/lamps/lamp1.png' %}">
+                        <img src="{% static 'images/home/lamps/lamp2.png' %}">
+                        <img src="{% static 'images/home/lamps/lamp3.png' %}">
+                        <img src="{% static 'images/home/lamps/lamp4.png' %}">
+                    </div>
+                    <div class="h5 text-center text-white mt-3 warranty" data-toggle="popover"
+                         data-content="Гарантия зависит от модели стабилизатора напряжения. Гарантия действует на всей територии Украины.">
+                        * Гарантия от 5 до 10 лет!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container my-3 my-lg-5" id="containerStab">
+        <div class="row">
             <div class="col-12 col-lg-4">
                 <ul id="list-stab" class="list-group mt-3 mt-lg-5">
                     <li class="list-group-item list-group-item-action" href="#list-item-1">Uno</li>
@@ -139,7 +140,8 @@
                 </ul>
             </div>
             <div class="col-12 col-lg-8">
-                <div data-spy="scroll" data-target="#list-stab" data-offset="0" class="scrollspy-stab scroll-y mt-3 mt-lg-5">
+                <div data-spy="scroll" data-target="#list-stab" data-offset="0"
+                     class="scrollspy-stab scroll-y mt-3 mt-lg-5">
                     <div id="list-item-1" class="mb-3">
                         <h5 class="mb-3">Альянс Uno</h5>
                         <h6 class="text-green mb-3">Гарантия 5 лет</h6>
