@@ -1,9 +1,0 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block body_class %}solar{% endblock %}
-{% block content %}
-    {{ block.super }}
-    {% include 'home/parts/section-solar.html' %}
-    {% include 'home/parts/section-gallery.html' with title='Наши работы:' gallery_name='solar' %}
-{% endblock content %}

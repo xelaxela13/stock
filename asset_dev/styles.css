@@ -182,6 +182,9 @@ a {
 .bg-white.transparent-9 {
   background-color: rgba(255, 255, 255, 0.9) !important;
 }
+.bg-white.transparent-10 {
+  background-color: white !important;
+}
 .bg-white-dark {
   background-color: #fafafa;
 }
@@ -211,6 +214,9 @@ a {
 }
 .bg-white-dark.transparent-9 {
   background-color: rgba(250, 250, 250, 0.9) !important;
+}
+.bg-white-dark.transparent-10 {
+  background-color: #fafafa !important;
 }
 .bg-gray {
   background-color: #9397a5;
@@ -242,6 +248,9 @@ a {
 .bg-gray.transparent-9 {
   background-color: rgba(147, 151, 165, 0.9) !important;
 }
+.bg-gray.transparent-10 {
+  background-color: #9397a5 !important;
+}
 .bg-gray-light {
   background-color: #abab9f;
 }
@@ -271,6 +280,9 @@ a {
 }
 .bg-gray-light.transparent-9 {
   background-color: rgba(171, 171, 159, 0.9) !important;
+}
+.bg-gray-light.transparent-10 {
+  background-color: #abab9f !important;
 }
 .bg-blue-deep {
   background-color: #28234a;
@@ -302,6 +314,9 @@ a {
 .bg-blue-deep.transparent-9 {
   background-color: rgba(40, 35, 74, 0.9) !important;
 }
+.bg-blue-deep.transparent-10 {
+  background-color: #28234a !important;
+}
 .bg-blue-light {
   background-color: #edf5f8;
 }
@@ -331,6 +346,9 @@ a {
 }
 .bg-blue-light.transparent-9 {
   background-color: rgba(237, 245, 248, 0.9) !important;
+}
+.bg-blue-light.transparent-10 {
+  background-color: #edf5f8 !important;
 }
 .bg-blue {
   background-color: #57d4e6;
@@ -362,6 +380,9 @@ a {
 .bg-blue.transparent-9 {
   background-color: rgba(87, 212, 230, 0.9) !important;
 }
+.bg-blue.transparent-10 {
+  background-color: #57d4e6 !important;
+}
 .bg-black {
   background-color: #2a2a30;
 }
@@ -391,6 +412,9 @@ a {
 }
 .bg-black.transparent-9 {
   background-color: rgba(42, 42, 48, 0.9) !important;
+}
+.bg-black.transparent-10 {
+  background-color: #2a2a30 !important;
 }
 .bg-black-light {
   background-color: #393939;
@@ -422,6 +446,9 @@ a {
 .bg-black-light.transparent-9 {
   background-color: rgba(57, 57, 57, 0.9) !important;
 }
+.bg-black-light.transparent-10 {
+  background-color: #393939 !important;
+}
 .bg-beige {
   background-color: #dfdcda;
 }
@@ -451,6 +478,9 @@ a {
 }
 .bg-beige.transparent-9 {
   background-color: rgba(223, 220, 218, 0.9) !important;
+}
+.bg-beige.transparent-10 {
+  background-color: #dfdcda !important;
 }
 .bg-green {
   background-color: #60d88f;
@@ -482,6 +512,9 @@ a {
 .bg-green.transparent-9 {
   background-color: rgba(96, 216, 143, 0.9) !important;
 }
+.bg-green.transparent-10 {
+  background-color: #60d88f !important;
+}
 .bg-yellow {
   background-color: #ffd866;
 }
@@ -511,6 +544,9 @@ a {
 }
 .bg-yellow.transparent-9 {
   background-color: rgba(255, 216, 102, 0.9) !important;
+}
+.bg-yellow.transparent-10 {
+  background-color: #ffd866 !important;
 }
 .bg-overlay {
   position: absolute;
@@ -564,6 +600,37 @@ a {
 }
 .text-yellow {
   color: #ffd866;
+}
+
+.w-10 {
+  width: 10%;
+}
+.w-20 {
+  width: 20%;
+}
+.w-30 {
+  width: 30%;
+}
+.w-40 {
+  width: 40%;
+}
+.w-50 {
+  width: 50%;
+}
+.w-60 {
+  width: 60%;
+}
+.w-70 {
+  width: 70%;
+}
+.w-80 {
+  width: 80%;
+}
+.w-90 {
+  width: 90%;
+}
+.w-100 {
+  width: 100%;
 }
 
 .digit {
@@ -1828,6 +1895,140 @@ a {
   z-index: 9;
 }
 
+@-webkit-keyframes pulse-down-10 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(10);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-moz-keyframes pulse-down-10 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(10);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-ms-keyframes pulse-down-10 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(10);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-o-keyframes pulse-down-10 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(10);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes pulse-down-10 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(10);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes pulse-up-10 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(11);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-moz-keyframes pulse-up-10 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(11);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-ms-keyframes pulse-up-10 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(11);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@-o-keyframes pulse-up-10 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(11);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes pulse-up-10 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(11);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.pulse-up-10 {
+  -webkit-animation: pulse-up-10 3s infinite;
+  -moz-animation: pulse-up-10 3s infinite;
+  -ms-animation: pulse-up-10 3s infinite;
+  -o-animation: pulse-up-10 3s infinite;
+  animation: pulse-up-10 3s infinite;
+}
+
+.pulse-down-10 {
+  -webkit-animation: pulse-down-10 4s infinite;
+  -moz-animation: pulse-down-10 4s infinite;
+  -ms-animation: pulse-down-10 4s infinite;
+  -o-animation: pulse-down-10 4s infinite;
+  animation: pulse-down-10 4s infinite;
+}
+
+.delay-10s {
+  animation-delay: 10s;
+}
+
+.z-index-10 {
+  z-index: 10;
+}
+
 .cycles {
   top: -200px;
   left: -100px;
@@ -1901,24 +2102,6 @@ a {
   position: absolute;
   top: 15%;
   left: 50%;
-}
-
-.right-block {
-  position: fixed;
-  top: 17rem;
-  right: -10rem;
-  color: #dfdcda;
-  font-size: 4rem;
-  transform: rotate(90deg) scale(1.02);
-  font-weight: bold;
-}
-
-.first-section {
-  background: linear-gradient(150deg, white 40%, white, 15%, #edf5f8 15%, #edf5f8 100%);
-}
-
-.second-section {
-  background: linear-gradient(150deg, #edf5f8 70%, #edf5f8, 15%, white 15%, white 100%);
 }
 
 .scroll-y::-webkit-scrollbar-track {
@@ -2011,6 +2194,39 @@ a {
 #sectionStab .bg {
   background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat top center;
   background-size: cover;
+}
+
+@media (min-width: 992px) {
+  .w-lg-10 {
+    width: 10% !important;
+  }
+  .w-lg-20 {
+    width: 20% !important;
+  }
+  .w-lg-30 {
+    width: 30% !important;
+  }
+  .w-lg-40 {
+    width: 40% !important;
+  }
+  .w-lg-50 {
+    width: 50% !important;
+  }
+  .w-lg-60 {
+    width: 60% !important;
+  }
+  .w-lg-70 {
+    width: 70% !important;
+  }
+  .w-lg-80 {
+    width: 80% !important;
+  }
+  .w-lg-90 {
+    width: 90% !important;
+  }
+  .w-lg-100 {
+    width: 100% !important;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

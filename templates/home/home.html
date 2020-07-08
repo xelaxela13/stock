@@ -5,17 +5,8 @@
 {% block content %}
     {{ block.super }}
     {% include 'home/parts/section-first.html' %}
-    {% include 'home/parts/section-second.html' %}
+    {% include 'home/parts/section-about.html' %}
     {% include 'home/parts/section-solar.html' %}
     {% include 'home/parts/section-projects.html' %}
     {% include 'home/parts/section-partners.html' %}
 {% endblock content %}
-{% block extra_script %}
-    <script>
-        $(function () {
-            activateSlick('.slick')
-        })
-    </script>
-{% endblock extra_script %}
-
-

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}projects{% endblock %}
+{% block content %}
+    {{ block.super }}
+    {% include 'home/parts/section-slider.html' with title='Сертификаты:' gallery_name='certifications' %}
+    {% include 'home/parts/section-gallery.html' with title='Проекты:' gallery_name='boxes' %}
+{% endblock content %}
+{% block extra_script %}
+    <script>
+        $(function () {
+            activateSlick('.slick')
+        })
+    </script>
+{% endblock extra_script %}
+
+

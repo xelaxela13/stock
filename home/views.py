@@ -16,12 +16,6 @@ class GalleryContextMixin(ContextMixin):
 
 class Home(TemplateView, GalleryContextMixin):
     template_name = 'home/home.html'
-    galleries_names = {'certifications', 'boxes'}
-
-
-class Solar(TemplateView, GalleryContextMixin):
-    template_name = 'home/solar.html'
-    galleries_names = {'solar'}
 
 
 class Stabilizator(TemplateView, GalleryContextMixin):
@@ -29,6 +23,6 @@ class Stabilizator(TemplateView, GalleryContextMixin):
     galleries_names = {'stabilizators'}
 
 
-class Docs(TemplateView, GalleryContextMixin):
-    template_name = 'home/docs.html'
-    galleries_names = {'docs'}
+class Projects(TemplateView, GalleryContextMixin):
+    template_name = 'home/projects.html'
+    galleries_names = {'certifications', 'boxes'}

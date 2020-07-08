@@ -9,7 +9,7 @@
             </a>
         </li>
         <li>
-            <a data-toggle="tooltip" data-placement="left" title="О компании" href="{% if request.path == '/' %}#sectionFirst{% else %}{% url 'home' %}?#sectionFirst{% endif %}">
+            <a data-toggle="tooltip" data-placement="left" title="О компании" href="{% if request.path == '/' %}#sectionAbout{% else %}{% url 'home' %}?#sectionAbout{% endif %}">
                 <img src="{% static 'open-iconic/svg/audio-spectrum.svg' %}">
             </a>
         </li>
@@ -32,6 +32,11 @@
         <li>
             <a data-toggle="tooltip" data-placement="left" title="Электрозаправки TOKA" href="#">
                 <img src="{% static 'open-iconic/svg/battery-full.svg' %}">
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tooltip" data-placement="left" title="Галерея проектов" href="{% url 'projects' %}">
+                <img src="{% static 'open-iconic/svg/image.svg' %}">
             </a>
         </li>
     </ul>
