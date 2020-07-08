@@ -1,14 +1,17 @@
 {% load static %}
 <section id="sectionStab">
-    <div class="container-fluid bg py-lg-5">
-        <div class="container py-3 py-lg-5">
+    <div class="container-fluid bg">
+        <div class="container">
             <div class="row">
-                <div class="col-12 col-lg-8">
+                <div class="col-12 col-lg-6 py-3 py-lg-5 my-lg-5">
                     <div class="digit text-white mb-3">03</div>
                     <div class="h3 text-white">Стабилизаторы напряжений, системы
                         безперебойного питания, резервное
                         электроснабжение
                     </div>
+                </div>
+                <div class="col-12 col-lg-6 d-flex align-items-end">
+                    <img class="w-100 rounded-top" src="{% static 'images/home/section-stab/stab.jpg' %}">
                 </div>
             </div>
         </div>
@@ -132,17 +135,16 @@
     <div class="container my-3 my-lg-5" id="containerStab">
         <div class="row">
             <div class="col-12 col-lg-4">
-                <ul id="list-stab" class="list-group mt-3 mt-lg-5">
-                    <li class="list-group-item list-group-item-action" href="#list-item-1">Uno</li>
-                    <li class="list-group-item list-group-item-action" href="#list-item-2">Smart</li>
-                    <li class="list-group-item list-group-item-action" href="#list-item-3">Tesla</li>
-                    <li class="list-group-item list-group-item-action" href="#list-item-4">Prime</li>
-                </ul>
+                <div class="list-group mt-3 mt-lg-5" role="tablist">
+                    <a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#listItem1">Uno</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#listItem2">Smart</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#listItem3">Tesla</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list" role="tab" href="#listItem4">Prime</a>
+                </div>
             </div>
             <div class="col-12 col-lg-8">
-                <div data-spy="scroll" data-target="#list-stab" data-offset="0"
-                     class="scrollspy-stab scroll-y mt-3 mt-lg-5">
-                    <div id="list-item-1" class="mb-3">
+                <div class="tab-content scroll-y mt-3 mt-lg-5">
+                    <div id="listItem1" role="tabpanel" class="tab-pane active">
                         <h5 class="mb-3">Альянс Uno</h5>
                         <h6 class="text-green mb-3">Гарантия 5 лет</h6>
                         <h6 class="mb-3">
@@ -204,7 +206,7 @@
                             применения в квартире, небольшом доме, на даче.
                         </p>
                     </div>
-                    <div id="list-item-2" class="mb-3">
+                    <div id="listItem2" role="tabpanel" class="tab-pane">
                         <h5 class="mb-3">Альянс Smart</h5>
                         <h6 class="text-green mb-3">Гарантия 10 лет</h6>
                         <p>Благодаря использованию современных технологий, стабилизатор Alliance Smart обеспечит
@@ -251,7 +253,7 @@
                             диапазоном стабилизации и точностью напряжения на выходе.
                         </p>
                     </div>
-                    <div id="list-item-3" class="mb-3">
+                    <div id="listItem3" role="tabpanel" class="tab-pane">
                         <h5 class="mb-3">Альянс Tesla</h5>
                         <h6 class="text-green mb-3">Гарантия 10 лет</h6>
                         <p>Стабилизатор напряжения Alliance Tesla оснащен силовой частью с усиленной элементной базой,
@@ -301,7 +303,7 @@
                             и особого промышленного назначения.
                         </p>
                     </div>
-                    <div id="list-item-4">
+                    <div id="listItem4" role="tabpanel" class="tab-pane">
                         <h5 class="mb-3">Альянс Prime</h5>
                         <h6 class="text-green mb-3">Гарантия 10 лет</h6>
                         <p>Стабилизатор Alliance PRIME ES - это современное решение любых проблем с питающим

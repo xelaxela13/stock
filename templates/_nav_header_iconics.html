@@ -1,0 +1,38 @@
+{% load static %}
+{% load i18n %}
+
+<div id="navHeader">
+    <ul class="list-unstyled">
+        <li>
+            <a data-toggle="tooltip" data-placement="left" title="На главную" href="{% if request.path == '/' %}#{% else %}{% url 'home' %}{% endif %}">
+                <img src="{% static 'open-iconic/svg/home.svg' %}">
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tooltip" data-placement="left" title="О компании" href="{% if request.path == '/' %}#sectionFirst{% else %}{% url 'home' %}?#sectionFirst{% endif %}">
+                <img src="{% static 'open-iconic/svg/audio-spectrum.svg' %}">
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tooltip" data-placement="left" title="Солнечная энергетика" href="{% if request.path == '/' %}#sectionSolar{% else %}{% url 'home' %}?#sectionSolar{% endif %}">
+                <img src="{% static 'open-iconic/svg/sun.svg' %}">
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tooltip" data-placement="left" title="Проектная документация" href="{% if request.path == '/' %}#sectionProjects
+                    {% else %}{% url 'home' %}?#sectionProjects{% endif %}">
+                <img src="{% static 'open-iconic/svg/document.svg' %}">
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tooltip" data-placement="left" title="Бесперебойное питание" href="{% url 'stabilizators' %}">
+                <img src="{% static 'open-iconic/svg/bolt.svg' %}">
+            </a>
+        </li>
+        <li>
+            <a data-toggle="tooltip" data-placement="left" title="Электрозаправки TOKA" href="#">
+                <img src="{% static 'open-iconic/svg/battery-full.svg' %}">
+            </a>
+        </li>
+    </ul>
+</div>

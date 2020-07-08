@@ -54,15 +54,6 @@ function backgroundPosition(el, position) {
 //     backgroundPosition('.bg-section-solar', 400);
 // });
 
-// function activatePopover(element, placement) {
-//     $(element).length &&
-//     $(element).popover(
-//         {
-//             trigger: 'hover',
-//             placement: placement,
-//         }
-//     )
-// }
 const activatePopover = function (element, placement) {
     $(element).length &&
     $(element).popover(

@@ -104,8 +104,8 @@ a {
 #nav {
     &Header {
         position: fixed;
-        top: 1rem;
-        right: 1rem;
+        top: 2rem;
+        right: 3rem;
         z-index: 9;
 
         .hamburger {
@@ -191,6 +191,16 @@ a {
                         transform: rotate(-45deg);
                         top: 26px;
                         left: 8px;
+                    }
+                }
+            }
+        }
+        ul{
+            li{
+                margin-bottom: 1rem;
+                a{
+                    img{
+                        width: 16px;
                     }
                 }
             }
@@ -594,7 +604,7 @@ a {
             }
         }
 
-        .scrollspy-stab {
+        .tab-content {
             height: 500px;
             overflow-y: scroll;
         }
