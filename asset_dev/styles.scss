@@ -276,10 +276,6 @@ a {
         @include bg-transparent($blue-light, .6);
     }
 
-    &-docs {
-        background: url("/static/images/home/opensource.svg");
-    }
-
     &-solar {
         background: url("/static/images/home/solar-bg.jpg") no-repeat bottom;
         background-size: contain;

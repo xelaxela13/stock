@@ -557,9 +557,6 @@ a {
   border-radius: 1rem;
   background-color: rgba(237, 245, 248, 0.6);
 }
-.bg-docs {
-  background: url("/static/images/home/opensource.svg");
-}
 .bg-solar {
   background: url("/static/images/home/solar-bg.jpg") no-repeat bottom;
   background-size: contain;
