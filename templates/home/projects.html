@@ -4,6 +4,7 @@
 {% block body_class %}projects{% endblock %}
 {% block content %}
     {{ block.super }}
+    <div class="bg-blue-gradient"></div>
     {% include 'home/parts/section-slider.html' with title='Сертификаты:' gallery_name='certifications' %}
     {% include 'home/parts/section-gallery.html' with title='Проекты:' gallery_name='boxes' %}
 {% endblock content %}

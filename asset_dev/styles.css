@@ -561,6 +561,14 @@ a {
   background: url("/static/images/home/solar-bg.jpg") no-repeat bottom;
   background-size: contain;
 }
+.bg-blue-gradient {
+  background: linear-gradient(to right, #ab9393 0%, #9fd3ff 70%, #546f86 100%);
+  background: -webkit-gradient(to right, #ab9393 0%, #9fd3ff 70%, #546f86 100%);
+  background: -webkit-linear-gradient(to right, #ab9393 0%, #9fd3ff 70%, #546f86 100%);
+  background: -moz-linear-gradient(to right, #ab9393 0%, #9fd3ff 70%, #546f86 100%);
+  background: -o-linear-gradient(to right, #ab9393 0%, #9fd3ff 70%, #546f86 100%);
+  min-height: 20px;
+}
 
 .text-white {
   color: white;
@@ -2146,7 +2154,6 @@ a {
 #gallery, .gallery {
   height: 340px;
   overflow-y: scroll;
-  text-align: center;
 }
 #gallery-item, .gallery-item {
   border-radius: 10px;
