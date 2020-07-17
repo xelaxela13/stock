@@ -41,8 +41,7 @@ class ImagesGalleryAdmin(admin.ModelAdmin):
     def save_form(self, request, form, change):
         images = []
         for image in form.files.getlist('upload_images'):
-            new_img = Image.objects.create(file=image, user=request.user,
-                                           watermarked=True if form.cleaned_data['watermark'] else False)
+            new_img = Image.objects.create(file=image, user=request.user)
             images.append(new_img)
         if images:
             form.cleaned_data['images'] += images

@@ -104,3 +104,6 @@ venv.bak/
 .sock
 
 *.pid
+static_content/
+data/
+postgres
