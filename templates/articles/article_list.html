@@ -5,7 +5,36 @@
 {% block content %}
     {{ block.super }}
     <div class="bg-blue-gradient"></div>
-    {{ object_list }}
+    <section>
+        <div class="container">
+            <div class="row">
+                {% for article in object_list %}
+                    <div class="col-12 col-lg-6">
+                        <div class="h2 mb-3">{{ article.title }}</div>
+                        <p>{{ article.description }}</p>
+                    </div>
+                {% endfor %}
+            {% if is_paginated %}
+                <div class="col-12">
+                    <ul class="pagination pagination-lg">
+                        {% for page in page_obj %}
+                            <li class="page-item {% if page_obj.number == forloop.counter %}active{% endif %}">
+                                {% if page_obj.number == forloop.counter %}
+                                    <span class="page-link">
+                                        {{ forloop.counter }}
+                                        <span class="sr-only">(current)</span>
+                                    </span>
+                                {% else %}
+                                    <a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+    </section>
 {% endblock content %}
 
 
