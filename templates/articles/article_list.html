@@ -10,13 +10,18 @@
             <div class="row">
                 {% for article in object_list %}
                     <div class="col-12 col-lg-6">
-                        <div class="h2 mb-3">{{ article.title }}</div>
-                        <p>{{ article.description }}</p>
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p class="text-gray-light">{{ article.title }}</p>
+                                <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>
+                                <a href="{% url 'article' article.pk %}" class="card-link">>>></a>
+                            </div>
+                        </div>
                     </div>
                 {% endfor %}
             {% if is_paginated %}
                 <div class="col-12">
-                    <ul class="pagination pagination-lg">
+                    <ul class="pagination">
                         {% for page in page_obj %}
                             <li class="page-item {% if page_obj.number == forloop.counter %}active{% endif %}">
                                 {% if page_obj.number == forloop.counter %}
