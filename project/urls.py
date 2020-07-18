@@ -38,7 +38,8 @@ urlpatterns_translate = [
     path('accounts/', include('accounts.urls')),
     path('upload/', include('fileupload.urls')),
     path('stock/', include('stock.urls')),
-    path('image/', include('multiplefileupload.urls'))
+    path('image/', include('multiplefileupload.urls')),
+    path('', include('articles.urls'))
 ]
 
 urlpatterns = staticfiles_urlpatterns() + urlpatterns_untranslate + use_i18n(urlpatterns_translate)

@@ -60,7 +60,8 @@ INSTALLED_APPS = [
     'home',
     'fileupload',
     'stock',
-    'multiplefileupload'
+    'multiplefileupload',
+    'articles'
 ]
 
 MIDDLEWARE = [

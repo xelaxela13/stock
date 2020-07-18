@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}articles{% endblock %}
+{% block content %}
+    {{ block.super }}
+    <div class="bg-blue-gradient"></div>
+    {{ object_list }}
+{% endblock content %}
+
+
+
