@@ -8,17 +8,34 @@
     <section>
         <div class="container">
             <div class="row">
-                {% for article in object_list %}
-                    <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6">
+            {% with i=":"|add:half_page %}
+                {% for article in object_list|slice:i %}
                         <div class="card mb-3">
                             <div class="card-body">
                                 <p class="text-gray-light">{{ article.title }}</p>
-                                <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>
+                                <p class="card-text">{% lorem 2 p %}</p>
+{#                                <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>#}
                                 <a href="{% url 'article' article.pk %}" class="card-link">>>></a>
                             </div>
                         </div>
-                    </div>
                 {% endfor %}
+            {% endwith %}
+            </div>
+            <div class="col-12 col-lg-6">
+            {% with i=half_page|add:":" %}
+                {% for article in object_list|slice:i %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <p class="text-gray-light">{{ article.title }}</p>
+                                <p class="card-text">{% lorem 2 p %}</p>
+{#                                <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>#}
+                                <a href="{% url 'article' article.pk %}" class="card-link">>>></a>
+                            </div>
+                        </div>
+                {% endfor %}
+            {% endwith %}
+            </div>
             {% if is_paginated %}
                 <div class="col-12">
                     <ul class="pagination">
