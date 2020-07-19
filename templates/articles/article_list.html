@@ -6,54 +6,53 @@
     {{ block.super }}
     <div class="bg-blue-gradient"></div>
     <section>
-        <div class="container">
+        <div class="container my-3 my-lg-5">
             <div class="row">
-            <div class="col-12 col-lg-6">
-            {% with i=":"|add:half_page %}
-                {% for article in object_list|slice:i %}
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <p class="text-gray-light">{{ article.title }}</p>
-                                <p class="card-text">{% lorem 2 p %}</p>
-{#                                <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>#}
-                                <a href="{% url 'article' article.pk %}" class="card-link">>>></a>
+                <div class="col-12 col-lg-6">
+                    {% with i=":"|add:half_page %}
+                        {% for article in object_list|slice:i %}
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <p class="text-gray-light">{{ article.title }}</p>
+                                    <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>
+                                    <a href="{% url 'article' article.pk %}" class="card-link">>>></a>
+                                </div>
                             </div>
-                        </div>
-                {% endfor %}
-            {% endwith %}
-            </div>
-            <div class="col-12 col-lg-6">
-            {% with i=half_page|add:":" %}
-                {% for article in object_list|slice:i %}
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <p class="text-gray-light">{{ article.title }}</p>
-                                <p class="card-text">{% lorem 2 p %}</p>
-{#                                <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>#}
-                                <a href="{% url 'article' article.pk %}" class="card-link">>>></a>
+                        {% endfor %}
+                    {% endwith %}
+                </div>
+                <div class="col-12 col-lg-6">
+                    {% with i=half_page|add:":" %}
+                        {% for article in object_list|slice:i %}
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <p class="text-gray-light">{{ article.title }}</p>
+                                    <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>
+                                    <a href="{% url 'article' article.pk %}" class="card-link">>>></a>
+                                </div>
                             </div>
-                        </div>
-                {% endfor %}
-            {% endwith %}
-            </div>
-            {% if is_paginated %}
-                <div class="col-12">
-                    <ul class="pagination">
-                        {% for page in page_obj %}
-                            <li class="page-item {% if page_obj.number == forloop.counter %}active{% endif %}">
-                                {% if page_obj.number == forloop.counter %}
-                                    <span class="page-link">
+                        {% endfor %}
+                    {% endwith %}
+                </div>
+                {% if is_paginated %}
+                    <div class="col-12">
+                        <ul class="pagination">
+                            {% for page in page_obj %}
+                                <li class="page-item {% if page_obj.number == forloop.counter %}active{% endif %}">
+                                    {% if page_obj.number == forloop.counter %}
+                                        <span class="page-link">
                                         {{ forloop.counter }}
                                         <span class="sr-only">(current)</span>
                                     </span>
-                                {% else %}
-                                    <a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endif %}
+                                    {% else %}
+                                        <a class="page-link"
+                                           href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </section>
