@@ -102,6 +102,10 @@ a {
     color: $blue-deep;
 }
 
+img.logo{
+    width: 100px;
+}
+
 #nav {
     &Header {
         position: fixed;
@@ -609,6 +613,11 @@ min-height: 20px;
             background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat top center;
             background-size: cover;
         }
+    }
+
+    &Header{
+        background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat center;
+        background-size: cover;
     }
 }
 

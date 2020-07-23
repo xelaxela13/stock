@@ -32,7 +32,12 @@
 <body class="{% block body_class %}{% endblock body_class %}">
 {% include '_messages.html' %}
 {% block header %}
-    {% include 'header.html' %}
+    {% block header_title %}
+        {% include 'header.html' %}
+    {% endblock header_title %}
+    {% block header_nav %}
+        {% include '_nav_header_iconics.html' %}
+    {% endblock header_nav %}
 {% endblock header %}
 
 {% block content %}
@@ -69,7 +74,7 @@
 <script>
     $(function () {
         activatePopover('.light', 'right');
-        $('#navHeader a').tooltip();
+        $('*[data-toggle="tooltip"]').tooltip();
     })
 </script>
 {% block extra_script %}{% endblock extra_script %}

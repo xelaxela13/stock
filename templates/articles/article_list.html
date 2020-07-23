@@ -4,10 +4,10 @@
 {% block body_class %}articles{% endblock %}
 {% block content %}
     {{ block.super }}
-    <div class="bg-blue-gradient"></div>
     <section>
         <div class="container my-3 my-lg-5">
             <div class="row">
+                <div class="col-12 py-3 py-lg-5"><p class="text-gray-light">Публикации, статьи, материалы</p></div>
                 <div class="col-12 col-lg-6">
                     {% with i=":"|add:half_page %}
                         {% for article in object_list|slice:i %}
@@ -15,7 +15,9 @@
                                 <div class="card-body">
                                     <p class="text-gray-light">{{ article.title }}</p>
                                     <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>
-                                    <a href="{% url 'article' article.pk %}" class="card-link">>>></a>
+                                    <a href="{% url 'article' article.pk %}" class="card-link" data-toggle="tooltip" data-placement="top" title="Читать все...">
+                                        <img src="{% static 'open-iconic/svg/fullscreen-enter.svg' %}">
+                                    </a>
                                 </div>
                             </div>
                         {% endfor %}
@@ -28,7 +30,9 @@
                                 <div class="card-body">
                                     <p class="text-gray-light">{{ article.title }}</p>
                                     <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>
-                                    <a href="{% url 'article' article.pk %}" class="card-link">>>></a>
+                                    <a href="{% url 'article' article.pk %}" class="card-link" data-toggle="tooltip" data-placement="top" title="Читать все...">
+                                        <img src="{% static 'open-iconic/svg/fullscreen-enter.svg' %}">
+                                    </a>
                                 </div>
                             </div>
                         {% endfor %}

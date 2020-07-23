@@ -29,6 +29,10 @@ a {
   color: #28234a;
 }
 
+img.logo {
+  width: 100px;
+}
+
 #navHeader {
   position: fixed;
   top: 2rem;
@@ -2197,6 +2201,10 @@ a {
 }
 #sectionStab .bg {
   background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat top center;
+  background-size: cover;
+}
+#sectionHeader {
+  background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat center;
   background-size: cover;
 }
 
