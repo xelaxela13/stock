@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_class %}article{% endblock %}
+{% block content %}
+    {{ block.super }}
+    <section>
+        <div class="container my-3 my-lg-5">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'home' %}">
+                                <img src="{% static 'open-iconic/svg/home.svg' %}"></a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{% url 'articles' %}">Статьи</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ object.title }}</li>
+                        </ol>
+                    </nav>
+                </div>
+                <div class="col-12 py-3 py-lg-5"><p class="text-gray-light">{{ object.title }}</p></div>
+                <div class="col-12">
+                    <div class="text-justify">
+                        {{ object.description|safe }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+
+
+

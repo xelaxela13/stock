@@ -19,8 +19,7 @@
             </a>
         </li>
         <li>
-            <a data-toggle="tooltip" data-placement="left" title="Проектная документация" href="{% if request.path == '/' %}#sectionProjects
-                    {% else %}{% url 'home' %}?#sectionProjects{% endif %}">
+            <a data-toggle="tooltip" data-placement="left" title="Проектная документация" href="{% if request.path == '/' %}#sectionProjects{% else %}{% url 'home' %}?#sectionProjects{% endif %}">
                 <img src="{% static 'open-iconic/svg/document.svg' %}">
             </a>
         </li>

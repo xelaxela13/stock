@@ -32,6 +32,7 @@ urlpatterns_untranslate = [
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
     path('rosetta/', include('rosetta.urls')),
+    path('tinymce/', include('tinymce.urls')),
 ]
 urlpatterns_translate = [
     path('', include('home.urls')),

@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'import_export',
     'sorl.thumbnail',
     'sortedm2m',
+    'tinymce',
     # local apps
     'project',
     'accounts',
@@ -144,9 +145,9 @@ LOCALE_PATHS = [
 ]
 TIME_ZONE = 'Europe/Kiev'
 
-USE_I18N = False
+USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 

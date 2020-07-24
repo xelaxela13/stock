@@ -14,7 +14,7 @@
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <p class="text-gray-light">{{ article.title }}</p>
-                                    <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>
+                                    <p class="card-text">{{ article.description|safe|truncatewords_html:'20' }}</p>
                                     <a href="{% url 'article' article.pk %}" class="card-link" data-toggle="tooltip" data-placement="top" title="Читать все...">
                                         <img src="{% static 'open-iconic/svg/fullscreen-enter.svg' %}">
                                     </a>
@@ -29,7 +29,7 @@
                             <div class="card mb-3">
                                 <div class="card-body">
                                     <p class="text-gray-light">{{ article.title }}</p>
-                                    <p class="card-text">{{ article.description|truncatewords_html:'20' }}</p>
+                                    <p class="card-text">{{ article.description|safe|truncatewords_html:'20' }}</p>
                                     <a href="{% url 'article' article.pk %}" class="card-link" data-toggle="tooltip" data-placement="top" title="Читать все...">
                                         <img src="{% static 'open-iconic/svg/fullscreen-enter.svg' %}">
                                     </a>

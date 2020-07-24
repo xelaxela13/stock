@@ -355,37 +355,37 @@ img.logo {
   background-color: #edf5f8 !important;
 }
 .bg-blue {
-  background-color: #57d4e6;
+  background-color: #a0cdf5;
 }
 .bg-blue.transparent-1 {
-  background-color: rgba(87, 212, 230, 0.1) !important;
+  background-color: rgba(160, 205, 245, 0.1) !important;
 }
 .bg-blue.transparent-2 {
-  background-color: rgba(87, 212, 230, 0.2) !important;
+  background-color: rgba(160, 205, 245, 0.2) !important;
 }
 .bg-blue.transparent-3 {
-  background-color: rgba(87, 212, 230, 0.3) !important;
+  background-color: rgba(160, 205, 245, 0.3) !important;
 }
 .bg-blue.transparent-4 {
-  background-color: rgba(87, 212, 230, 0.4) !important;
+  background-color: rgba(160, 205, 245, 0.4) !important;
 }
 .bg-blue.transparent-5 {
-  background-color: rgba(87, 212, 230, 0.5) !important;
+  background-color: rgba(160, 205, 245, 0.5) !important;
 }
 .bg-blue.transparent-6 {
-  background-color: rgba(87, 212, 230, 0.6) !important;
+  background-color: rgba(160, 205, 245, 0.6) !important;
 }
 .bg-blue.transparent-7 {
-  background-color: rgba(87, 212, 230, 0.7) !important;
+  background-color: rgba(160, 205, 245, 0.7) !important;
 }
 .bg-blue.transparent-8 {
-  background-color: rgba(87, 212, 230, 0.8) !important;
+  background-color: rgba(160, 205, 245, 0.8) !important;
 }
 .bg-blue.transparent-9 {
-  background-color: rgba(87, 212, 230, 0.9) !important;
+  background-color: rgba(160, 205, 245, 0.9) !important;
 }
 .bg-blue.transparent-10 {
-  background-color: #57d4e6 !important;
+  background-color: #a0cdf5 !important;
 }
 .bg-black {
   background-color: #2a2a30;
@@ -593,7 +593,7 @@ img.logo {
   color: #edf5f8;
 }
 .text-blue {
-  color: #57d4e6;
+  color: #a0cdf5;
 }
 .text-black {
   color: #2a2a30;
