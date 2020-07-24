@@ -30,7 +30,7 @@ a {
 }
 
 img.logo {
-  width: 100px;
+  width: 65px;
 }
 
 #navHeader {
@@ -2207,6 +2207,21 @@ img.logo {
   background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat center;
   background-size: cover;
 }
+#sectionArticle .sidebar-link {
+  min-height: 250px;
+}
+#sectionArticle .sidebar-link.solar {
+  background: url("/static/images/articles/IMG_9500.jpg") no-repeat center;
+  background-size: cover;
+}
+#sectionArticle .sidebar-link.energy {
+  background: url("/static/images/home/section-stab/smart-bg.jpg") no-repeat top;
+  background-size: cover;
+}
+#sectionArticle .sidebar-link a {
+  min-height: inherit;
+  width: 100%;
+}
 
 @media (min-width: 992px) {
   .w-lg-10 {
@@ -2238,6 +2253,11 @@ img.logo {
   }
   .w-lg-100 {
     width: 100% !important;
+  }
+}
+@media (max-width: 767.98px) {
+  .digit {
+    font-size: 4rem;
   }
 }
 
