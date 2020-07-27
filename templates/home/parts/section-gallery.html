@@ -10,9 +10,9 @@
                     <div class="h3 mb-3">{{ title }}</div>
                     <div id="gallery" class="gallery scroll-y">
                         {% for image in gallery %}
-                            <a href="media/{{ image }}" data-gallery>
+                            <a href="/media/{{ image }}" data-gallery>
                                 {% thumbnail image "100x100" as im %}
-                                    <span class="gallery-item" style="background: url('media/{{ im }}') no-repeat;"></span>
+                                    <span class="gallery-item" style="background: url('/media/{{ im }}') no-repeat;"></span>
                                 {% endthumbnail %}
                             </a>
                         {% endfor %}
