@@ -13,11 +13,10 @@
                         {% for article in object_list|slice:i %}
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <p class="text-gray-light">{{ article.title }}</p>
-                                    <p class="card-text">{{ article.description|safe|truncatewords_html:'20' }}</p>
-                                    <a href="{% url 'article' article.pk %}" class="card-link" data-toggle="tooltip" data-placement="top" title="Читать все...">
-                                        <img src="{% static 'open-iconic/svg/fullscreen-enter.svg' %}">
+                                    <a href="{% url 'article' article.pk %}" class="card-link mb-3 d-inline-block" data-toggle="tooltip" data-placement="top" title="Читать все...">
+                                        <span class="text-gray-light">{{ article.title }}</span> <img src="{% static 'open-iconic/svg/fullscreen-enter.svg' %}">
                                     </a>
+                                    <p class="card-text">{{ article.description|safe|truncatewords_html:'20' }}</p>
                                 </div>
                             </div>
                         {% endfor %}
@@ -28,11 +27,10 @@
                         {% for article in object_list|slice:i %}
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <p class="text-gray-light">{{ article.title }}</p>
-                                    <p class="card-text">{{ article.description|safe|truncatewords_html:'20' }}</p>
-                                    <a href="{% url 'article' article.pk %}" class="card-link" data-toggle="tooltip" data-placement="top" title="Читать все...">
-                                        <img src="{% static 'open-iconic/svg/fullscreen-enter.svg' %}">
+                                    <a href="{% url 'article' article.pk %}" class="card-link mb-3 d-inline-block" data-toggle="tooltip" data-placement="top" title="Читать все...">
+                                        <span class="text-gray-light">{{ article.title }}</span> <img src="{% static 'open-iconic/svg/fullscreen-enter.svg' %}">
                                     </a>
+                                    <p class="card-text">{{ article.description|safe|truncatewords_html:'20' }}</p>
                                 </div>
                             </div>
                         {% endfor %}

@@ -2252,8 +2252,33 @@ img.logo {
   }
 }
 @media (max-width: 767.98px) {
+  h2, .h2 {
+    font-size: 1.5rem;
+  }
+
+  h3, .h3 {
+    font-size: 1.25rem;
+  }
+
+  #navHeader {
+    top: 1rem;
+    right: 1rem;
+  }
+
   .digit {
     font-size: 4rem;
+  }
+
+  #sectionFirst {
+    background-position: center;
+    background-size: auto;
+  }
+  #sectionProjects .bg {
+    min-height: 200px;
+  }
+
+  .blockquote-title:after {
+    display: none;
   }
 }
 

@@ -102,7 +102,7 @@ a {
     color: $blue-deep;
 }
 
-img.logo{
+img.logo {
     width: 65px;
 }
 
@@ -285,13 +285,13 @@ img.logo{
         background-size: contain;
     }
 
-    &-blue-gradient{
-        background: linear-gradient(to right,#ab9393 0%,#9fd3ff 70%,#546f86 100%);
-background: -webkit-gradient(to right,#ab9393 0%,#9fd3ff 70%,#546f86 100%);
-background: -webkit-linear-gradient(to right,#ab9393 0%,#9fd3ff 70%,#546f86 100%);
-background: -moz-linear-gradient(to right,#ab9393 0%,#9fd3ff 70%,#546f86 100%);
-background: -o-linear-gradient(to right,#ab9393 0%,#9fd3ff 70%,#546f86 100%);
-min-height: 20px;
+    &-blue-gradient {
+        background: linear-gradient(to right, #ab9393 0%, #9fd3ff 70%, #546f86 100%);
+        background: -webkit-gradient(to right, #ab9393 0%, #9fd3ff 70%, #546f86 100%);
+        background: -webkit-linear-gradient(to right, #ab9393 0%, #9fd3ff 70%, #546f86 100%);
+        background: -moz-linear-gradient(to right, #ab9393 0%, #9fd3ff 70%, #546f86 100%);
+        background: -o-linear-gradient(to right, #ab9393 0%, #9fd3ff 70%, #546f86 100%);
+        min-height: 20px;
     }
 }
 
@@ -610,23 +610,26 @@ min-height: 20px;
         }
     }
 
-    &Header{
+    &Header {
         background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat center;
         background-size: cover;
     }
 
-    &Article{
-        .sidebar-link{
-            &.solar{
+    &Article {
+        .sidebar-link {
+            &.solar {
                 background: url("/static/images/articles/IMG_9500.jpg") no-repeat center;
                 background-size: cover;
             }
-            &.energy{
+
+            &.energy {
                 background: url("/static/images/home/section-stab/smart-bg.jpg") no-repeat top;
                 background-size: cover;
             }
+
             min-height: 250px;
-            a{
+
+            a {
                 min-height: inherit;
                 width: 100%;
             }
@@ -664,8 +667,39 @@ min-height: 20px;
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
-    .digit{
+    h2, .h2 {
+        font-size: 1.5rem;
+    }
+    h3, .h3 {
+        font-size: 1.25rem;
+    }
+    #nav {
+        &Header {
+            top: 1rem;
+            right: 1rem;
+        }
+    }
+    .digit {
         font-size: 4rem;
+    }
+    #section {
+        &First {
+            background-position: center;
+            background-size: auto;
+        }
+
+        &Projects {
+            .bg {
+                min-height: 200px;
+            }
+        }
+    }
+    .blockquote {
+        &-title {
+            &:after {
+                display: none;
+            }
+        }
     }
 }
 
