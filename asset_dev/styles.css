@@ -156,39 +156,6 @@ img.logo {
   border-color: #60d88f;
 }
 
-.bg-white {
-  background-color: white;
-}
-.bg-white.transparent-1 {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-}
-.bg-white.transparent-2 {
-  background-color: rgba(255, 255, 255, 0.2) !important;
-}
-.bg-white.transparent-3 {
-  background-color: rgba(255, 255, 255, 0.3) !important;
-}
-.bg-white.transparent-4 {
-  background-color: rgba(255, 255, 255, 0.4) !important;
-}
-.bg-white.transparent-5 {
-  background-color: rgba(255, 255, 255, 0.5) !important;
-}
-.bg-white.transparent-6 {
-  background-color: rgba(255, 255, 255, 0.6) !important;
-}
-.bg-white.transparent-7 {
-  background-color: rgba(255, 255, 255, 0.7) !important;
-}
-.bg-white.transparent-8 {
-  background-color: rgba(255, 255, 255, 0.8) !important;
-}
-.bg-white.transparent-9 {
-  background-color: rgba(255, 255, 255, 0.9) !important;
-}
-.bg-white.transparent-10 {
-  background-color: white !important;
-}
 .bg-white-dark {
   background-color: #fafafa;
 }
@@ -574,9 +541,6 @@ img.logo {
   min-height: 20px;
 }
 
-.text-white {
-  color: white;
-}
 .text-white-dark {
   color: #fafafa;
 }
@@ -2279,6 +2243,11 @@ img.logo {
 
   .blockquote-title:after {
     display: none;
+  }
+
+  .light {
+    left: 1rem;
+    bottom: 1rem;
   }
 }
 

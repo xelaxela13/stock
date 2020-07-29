@@ -55,12 +55,12 @@ function backgroundPosition(el, position) {
 // });
 
 const activatePopover = function (element, placement) {
-    let is_touch_device = ("ontouchstart" in window) || window.DocumentTouch && document instanceof DocumentTouch;
+    let is_touch_device = ("ontouchstart" in window) || (/Mobi|Tablet|iPad|iPhone/.test(navigator.userAgent));
     $(element).length &&
     $(element).popover(
         {
             trigger: is_touch_device ? "click" : "hover",
-            placement: placement,
+            placement: is_touch_device ? 'top' : placement,
         }
     )
 }

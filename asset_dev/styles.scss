@@ -27,7 +27,6 @@ $digit: (
         10:10
 );
 $colors: (
-        white: white,
         white-dark: $white-dark,
         gray: $gray,
         gray-light: $gray-light,
@@ -700,6 +699,10 @@ img.logo {
                 display: none;
             }
         }
+    }
+    .light {
+        left: 1rem;
+        bottom: 1rem;
     }
 }
 
