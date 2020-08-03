@@ -563,10 +563,10 @@ img.logo {
 }
 
 #section {
-    &First {
-        background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat top center;
-        background-size: cover;
-    }
+    //&First {
+    //    background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat top center;
+    //    background-size: cover;
+    //}
 
     &Solar {
         .bg {
@@ -609,10 +609,10 @@ img.logo {
         }
     }
 
-    &Header {
-        background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat center;
-        background-size: cover;
-    }
+    //&Header {
+    //    background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat center;
+    //    background-size: cover;
+    //}
 
     &Article {
         .sidebar-link {
