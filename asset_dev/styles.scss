@@ -3,7 +3,7 @@
 $gray: #9397a5;
 $gray-light: #abab9f;
 $beige: rgba(223, 220, 218);
-$blue-deep: rgb(40, 35, 74);
+$blue-deep: rgb(32, 67, 128);
 $blue-light: #edf5f8;
 $blue: rgb(160, 205, 245);
 $black: rgb(42, 42, 48);
@@ -563,10 +563,10 @@ img.logo {
 }
 
 #section {
-    //&First {
-    //    background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat top center;
-    //    background-size: cover;
-    //}
+    &WhatWeDo {
+        background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat bottom;
+        background-size: cover;
+    }
 
     &Solar {
         .bg {

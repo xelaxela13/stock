@@ -13,7 +13,7 @@ body {
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   font-weight: 300;
-  color: #28234a;
+  color: #204380;
   margin: 0;
 }
 
@@ -26,7 +26,7 @@ p:last-child {
 }
 
 a {
-  color: #28234a;
+  color: #204380;
 }
 
 img.logo {
@@ -256,37 +256,37 @@ img.logo {
   background-color: #abab9f !important;
 }
 .bg-blue-deep {
-  background-color: #28234a;
+  background-color: #204380;
 }
 .bg-blue-deep.transparent-1 {
-  background-color: rgba(40, 35, 74, 0.1) !important;
+  background-color: rgba(32, 67, 128, 0.1) !important;
 }
 .bg-blue-deep.transparent-2 {
-  background-color: rgba(40, 35, 74, 0.2) !important;
+  background-color: rgba(32, 67, 128, 0.2) !important;
 }
 .bg-blue-deep.transparent-3 {
-  background-color: rgba(40, 35, 74, 0.3) !important;
+  background-color: rgba(32, 67, 128, 0.3) !important;
 }
 .bg-blue-deep.transparent-4 {
-  background-color: rgba(40, 35, 74, 0.4) !important;
+  background-color: rgba(32, 67, 128, 0.4) !important;
 }
 .bg-blue-deep.transparent-5 {
-  background-color: rgba(40, 35, 74, 0.5) !important;
+  background-color: rgba(32, 67, 128, 0.5) !important;
 }
 .bg-blue-deep.transparent-6 {
-  background-color: rgba(40, 35, 74, 0.6) !important;
+  background-color: rgba(32, 67, 128, 0.6) !important;
 }
 .bg-blue-deep.transparent-7 {
-  background-color: rgba(40, 35, 74, 0.7) !important;
+  background-color: rgba(32, 67, 128, 0.7) !important;
 }
 .bg-blue-deep.transparent-8 {
-  background-color: rgba(40, 35, 74, 0.8) !important;
+  background-color: rgba(32, 67, 128, 0.8) !important;
 }
 .bg-blue-deep.transparent-9 {
-  background-color: rgba(40, 35, 74, 0.9) !important;
+  background-color: rgba(32, 67, 128, 0.9) !important;
 }
 .bg-blue-deep.transparent-10 {
-  background-color: #28234a !important;
+  background-color: #204380 !important;
 }
 .bg-blue-light {
   background-color: #edf5f8;
@@ -551,7 +551,7 @@ img.logo {
   color: #abab9f;
 }
 .text-blue-deep {
-  color: #28234a;
+  color: #204380;
 }
 .text-blue-light {
   color: #edf5f8;
@@ -623,7 +623,7 @@ img.logo {
 .link:before {
   width: 0;
   height: 3px;
-  background-color: rgba(40, 35, 74, 0.3);
+  background-color: rgba(32, 67, 128, 0.3);
   transform-origin: bottom left;
   bottom: 4px;
 }
@@ -631,7 +631,7 @@ img.logo {
   bottom: -4px;
   width: 90%;
   height: 2px;
-  background-color: #28234a;
+  background-color: #204380;
 }
 .link:hover {
   color: black;
@@ -2008,7 +2008,7 @@ img.logo {
 }
 .cycles span {
   border-radius: 50%;
-  background-color: #28234a;
+  background-color: #204380;
   display: block;
 }
 .cycles .big {
@@ -2025,7 +2025,7 @@ img.logo {
 
 .cycle {
   border-radius: 50%;
-  background-color: #28234a;
+  background-color: #204380;
 }
 .cycle-small {
   width: 50px;
@@ -2086,7 +2086,7 @@ img.logo {
   background-color: #dfdcda;
 }
 .scroll-y::-webkit-scrollbar-thumb {
-  background-color: #28234a;
+  background-color: #204380;
 }
 
 #slider, .slick {
@@ -2136,6 +2136,10 @@ img.logo {
   display: inline-block;
 }
 
+#sectionWhatWeDo {
+  background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat bottom;
+  background-size: cover;
+}
 #sectionSolar .bg {
   background: url("/static/images/home/solar-bg.jpg") no-repeat top center;
   background-size: cover;
