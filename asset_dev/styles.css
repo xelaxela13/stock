@@ -2137,7 +2137,7 @@ img.logo {
 }
 
 #sectionWhatWeDo {
-  background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat bottom;
+  background: url("/static/images/home/section-first/section-first-bg.jpg") no-repeat center;
   background-size: cover;
 }
 #sectionSolar .bg {
