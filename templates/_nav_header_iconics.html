@@ -14,12 +14,12 @@
             </a>
         </li>
         <li>
-            <a data-toggle="tooltip" data-placement="left" title="Солнечная энергетика" href="{% if request.path == '/' %}#sectionSolar{% else %}{% url 'home' %}?#sectionSolar{% endif %}">
+            <a data-toggle="tooltip" data-placement="left" title="Солнечная энергетика" href="{% url 'solar' %}">
                 <img src="{% static 'open-iconic/svg/sun.svg' %}">
             </a>
         </li>
         <li>
-            <a data-toggle="tooltip" data-placement="left" title="Проектная документация" href="{% if request.path == '/' %}#sectionProjects{% else %}{% url 'home' %}?#sectionProjects{% endif %}">
+            <a data-toggle="tooltip" data-placement="left" title="Проектная документация" href="{% if request.path == 'solar' %}#sectionProjects{% else %}{% url 'solar' %}?#sectionProjects{% endif %}">
                 <img src="{% static 'open-iconic/svg/document.svg' %}">
             </a>
         </li>
@@ -31,11 +31,6 @@
         <li>
             <a data-toggle="tooltip" data-placement="left" title="Электрозаправки TOKA" href="#">
                 <img src="{% static 'open-iconic/svg/battery-full.svg' %}">
-            </a>
-        </li>
-        <li>
-            <a data-toggle="tooltip" data-placement="left" title="Галерея проектов" href="{% url 'projects' %}">
-                <img src="{% static 'open-iconic/svg/image.svg' %}">
             </a>
         </li>
         <li>

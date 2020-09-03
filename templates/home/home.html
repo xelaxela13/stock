@@ -8,7 +8,14 @@
     {% include 'home/parts/section-first.html' %}
     {% include 'home/parts/section-what-we-do.html' %}
     {% include 'home/parts/section-about.html' %}
-    {% include 'home/parts/section-solar.html' %}
-    {% include 'home/parts/section-projects.html' %}
+    {% include 'home/parts/section-slider.html' with title='Сертификаты:' gallery_name='certifications' %}
+    {% include 'home/parts/section-gallery.html' with title='Проекты:' gallery_name='boxes' %}
     {% include 'home/parts/section-partners.html' %}
 {% endblock content %}
+{% block extra_script %}
+    <script>
+        $(function () {
+            activateSlick('.slick')
+        })
+    </script>
+{% endblock extra_script %}
