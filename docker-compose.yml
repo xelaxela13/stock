@@ -14,7 +14,7 @@ services:
     - redis
   celerybeat:
     image: ${IMAGE}
-    command: celery -A project beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    command: celery -A project beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler --pidfile=
     restart: always
     volumes:
     - .:${PROJECT_ROOT}
