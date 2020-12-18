@@ -8,18 +8,20 @@ services:
     image: ${IMAGE}
     command: celery -A project worker -l info
     restart: always
+    user: ${SYSTEM_USER}
     volumes:
-    - .:${PROJECT_ROOT}
+      - .:${PROJECT_ROOT}
     depends_on:
-    - redis
+      - redis
   celerybeat:
     image: ${IMAGE}
-    command: celery -A project beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    command: celery -A project beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler --pidfile=
     restart: always
+    user: ${SYSTEM_USER}
     volumes:
-    - .:${PROJECT_ROOT}
+      - .:${PROJECT_ROOT}
     depends_on:
-    - redis
+      - redis
   memcached:
     image: memcached:latest
     restart: always
@@ -28,3 +30,5 @@ services:
       options:
         max-size: "10m"
         max-file: "2"
+volumes:
+  postgres_data: { }

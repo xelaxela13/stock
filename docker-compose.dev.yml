@@ -5,10 +5,10 @@ services:
     restart: always
     image: ${IMAGE}
     volumes:
-    - .:${PROJECT_ROOT}
+      - .:${PROJECT_ROOT}
     ports:
-    - ${UWSGI_PORT_RANGE}:${UWSGI_PORT_RANGE}
+      - ${UWSGI_PORT_RANGE}:${UWSGI_PORT_RANGE}
     command: python manage.py runserver 0:${UWSGI_PORT}
     depends_on:
-    - redis
-    - memcached
+      - redis
+      - memcached
