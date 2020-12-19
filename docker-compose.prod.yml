@@ -9,7 +9,7 @@ services:
       - .:${PROJECT_ROOT}
     ports:
       - ${UWSGI_PORT}:${UWSGI_PORT}
-    command: "daphne project.asgi:application -b 0.0.0.0 -p 8001"
+    command: daphne project.asgi:application -b 0.0.0.0 -p ${UWSGI_PORT}
     depends_on:
       - redis
       - memcached
