@@ -8,42 +8,23 @@ RUN set -ex \
        libc-dev \
        libffi-dev \
        openssl-dev \
-       postgresql-dev \
        gettext \
-       postgresql-client \
     && apk add --no-cache \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
         --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
        gdal \
        jpeg-dev \
        zlib-dev \
-       nodejs \
-       nodejs-npm \
-       libpq \
     && pip install --no-cache-dir -r /tmp/requirements.txt \
     && apk del .build-deps \
     && rm -rf /tmp/requirements.txt \
     && rm -rf /var/cache/apk/*
 
-# create directory for the app user
-RUN mkdir -p /home/user
-# create the app user
-#RUN addgroup -S user && adduser -S user -G user
-
-ENV PROJECT_ROOT /home/user/stock
+RUN mkdir -p /home/stock
+ENV PROJECT_ROOT /home/stock
 ENV PATH $PATH:$PROJECT_ROOT
 ENV PYTHONPATH $PYTHONPATH:$PROJECT_ROOT
-RUN mkdir $PROJECT_ROOT
 WORKDIR $PROJECT_ROOT
-
-RUN npm -g install --save-dev @babel/core @babel/cli @babel/preset-env
-RUN npm -g install yuglify sass
-
 COPY . $PROJECT_ROOT
 
-#RUN chown -R user:user $PROJECT_ROOT
-
-#USER user
-
 #docker build -t xelaxela13/stock:latest .
-#docker run --rm --volumes-from db postgres:9.3.22 bash -c "rm -r /var/lib/postgresql/data/*"

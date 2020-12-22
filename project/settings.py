@@ -37,9 +37,6 @@ ADMINS = [('Alex', config('ADMIN_EMAIL', default='dummy@mail.com')), ]
 
 # Application definition
 INSTALLED_APPS = [
-    # custom dashboard
-    'jet.dashboard',  # comment this - migrate and then uncomment and migrate again
-    'jet',
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
@@ -51,7 +48,6 @@ INSTALLED_APPS = [
     'rosetta',
     'django_celery_results',
     'django_celery_beat',
-    'import_export',
     'sorl.thumbnail',
     'sortedm2m',
     'tinymce',
@@ -59,8 +55,6 @@ INSTALLED_APPS = [
     'project',
     'accounts',
     'home',
-    'fileupload',
-    'stock',
     'multiplefileupload',
     'articles'
 ]
@@ -102,7 +96,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -113,7 +106,7 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 AUTH_USER_MODEL = 'accounts.User'
-LOGIN_REDIRECT_URL = reverse_lazy('panel')
+LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -131,8 +124,6 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-# https://docs.djangoproject.com/en/2.0/topics/i18n/
-
 LANGUAGE_CODE = 'ru'
 
 LANGUAGES = [
@@ -158,12 +149,12 @@ DEFAULT_LANGUAGE = LANGUAGE_CODE
 # Email send
 # https://docs.djangoproject.com/en/2.0/topics/email/
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_PASSWORD = config('GMAIL_PASSWORD', default='')
-EMAIL_HOST_USER = config('GMAIL_USER', default='')
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = True
+EMAIL_HOST = config('EMAIL_HOST', default='')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
+EMAIL_PORT = config('EMAIL_PORT', default='')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default='')
+EMAIL_USE_SSL = config('EMAIL_USE_SSL', default='')
 
 CACHES = {
     'default': {
@@ -173,7 +164,6 @@ CACHES = {
     }
 }
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_FOLDER = 'static_content'
 STATIC_URL = '/static/'
 STATIC_ROOT = rel(STATIC_FOLDER, 'asset')
@@ -188,26 +178,13 @@ STATICFILES_FINDERS = (
 CompressedManifestStaticFilesStorage.manifest_strict = False
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-SITE_LOGO_FIRST = path.join(STATIC_URL, 'images/logo.png')
-SITE_LOGO_SECOND = path.join(STATIC_URL, 'images/logo.png')
-
 # Media files
-# https://docs.djangoproject.com/en/2.0/howto/static-files/#serving-files-uploaded-by-a-user-during-development
 MEDIA_URL = '/media/'
 MEDIA_ROOT = rel(STATIC_FOLDER, 'media')
 
 #  https://ipstack.com/
 #  free geo api
 IPSTACK_ACCESS_KEY = config('IPSTACK_ACCESS_KEY', default='')
-
-# Activate Django-Heroku, uncomment it when deploy to Heroku
-if not DEBUG and config('HEROKU', default=False):
-    import dj_database_url
-
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-    import django_heroku
-
-    django_heroku.settings(locals())
 
 # REDIS related settings
 CELERY_REDIS_HOST = 'redis'
@@ -317,8 +294,4 @@ if DEBUG:
     DEBUG_TOOLBAR_CONFIG = {
         "SHOW_TOOLBAR_CALLBACK": lambda request: True,
     }
-    from pprint import pprint
-    from ipdb import set_trace
-
-    __builtins__["pp"] = pprint
-    __builtins__["st"] = set_trace
+    LOGGING = False

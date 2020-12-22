@@ -1,9 +1,9 @@
-from celery import task
+from celery import shared_task
 import requests
 from django.conf import settings
 
 
-@task
+@shared_task
 def get_location(language_code, ip_address):
     response = requests.get('http://api.ipstack.com/{}'.format(ip_address),
                             timeout=2,
