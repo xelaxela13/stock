@@ -28,9 +28,9 @@ ADMINS = [('Alex', config('ADMIN_EMAIL', default='dummy@mail.com')), ]
 # Application definition
 INSTALLED_APPS = [
     # custom dashboard
-    'jet.dashboard',
+    # 'jet.dashboard',
     # comment this - migrate and then uncomment and migrate again
-    'jet',
+    # 'jet',
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
